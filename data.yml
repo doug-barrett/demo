@@ -174,7 +174,14 @@ stepTypes:
       templates:
         create:
           templateString: |-
-            {% if currentState == undefined  %}
+            {% if desiredState == undefined  %}
+            --
+            -- Drop table
+            --
+                {{ stage('Drop Table') }}
+                DROP TABLE IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+
+            {% elif currentState == undefined  %}
             --
             -- Create table
             --
@@ -191,13 +198,6 @@ stepTypes:
                     {% endfor %}
                 )
                 {%- if desiredState.node.description | length > 0 %} COMMENT = '{{ desiredState.node.description }}'{% endif %}
-
-            {% elif currentState != undefined and desiredState == undefined  %}
-            --
-            -- Drop table
-            --
-                {{ stage('Drop Table') }}
-                DROP TABLE {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
 
             {% elif currentState != undefined and desiredState != undefined  %}
             --
