@@ -135,6 +135,20 @@ steps:
                     stepCounter: "186"
                 transform: ""
           - columnReference:
+              columnCounter: 25826
+              stepCounter: "1902"
+            dataType: VARCHAR(101)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: S_COMMENT1
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3785
+                    stepCounter: "186"
+                transform: ""
+          - columnReference:
               columnCounter: 25818
               stepCounter: "1902"
             dataType: VARCHAR(10)
