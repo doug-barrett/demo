@@ -301,7 +301,7 @@ stepTypes:
             --
             -- not sure what it was or is, probably something went wrong
             --
-                {{ stage('Something Might Be Wrong!'}}
+                {{ stage('Something Might Be Wrong!') }}
                 CREATE OR REPLACE {{ desiredState.node.materializationType | upper }} {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
             {% endif %}
         run:
