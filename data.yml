@@ -174,136 +174,23 @@ stepTypes:
       templates:
         create:
           templateString: |-
-            {% if desiredState == undefined  %}
-            --
-            -- Drop table
-            --
-                {{ stage('Drop Table') }}
-                DROP TABLE IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+            {% if node.materializationType == 'table' %}
+            				{{ stage('Create DS Table') }}
 
-            {% elif currentState == undefined  %}
-            --
-            -- Create table
-            --
-                {{ stage('Create Table') }}
-                CREATE OR REPLACE TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
-                (
-                    {% for col in desiredState.columns %}
-                        "{{ col.name }}" {{ col.dataType }}
-                        {%- if not col.nullable %} NOT NULL
-                            {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
-                        {% endif %}
-                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
-                        {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
-                )
-                {%- if desiredState.node.description | length > 0 %} COMMENT = '{{ desiredState.node.description }}'{% endif %}
+            				CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+            				(
+            					{% for col in columns %}
+            						"{{ col.name }}" {{ col.dataType }}
+            						{%- if not col.nullable %} NOT NULL
+            							{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            						{% endif %}
+            						{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            						{%- if not loop.last -%}, {% endif %}
+            					{% endfor %}
+            				)
+            				{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
 
-            {% elif currentState != undefined and desiredState != undefined  %}
-            --
-            -- Alter table
-            --
-                {% set counter = namespace(changes = 0) %}
-                {#-- Location or name changed --#}
-                {% if currentState.node.location.id != desiredState.node.location.id or currentState.node.name != desiredState.node.name %}
-                    {% set counter.changes = counter.changes + 1 %}
-                    {{ stage('Rename and/or Move Table') }}
-                    ALTER TABLE {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
-                    RENAME TO   {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
-                {% endif %}
-                {#-- Drop columns --#}
-                {% for curcol in currentState.columns if curcol.id not in desiredState.columns | map(attribute="id") %}
-                    {% set counter.changes = counter.changes + 1 %}
-                    {% if loop.first %}
-                        {{ stage('Add Columns') }}
-                        ALTER TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
-                        DROP COLUMN
-                    {% else %}
-                        ,
-                    {% endif %}
-                    {{ curcol.name }}
-                {% endfor %}
-                {#-- Add columns --#}
-                {% for curcol in desiredState.columns if curcol.id not in currentState.columns | map(attribute="id") %}
-                    {% set counter.changes = counter.changes + 1 %}
-                    {% if loop.first %}
-                        {{ stage('Add Columns') }}
-                        ALTER TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
-                        ADD COLUMN
-                    {% else %}
-                        ,
-                    {% endif %}
-                    "{{ curcol.name }}" {{ curcol.dataType }}
-                    {%- if not curcol.nullable %} NOT NULL
-                        {%- if curcol.defaultValue | length > 0 %} DEFAULT {{ curcol.defaultValue }}{% endif %}
-                    {% endif %}
-                    {%- if curcol.description | length > 0 %} COMMENT '{{ curcol.description }}'{% endif %}
-                {% endfor %}
-                {#-- Rename columns (one at a time) --#}
-                {% for curcol in currentState.columns 
-                if curcol.name != (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).name %}
-                    {% set counter.changes = counter.changes + 1 %}
-                    {{ stage('Rename Column ' + curcol.name) }}
-                    ALTER TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
-                    RENAME COLUMN {{ curcol.name }}
-                    TO {{ (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).name }}
-                {% endfor %}
-                {#-- Change data types etc --#}
-                {% for curcol in currentState.columns 
-                if curcol.dataType != (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).dataType 
-                or curcol.nullable != (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).nullable
-                or curcol.description != (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).description
-                or curcol.defaultValue != (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).defaultValue
-                %}
-                    {% set counter.changes = counter.changes + 1 %}
-                    {% if loop.first %}
-                        {{ stage('Change Column Attributes') }}
-                        ALTER TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
-                        MODIFY
-                    {% else %}
-                        ,
-                    {% endif %}
-                    {% set counter.colchanges = 0 %}
-                    {% if curcol.dataType != (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).dataType %}
-                        {% if counter.colchanges > 0 %},{% endif %}
-                        COLUMN {{ curcol.name }}
-                        SET DATA TYPE {{ (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).dataType }}
-                        {% set counter.colchanges = counter.colchanges + 1 %}
-                    {% endif %}
-                    {% if curcol.nullable != (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).nullable %}
-                        {% if counter.colchanges > 0 %},{% endif %}
-                        COLUMN {{ curcol.name }}
-                        {% if curcol.nullable %}SET{% else %}DROP{% endif %} NOT NULL
-                        {% set counter.colchanges = counter.colchanges + 1 %}
-                    {% endif %}
-                    {% if curcol.description != (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).description %}
-                        {% if counter.colchanges > 0 %},{% endif %}
-                        COLUMN {{ curcol.name }}
-                        COMMENT '{{ (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).description }}'
-                        {% set counter.colchanges = counter.colchanges + 1 %}
-                    {% endif %}
-                    {% if curcol.defaultValue != (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).defaultValue %}
-                        {% if counter.colchanges > 0 %},{% endif %}
-                        COLUMN {{ curcol.name }}
-                        {% if (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).defaultValue == '' %}
-                            DROP DEFAULT
-                        {% else %}
-                            SET DEFAULT {{ (desiredState.columns | selectattr('id', "equalto", curcol.id) | list | first).defaultValue }}
-                        {% endif %}
-                        {% set counter.colchanges = counter.colchanges + 1 %}
-                    {% endif %}
-                {% endfor %}
-                {% if counter.changes == 0 %}
-                    {{ stage('No Changes Detected') }}
-                    SELECT 1
-                {% endif %}
-            {% else %}
-            --
-            -- not sure what it was or is, probably something went wrong
-            --
-                {{ stage('Something Might Be Wrong!') }}
-                CREATE OR REPLACE {{ desiredState.node.materializationType | upper }} {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
-            {% endif %}
+            			{% endif %}
         run:
           templateString: |-
 
