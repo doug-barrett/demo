@@ -99,8 +99,6 @@ stepTypes:
         plural: Data Stores
         tagColor: '#29B2DB'
 
-
-
         config:
         - groupName: Options
           items:

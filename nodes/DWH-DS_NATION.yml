@@ -197,6 +197,6 @@ steps:
       name: DS_NATION
       overrideSQL: false
       schema: ""
-      sqlType: persistentStage
+      sqlType: "1"
       type: sql
     stepCounter: "1895"
