@@ -99,7 +99,7 @@ stepTypes:
         plural: Data Stores
         tagColor: '#29B2DB'
 
-        deployStrategy: advanced
+
 
         config:
         - groupName: Options
