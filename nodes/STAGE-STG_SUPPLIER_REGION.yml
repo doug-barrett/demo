@@ -1,0 +1,109 @@
+steps:
+  STG_SUPPLIER_REGION-1919:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 25997
+              stepCounter: "1919"
+            dataType: INT
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: S_SUPPKEY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 25992
+                    stepCounter: "1917"
+                transform: ""
+          - columnReference:
+              columnCounter: 25998
+              stepCounter: "1919"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SUPPLIER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 25995
+                    stepCounter: "1917"
+                transform: ""
+          - columnReference:
+              columnCounter: 25999
+              stepCounter: "1919"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: NATION
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 25994
+                    stepCounter: "1917"
+                transform: ""
+          - columnReference:
+              columnCounter: 26000
+              stepCounter: "1919"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: REGION
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 25993
+                    stepCounter: "1917"
+                transform: ""
+          - columnReference:
+              columnCounter: 26001
+              stepCounter: "1919"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: ITEM_COUNT
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 25996
+                    stepCounter: "1917"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DWH
+                nodeName: V_SUPPLIER_REGION
+            join:
+              joinCondition: FROM {{ ref('DWH', 'V_SUPPLIER_REGION') }} "V_SUPPLIER_REGION"
+            name: STG_SUPPLIER_REGION
+            noLinkRefs: []
+      name: STG_SUPPLIER_REGION
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "1919"
