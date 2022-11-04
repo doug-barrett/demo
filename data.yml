@@ -3021,6 +3021,44 @@ stepTypes:
             {% endif %}
     name: Copy of Dimension
     version: 1
+  StepType-55:
+    id: "55"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: null
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: CREATE SQL
+        short: SQL
+        plural: SQLs
+        tagColor: '#2EB67D'
+
+        config:
+        - groupName: Options
+          items:
+          - displayName: SQL
+            attributeName: SQL1
+            type: textBox
+            syntax: sql
+            isRequired: true
+
+        systemColumns:
+        - displayName: SQL_SEQ
+          transform: ''
+          dataType: NUMBER IDENTITY
+          placement: beginning
+          attributeName: isSurrogateKey
+      templates:
+        create:
+          templateString: |-
+            {% if config.SQL1 %}
+            	{{ stage('SQL1') }}
+            	{{ config.SQL1 }}
+            {% endif %}
+        run:
+          templateString: ""
+    name: CREATE DDL
+    version: 1
   StepType-9:
     id: "9"
     isDisabled: false
