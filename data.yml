@@ -10,44 +10,44 @@ jobs:
 locations:
   DWH:
     mappingDefinitions:
+      "10":
+        database: DOUG_DB
+        schema: QA_DWH
       "3":
         database: DOUG_DB
         schema: PROD_EDW
-      "5":
-        database: DOUG_DB
-        schema: QA_DWH
   SOURCE:
     mappingDefinitions:
+      "10":
+        database: SNOWFLAKE_SAMPLE_DATA
+        schema: TPCH_SF1
       "3":
         database: COALESCE_SAMPLE_DATABASE
         schema: TPCH_SF001
-      "5":
-        database: SNOWFLAKE_SAMPLE_DATA
-        schema: TPCH_SF1
   SOURCE1:
     mappingDefinitions:
+      "10":
+        database: SNOWFLAKE_SAMPLE_DATA
+        schema: TPCH_SF1
       "3":
         database: COALESCE_SAMPLE_DATABASE
         schema: TPCH_SF001
-      "5":
-        database: SNOWFLAKE_SAMPLE_DATA
-        schema: TPCH_SF1
   SOURCE2:
     mappingDefinitions:
+      "10":
+        database: SNOWFLAKE_SAMPLE_DATA
+        schema: TPCH_SF1
       "3":
         database: COALESCE_SAMPLE_DATABASE
         schema: TPCH_SF001
-      "5":
-        database: SNOWFLAKE_SAMPLE_DATA
-        schema: TPCH_SF1
   STAGE:
     mappingDefinitions:
+      "10":
+        database: DOUG_DB
+        schema: QA_STG
       "3":
         database: DOUG_DB
         schema: PROD_STG
-      "5":
-        database: DOUG_DB
-        schema: QA_STG
 macros:
   Macro-1:
     id: "1"
