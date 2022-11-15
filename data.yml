@@ -2212,7 +2212,7 @@ stepTypes:
             	CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
             	(
             		{% for col in columns %}
-            			"{{ col.name }}" {{ col.dataType }}
+            			"{{ col.name }}" {{ col.dataType }} dkfjsdljf
             			{% if col.isSurrogateKey %}
             		        identity
             			{% endif %}

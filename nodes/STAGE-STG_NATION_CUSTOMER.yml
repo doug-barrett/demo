@@ -1,0 +1,215 @@
+steps:
+  STG_NATION_CUSTOMER-2030:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 27381
+              stepCounter: "2030"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6345
+                    stepCounter: "557"
+                transform: ""
+          - columnReference:
+              columnCounter: 27382
+              stepCounter: "2030"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6346
+                    stepCounter: "557"
+                transform: ""
+          - columnReference:
+              columnCounter: 27383
+              stepCounter: "2030"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_REGIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6347
+                    stepCounter: "557"
+                transform: ""
+          - columnReference:
+              columnCounter: 27384
+              stepCounter: "2030"
+            dataType: VARCHAR(152)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6348
+                    stepCounter: "557"
+                transform: ""
+          - columnReference:
+              columnCounter: 27385
+              stepCounter: "2030"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27104
+                    stepCounter: "2021"
+                transform: ""
+          - columnReference:
+              columnCounter: 27386
+              stepCounter: "2030"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27105
+                    stepCounter: "2021"
+                transform: ""
+          - columnReference:
+              columnCounter: 27387
+              stepCounter: "2030"
+            dataType: VARCHAR(40)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27106
+                    stepCounter: "2021"
+                transform: ""
+          - columnReference:
+              columnCounter: 27388
+              stepCounter: "2030"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27107
+                    stepCounter: "2021"
+                transform: ""
+          - columnReference:
+              columnCounter: 27389
+              stepCounter: "2030"
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27108
+                    stepCounter: "2021"
+                transform: ""
+          - columnReference:
+              columnCounter: 27390
+              stepCounter: "2030"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_ACCTBAL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27109
+                    stepCounter: "2021"
+                transform: ""
+          - columnReference:
+              columnCounter: 27391
+              stepCounter: "2030"
+            dataType: VARCHAR(10)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_MKTSEGMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27110
+                    stepCounter: "2021"
+                transform: ""
+          - columnReference:
+              columnCounter: 27392
+              stepCounter: "2030"
+            dataType: VARCHAR(117)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27111
+                    stepCounter: "2021"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              CUSTOMER: "2021"
+              NATION: "557"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE
+                nodeName: NATION
+              - locationName: SOURCE
+                nodeName: CUSTOMER
+            join:
+              joinCondition: |-
+                FROM {{ ref('SOURCE', 'NATION') }} "NATION"
+                INNER JOIN {{ ref('SOURCE', 'CUSTOMER') }} "CUSTOMER"
+                ON "NATION"."N_NATIONKEY" = "CUSTOMER"."C_NATIONKEY"
+            name: STG_NATION_CUSTOMER
+            noLinkRefs: []
+      name: STG_NATION_CUSTOMER
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "2030"
