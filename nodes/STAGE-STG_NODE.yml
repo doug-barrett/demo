@@ -1,0 +1,67 @@
+steps:
+  STG_NODE-2020:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 27101
+              stepCounter: "2020"
+            dataType: VARIANT
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: VALUE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27099
+                    stepCounter: "2019"
+                transform: ""
+          - columnReference:
+              columnCounter: 27102
+              stepCounter: "2020"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27100
+                    stepCounter: "2019"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: EXT_NODE
+            join:
+              joinCondition: FROM {{ ref('STAGE', 'EXT_NODE') }} "EXT_NODE"
+            name: STG_NODE
+            noLinkRefs: []
+      name: STG_NODE
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "2020"

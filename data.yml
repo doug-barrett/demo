@@ -1,7 +1,9 @@
 defaultStorageMapping: STAGE
 jobs:
   Job-5:
+    excludeSelector: ""
     id: 5
+    includeSelector: "+{ location: DWH name: DIM_SUPPLIER }"
     name: Supplier pipeline
     steps:
       - "58"
@@ -1429,6 +1431,7 @@ stepTypes:
             options:
             - "CSV"
             - "JSON"
+            - "XML"
             - "Parquet"
             isRequired: true
 
@@ -2586,7 +2589,7 @@ stepTypes:
           items:
           - type: materializationSelector
             isRequired: true
-            default: table
+            default: TRANSIENT
             options:
             - table
             - view
@@ -2666,10 +2669,10 @@ stepTypes:
       templates:
         create:
           templateString: |
-            {% if node.materializationType == 'table' %}
+            {% if node.materializationType == 'table'  %}
             	{{ stage('Create Dimension Table') }}
 
-            	CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+            	CREATE OR REPLACE  TABLE {{ ref_no_link(node.location.name, node.name) }}
             	(
             		{% for col in columns %}
             			"{{ col.name }}" {{ col.dataType }}
@@ -2716,6 +2719,27 @@ stepTypes:
 
             		{% if not loop.last %} UNION ALL {% endif %}
             	{% endfor %}
+
+            {% elif node.materializationType == 'TRANSIENT'  %}
+            	{{ stage('Create Dimension Table') }}
+
+            	CREATE OR REPLACE TRANSIENT TABLE {{ ref_no_link(node.location.name, node.name) }}
+            	(
+            		{% for col in columns %}
+            			"{{ col.name }}" {{ col.dataType }}
+            			{% if col.isSurrogateKey %}
+            		        identity
+            			{% endif %}
+            			{%- if not col.nullable %} NOT NULL
+            				{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            			{% endif %}
+            			{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            			{%- if not loop.last -%}, {% endif %}
+            		{% endfor %}
+            	)
+            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+
+
 
             {% endif %}
         run:

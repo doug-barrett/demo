@@ -216,7 +216,7 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 4638
+                  - columnCounter: 27443
                     stepCounter: "57"
                 transform: ""
           - acceptedValues:

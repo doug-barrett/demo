@@ -1,0 +1,95 @@
+steps:
+  STG_XML-2038:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 27539
+              stepCounter: "2038"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CurrencyCode
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27444
+                    stepCounter: "2034"
+                transform: "GET(value, '@CurrencyCode')::STRING "
+          - columnReference:
+              columnCounter: 27540
+              stepCounter: "2038"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: RPH
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27444
+                    stepCounter: "2034"
+                transform: "GET(value, '@RPH')::STRING "
+          - columnReference:
+              columnCounter: 27541
+              stepCounter: "2038"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: TotalAmount
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27444
+                    stepCounter: "2034"
+                transform: "GET(value, '@TotalAmount')::STRING "
+          - columnReference:
+              columnCounter: 27538
+              stepCounter: "2038"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 27445
+                    stepCounter: "2034"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: EXT_XML
+            join:
+              joinCondition: FROM {{ ref('STAGE', 'EXT_XML') }} "EXT_XML"
+            name: STG_XML
+            noLinkRefs: []
+      name: STG_XML
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "2038"

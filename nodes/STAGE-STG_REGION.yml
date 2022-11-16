@@ -64,7 +64,9 @@ steps:
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - customSQL:
+          - aliases:
+              REGION: "45"
+            customSQL:
               customSQL: ""
             dependencies:
               - locationName: SOURCE

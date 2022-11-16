@@ -1,0 +1,81 @@
+steps:
+  EXT_NODE-2019:
+    operation:
+      config:
+        autoRefresh: false
+        compression: ""
+        fieldDelim: ","
+        fieldEnclosed: \042
+        fileLocation: DOUG_DB.PUBLIC.DOUGS3
+        filePattern: xml/.*
+        fileType: XML
+        recDelim: |+
+
+        skipBlankLines: true
+        skipHeader: "1"
+        snsTopic: arn:aws:sns:your-region:123456789012:your-notification
+        trimSpace: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - VALUE: true
+            acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 27099
+              stepCounter: "2019"
+            config: {}
+            dataType: VARIANT
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            name: VALUE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - METADATA$FILENAME: true
+            acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 27100
+              stepCounter: "2019"
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ""
+            name: EXT_NODE
+            noLinkRefs: []
+      name: EXT_NODE
+      overrideSQL: false
+      schema: ""
+      sqlType: "16"
+      type: sql
+    stepCounter: "2019"
