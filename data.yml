@@ -14,6 +14,13 @@ jobs:
     name: Process Stage
     steps: []
     subgraphs: []
+  Job-27:
+    excludeSelector: ""
+    id: 27
+    includeSelector: "+{ location: DWH }"
+    name: New Job
+    steps: []
+    subgraphs: []
   Job-5:
     excludeSelector: ""
     id: 5
