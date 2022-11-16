@@ -7,6 +7,13 @@ jobs:
     name: Process XML
     steps: []
     subgraphs: []
+  Job-26:
+    excludeSelector: ""
+    id: 26
+    includeSelector: "{ location: STAGE name: STG_XML }"
+    name: Process Stage
+    steps: []
+    subgraphs: []
   Job-5:
     excludeSelector: ""
     id: 5
