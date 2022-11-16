@@ -1,24 +1,10 @@
 defaultStorageMapping: STAGE
 jobs:
-  Job-25:
-    excludeSelector: ""
-    id: 25
-    includeSelector: "{ location: STAGE name: EXT_XML } OR { location: STAGE name: STG_XML }"
-    name: Process XML
-    steps: []
-    subgraphs: []
   Job-26:
     excludeSelector: ""
     id: 26
-    includeSelector: "{ location: STAGE name: STG_XML }"
+    includeSelector: "{ location: STAGE }"
     name: Process Stage
-    steps: []
-    subgraphs: []
-  Job-27:
-    excludeSelector: ""
-    id: 27
-    includeSelector: "+{ location: DWH }"
-    name: New Job
     steps: []
     subgraphs: []
   Job-5:
@@ -5162,10 +5148,6 @@ stepTypes:
     name: Persistent Stage
     version: 1
 subgraphs:
-  Subgraph-38:
-    id: 38
-    name: New Sub-Graph
-    steps: []
   Subgraph-7:
     id: 7
     name: Dim Supplier
