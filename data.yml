@@ -2608,6 +2608,7 @@ stepTypes:
             - table
             - view
             - TRANSIENT
+            - GROUSE
 
           - type: multisourceToggle
             enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
@@ -2689,7 +2690,7 @@ stepTypes:
             	CREATE OR REPLACE  TABLE {{ ref_no_link(node.location.name, node.name) }}
             	(
             		{% for col in columns %}
-            			"{{ col.name }}" {{ col.dataType }}
+            			"{{ col.name }}" {{ col.dataType }} 
             			{% if col.isSurrogateKey %}
             		        identity
             			{% endif %}
@@ -2740,7 +2741,7 @@ stepTypes:
             	CREATE OR REPLACE TRANSIENT TABLE {{ ref_no_link(node.location.name, node.name) }}
             	(
             		{% for col in columns %}
-            			"{{ col.name }}" {{ col.dataType }}
+            			"{{ col.name }}" {{ col.dataType }} SDKLFJDASLKFJSLADKFJSDLKFJSDLKJ
             			{% if col.isSurrogateKey %}
             		        identity
             			{% endif %}
@@ -5174,4 +5175,7 @@ subgraphs:
       - "1532"
       - "1533"
       - "1534"
+      - "553"
+      - "557"
+      - "186"
 version: 1

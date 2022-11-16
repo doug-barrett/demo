@@ -10,7 +10,7 @@ steps:
       database: ""
       dependencies: []
       deployEnabled: true
-      description: ""
+      description: THIS IS THE TABLE
       isDataVault: false
       isMultisource: false
       locationID: 2
@@ -64,7 +64,7 @@ steps:
               - columnReferences:
                   - columnCounter: 6315
                     stepCounter: "553"
-                transform: UPPER("STG_REGION"."R_NAME")
+                transform: LOWER("STG_REGION"."R_NAME")
           - appliedColumnTests:
               hasNull: false
               isDistinct: false
