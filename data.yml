@@ -1,5 +1,12 @@
 defaultStorageMapping: STAGE
 jobs:
+  Job-25:
+    excludeSelector: ""
+    id: 25
+    includeSelector: "{ location: STAGE name: EXT_XML } OR { location: STAGE name: STG_XML }"
+    name: Process XML
+    steps: []
+    subgraphs: []
   Job-5:
     excludeSelector: ""
     id: 5
