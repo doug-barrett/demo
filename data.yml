@@ -7,6 +7,13 @@ jobs:
     name: Process Stage
     steps: []
     subgraphs: []
+  Job-28:
+    excludeSelector: ""
+    id: 28
+    includeSelector: "+{ name: DIM_CUSTOMER } "
+    name: Dimensions
+    steps: []
+    subgraphs: []
   Job-5:
     excludeSelector: ""
     id: 5
@@ -5153,13 +5160,11 @@ subgraphs:
       - "45"
       - "46"
       - "56"
-      - "57"
       - "150"
       - "152"
       - "153"
       - "270"
       - "332"
-      - "1532"
       - "1533"
       - "1534"
       - "553"
