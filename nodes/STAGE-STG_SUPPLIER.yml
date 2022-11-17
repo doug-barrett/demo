@@ -51,7 +51,7 @@ steps:
             dataType: VARCHAR(25)
             description: ""
             name: S_NAME
-            nullable: false
+            nullable: "true"
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 492
@@ -66,7 +66,7 @@ steps:
             dataType: VARCHAR(40)
             description: ""
             name: S_ADDRESS
-            nullable: false
+            nullable: "true"
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 493
@@ -81,7 +81,7 @@ steps:
             dataType: NUMBER(38,0)
             description: ""
             name: S_NATIONKEY
-            nullable: false
+            nullable: "true"
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 494
@@ -96,7 +96,7 @@ steps:
             dataType: VARCHAR(15)
             description: ""
             name: S_PHONE
-            nullable: false
+            nullable: "true"
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 495
@@ -111,7 +111,7 @@ steps:
             dataType: NUMBER(12,2)
             description: ""
             name: S_ACCTBAL
-            nullable: false
+            nullable: "true"
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 496
@@ -189,7 +189,11 @@ steps:
               - locationName: SOURCE
                 nodeName: SUPPLIER
             join:
-              joinCondition: "FROM {{ ref('SOURCE', 'SUPPLIER') }} \"SUPPLIER\"\r\nLEFT JOIN {{ ref_no_link('DWH', 'DIM_SUPPLIER') }} \"DIM_SUPPLIER\"\r\nON \"SUPPLIER\".\"S_SUPPKEY\" = \"DIM_SUPPLIER\".\"S_SUPPKEY\"\r\nWHERE \"DIM_SUPPLIER\".\"S_SUPPKEY\" IS NULL\r\n"
+              joinCondition: |
+                FROM {{ ref('SOURCE', 'SUPPLIER') }} "SUPPLIER"
+                LEFT JOIN {{ ref_no_link('DWH', 'DIM_SUPPLIER') }} "DIM_SUPPLIER"
+                ON "SUPPLIER"."S_SUPPKEY" = "DIM_SUPPLIER"."S_SUPPKEY"
+                WHERE "DIM_SUPPLIER"."S_SUPPKEY" IS NULL
             name: STG_SUPPLIER
             noLinkRefs:
               - locationName: DWH
