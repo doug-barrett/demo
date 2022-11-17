@@ -10,8 +10,15 @@ jobs:
   Job-28:
     excludeSelector: ""
     id: 28
-    includeSelector: "+{ name: DIM_CUSTOMER } "
+    includeSelector: "{ subgraph: \"Customers\" }"
     name: Dimensions
+    steps: []
+    subgraphs: []
+  Job-29:
+    excludeSelector: ""
+    id: 29
+    includeSelector: "{ subgraph: \"Customers\" }"
+    name: Dim Customer
     steps: []
     subgraphs: []
   Job-5:
@@ -5153,6 +5160,15 @@ stepTypes:
     name: Persistent Stage
     version: 1
 subgraphs:
+  Subgraph-43:
+    id: 43
+    name: Customers
+    steps:
+      - "45"
+      - "557"
+      - "2090"
+      - "2095"
+      - "2096"
   Subgraph-7:
     id: 7
     name: Dim Supplier
