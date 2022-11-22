@@ -1,0 +1,82 @@
+steps:
+  HUB_FIRST-200000101:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000005
+      locationName: TGT_RAWVAULT
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000010101
+              stepCounter: "200000101"
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            name: HK_FirstHub
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000011114
+                    stepCounter: "200001111"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000010102
+              stepCounter: "200000101"
+            dataType: INTEGER
+            defaultValue: ""
+            description: ""
+            name: FirstID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000011111
+                    stepCounter: "200001111"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000010103
+              stepCounter: "200000101"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            name: LOAD_DTS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CURRENT_TIMESTAMP
+          - columnReference:
+              columnCounter: 2000010104
+              stepCounter: "200000101"
+            dataType: VARCHAR(30)
+            defaultValue: ""
+            description: ""
+            name: RECORD_SRC
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "'MY_SRC'"
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TGT_STAGE
+                nodeName: STG_TABLE
+            join:
+              joinCondition: FROM {{ ref('TGT_STAGE','STG_TABLE') }} STG_TABLE
+            name: HUB_FIRST
+            noLinkRefs: []
+      name: HUB_FIRST
+      overrideSQL: false
+      sqlType: Hub
+      type: sql
+    stepCounter: "200000101"

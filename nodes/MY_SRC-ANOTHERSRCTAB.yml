@@ -1,0 +1,52 @@
+steps:
+  ANOTHERSRCTAB-200034568:
+    operation:
+      config: {}
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000002
+      locationName: MY_SRC
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000345681
+              stepCounter: "200034568"
+            dataType: INTEGER
+            defaultValue: ""
+            description: ""
+            name: PID
+            nullable: false
+          - columnReference:
+              columnCounter: 2000345682
+              stepCounter: "200034568"
+            dataType: VARCHAR(30)
+            defaultValue: ""
+            description: ""
+            name: COL1
+            nullable: false
+          - columnReference:
+              columnCounter: 2000345683
+              stepCounter: "200034568"
+            dataType: VARCHAR(30)
+            defaultValue: ""
+            description: ""
+            name: COL2
+            nullable: false
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ''
+            name: ANOTHERSRCTAB
+            noLinkRefs: []
+      name: ANOTHERSRCTAB
+      overrideSQL: false
+      sqlType: Source
+      table: ANOTHERSRCTAB
+      type: sourceInput
+    stepCounter: "200034568"

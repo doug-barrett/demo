@@ -1,0 +1,159 @@
+steps:
+  STG_TABLE-200001111:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000004
+      locationName: TGT_STAGE
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000011111
+              stepCounter: "200001111"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Unique ID
+            name: FirstID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000345671
+                    stepCounter: "200034567"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000011117
+              stepCounter: "200001111"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Unique ID
+            name: SecondID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000345681
+                    stepCounter: "200034568"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000011112
+              stepCounter: "200001111"
+            dataType: VARCHAR(100)
+            defaultValue: ""
+            description: The first column of my table
+            name: FirstCol
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000345672
+                    stepCounter: "200034567"
+                transform: UPPER(SRCTAB.SRCCOL1)
+          - columnReference:
+              columnCounter: 2000011113
+              stepCounter: "200001111"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Another column
+            name: SECCOL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000345673
+                    stepCounter: "200034567"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000011114
+              stepCounter: "200001111"
+            dataType: STRING
+            defaultValue: ""
+            description: Hash Key of the Unique ID
+            hashDetails:
+              hashAlgorithm: MD5
+            hashedColumns:
+              - columnCounter: 2000011111
+                stepCounter: "200001111"
+            name: HK_FirstHub
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000011116
+              stepCounter: "200001111"
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashDetails:
+              hashAlgorithm: MD5
+            hashedColumns:
+              - columnCounter: 2000011117
+                stepCounter: "200001111"
+            name: HK_SecondHub
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000011118
+              stepCounter: "200001111"
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashDetails:
+              hashAlgorithm: MD5
+            hashedColumns:
+              - columnCounter: 2000011111
+                stepCounter: "200001111"
+              - columnCounter: 2000011117
+                stepCounter: "200001111"
+            name: HK_Link_First_Second
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000011115
+              stepCounter: "200001111"
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashDetails:
+              hashAlgorithm: MD5
+            hashedColumns:
+              - columnCounter: 2000011112
+                stepCounter: "200001111"
+              - columnCounter: 2000011113
+                stepCounter: "200001111"
+            name: CHANGE_HASH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: MY_SRC
+                nodeName: SRCTAB
+              - locationName: MY_SRC
+                nodeName: ANOTHERSRCTAB
+            join:
+              joinCondition: "FROM {{ ref('MY_SRC','SRCTAB') }} SRCTAB\nINNER JOIN\
+                \ {{ ref('MY_SRC','ANOTHERSRCTAB') }} ANOTHERSRCTAB\nON SRCTAB.ID\
+                \ = ANOTHERSRCTAB.PID"
+            name: STG_TABLE
+            noLinkRefs: []
+      name: STG_TABLE
+      overrideSQL: false
+      sqlType: Stage
+      type: sql
+    stepCounter: "200001111"

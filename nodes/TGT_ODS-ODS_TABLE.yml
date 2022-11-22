@@ -1,0 +1,73 @@
+steps:
+  ODS_TABLE-200012345:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: My sample ODS table
+      isMultisource: false
+      locationID: 20000001
+      locationName: TGT_ODS
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000123451
+              stepCounter: "200012345"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Unique ID
+            name: ID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000345671
+                    stepCounter: "200034567"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000123452
+              stepCounter: "200012345"
+            dataType: VARCHAR(100)
+            defaultValue: ""
+            description: The first column of my table
+            name: FirstCol
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000345672
+                    stepCounter: "200034567"
+                transform: UPPER(SRCTAB.SRCCOL1)
+          - columnReference:
+              columnCounter: 2000123453
+              stepCounter: "200012345"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Another column
+            name: SECCOL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000345673
+                    stepCounter: "200034567"
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: MY_SRC
+                nodeName: SRCTAB
+            join:
+              joinCondition: FROM {{ ref('MY_SRC','SRCTAB') }}
+            name: ODS_TABLE
+            noLinkRefs: []
+      name: ODS_TABLE
+      overrideSQL: false
+      sqlType: persistentStage
+      type: sql
+    stepCounter: "200012345"

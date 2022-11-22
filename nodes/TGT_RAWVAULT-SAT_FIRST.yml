@@ -1,0 +1,95 @@
+steps:
+  SAT_FIRST-200000104:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000005
+      locationName: TGT_RAWVAULT
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000010401
+              stepCounter: "200000104"
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            name: HK_FirstHub
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000011114
+                    stepCounter: "200001111"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000010402
+              stepCounter: "200000104"
+            dataType: VARCHAR(100)
+            defaultValue: ""
+            description: ""
+            name: FirstCol
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000011112
+                    stepCounter: "200001111"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000010403
+              stepCounter: "200000104"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            name: SECCOL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000011113
+                    stepCounter: "200001111"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000010404
+              stepCounter: "200000104"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            name: LOAD_DTS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CURRENT_TIMESTAMP
+          - columnReference:
+              columnCounter: 2000010405
+              stepCounter: "200000104"
+            dataType: VARCHAR(30)
+            defaultValue: ""
+            description: ""
+            name: RECORD_SRC
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "'MY_SRC'"
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TGT_STAGE
+                nodeName: STG_TABLE
+            join:
+              joinCondition: FROM {{ ref('TGT_STAGE','STG_TABLE') }} STG_TABLE
+            name: SAT_FIRST
+            noLinkRefs: []
+      name: SAT_FIRST
+      overrideSQL: false
+      sqlType: Satellite
+      type: sql
+    stepCounter: "200000104"
