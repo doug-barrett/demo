@@ -1,0 +1,44 @@
+steps:
+  load_product_categories-200000071:
+    operation:
+      config: {}
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000001
+      locationName: STAGE
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000034
+              stepCounter: "200000071"
+            dataType: int
+            defaultValue: ""
+            description: ""
+            name: categoryid
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000035
+              stepCounter: "200000071"
+            dataType: nvarchar(15)
+            defaultValue: ""
+            description: The product marketing category
+            name: categoryname
+            nullable: false
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ''
+            name: load_product_categories
+            noLinkRefs: []
+      name: load_product_categories
+      overrideSQL: false
+      sqlType: Source
+      table: load_product_categories
+      type: sourceInput
+    stepCounter: "200000071"
