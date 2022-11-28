@@ -1556,7 +1556,9 @@ stepTypes:
               {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
             ;
         run:
-          templateString: "{{ stage('Refresh External Table') }}\r\nALTER EXTERNAL TABLE {{ ref_no_link(node.location.name, node.name) }} REFRESH "
+          templateString: |-
+            {{ stage('Refresh External Table') }}
+            ALTER EXTERNAL TABLE {{ ref_no_link(node.location.name, node.name) }} REFRESH 
     name: External Table
     version: 1
   StepType-17:
@@ -5081,7 +5083,6 @@ subgraphs:
     id: 7
     name: Dim Supplier
     steps:
-      - "45"
       - "46"
       - "56"
       - "57"
