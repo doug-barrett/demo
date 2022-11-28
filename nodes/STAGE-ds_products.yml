@@ -1,0 +1,176 @@
+steps:
+  ds_products-200000082:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: 'NULL'
+      isMultisource: false
+      locationID: 20000001
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000036
+              stepCounter: "200000082"
+            dataType: int
+            defaultValue: ""
+            description: 'NULL'
+            name: productid
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000051
+                    stepCounter: "200000074"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000037
+              stepCounter: "200000082"
+            dataType: nvarchar(40)
+            defaultValue: ""
+            description: This is the primary market product name
+            name: productname
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000052
+                    stepCounter: "200000074"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000038
+              stepCounter: "200000082"
+            dataType: int
+            defaultValue: ""
+            description: 'NULL'
+            name: supplierid
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000053
+                    stepCounter: "200000074"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000039
+              stepCounter: "200000082"
+            dataType: int
+            defaultValue: ""
+            description: 'NULL'
+            name: categoryid
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000054
+                    stepCounter: "200000074"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000040
+              stepCounter: "200000082"
+            dataType: nvarchar(20)
+            defaultValue: ""
+            description: 'NULL'
+            name: quantityperunit
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000055
+                    stepCounter: "200000074"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000041
+              stepCounter: "200000082"
+            dataType: money
+            defaultValue: ""
+            description: 'NULL'
+            name: unitprice
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000056
+                    stepCounter: "200000074"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000042
+              stepCounter: "200000082"
+            dataType: smallint
+            defaultValue: ""
+            description: 'NULL'
+            name: unitsinstock
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000057
+                    stepCounter: "200000074"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000043
+              stepCounter: "200000082"
+            dataType: smallint
+            defaultValue: ""
+            description: 'NULL'
+            name: unitsonorder
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000058
+                    stepCounter: "200000074"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000044
+              stepCounter: "200000082"
+            dataType: smallint
+            defaultValue: ""
+            description: 'NULL'
+            name: reorderlevel
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000059
+                    stepCounter: "200000074"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000045
+              stepCounter: "200000082"
+            dataType: bit
+            defaultValue: ""
+            description: 'NULL'
+            name: discontinued
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000060
+                    stepCounter: "200000074"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000046
+              stepCounter: "200000082"
+            dataType: datetime
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: dss_update_time
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: 'NULL'
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: load_products
+            join:
+              joinCondition: "FROM {{ ref('STAGE','load_products') }} load_products\
+                \  "
+            name: ds_products
+            noLinkRefs: []
+      name: ds_products
+      overrideSQL: false
+      sqlType: persistentStage
+      type: sql
+    stepCounter: "200000082"
