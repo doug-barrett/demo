@@ -1,0 +1,226 @@
+steps:
+  dim_products-200000093:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: End User Table - should only publiish (not TRANSFORM) data
+      isMultisource: false
+      locationID: 20000002
+      locationName: DWH
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000166
+              stepCounter: "200000093"
+            dataType: integer identity(1,1)
+            defaultValue: ""
+            description: Generated artificial key
+            name: dim_products_key
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000167
+              stepCounter: "200000093"
+            dataType: int
+            defaultValue: ""
+            description: Product ID
+            name: productid
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000032
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000168
+              stepCounter: "200000093"
+            dataType: varchar(40)
+            defaultValue: ""
+            description: This is the primary market product name
+            name: productname
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000033
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000169
+              stepCounter: "200000093"
+            dataType: int
+            defaultValue: ""
+            description: Supplier ID
+            name: supplierid
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000034
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000170
+              stepCounter: "200000093"
+            dataType: varchar(40)
+            defaultValue: ""
+            description: Supplier Name
+            name: supplier_name
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000035
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000171
+              stepCounter: "200000093"
+            dataType: varchar(15)
+            defaultValue: ""
+            description: Supplier country of HQ
+            name: supplier_country
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000036
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000172
+              stepCounter: "200000093"
+            dataType: int
+            defaultValue: ""
+            description: The product marketing category identifier
+            name: categoryid
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000037
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000173
+              stepCounter: "200000093"
+            dataType: varchar(15)
+            defaultValue: ""
+            description: The product marketing category
+            name: categoryname
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000038
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000174
+              stepCounter: "200000093"
+            dataType: varchar(20)
+            defaultValue: ""
+            description: Quantity per unit for sale
+            name: quantityperunit
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000039
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000175
+              stepCounter: "200000093"
+            dataType: decimal(19,4)
+            defaultValue: ""
+            description: Unit price from pricelist
+            name: unitprice
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000040
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000176
+              stepCounter: "200000093"
+            dataType: decimal(19,4)
+            defaultValue: ""
+            description: Product sales amount for last 12 months
+            name: productsales
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000041
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000177
+              stepCounter: "200000093"
+            dataType: int
+            defaultValue: ""
+            description: Overall rank of product by historical sales
+            name: product_rank_by_sales
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000043
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000178
+              stepCounter: "200000093"
+            dataType: int
+            defaultValue: ""
+            description: Overall rank of product in category by historical sales
+            name: product_rank_by_sales_cat
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000044
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000179
+              stepCounter: "200000093"
+            dataType: int
+            defaultValue: ""
+            description: Overall rank of product by supplier by historical sales
+            name: product_rank_by_sales_supplier
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000045
+                    stepCounter: "200000085"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000180
+              stepCounter: "200000093"
+            dataType: timestamp
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: dss_update_time
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: stage_products_rank
+            join:
+              joinCondition: "FROM {{ ref('STAGE','stage_products_rank') }} stage_products_rank\
+                \  "
+            name: dim_products
+            noLinkRefs: []
+      name: dim_products
+      overrideSQL: false
+      sqlType: Dimension
+      type: sql
+    stepCounter: "200000093"

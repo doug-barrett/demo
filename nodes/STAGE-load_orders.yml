@@ -1,0 +1,156 @@
+steps:
+  load_orders-200000070:
+    operation:
+      config: {}
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000001
+      locationName: STAGE
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000020
+              stepCounter: "200000070"
+            dataType: int
+            defaultValue: ""
+            description: This is the internal order id
+            name: orderid
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000021
+              stepCounter: "200000070"
+            dataType: varchar(5)
+            defaultValue: ""
+            description: The internal customerid associated with the order
+            name: customerid
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000022
+              stepCounter: "200000070"
+            dataType: int
+            defaultValue: ""
+            description: The internal Employee id associated with the order
+            name: employeeid
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000023
+              stepCounter: "200000070"
+            dataType: timestamp
+            defaultValue: ""
+            description: The data the order was entered into the system
+            name: orderdate
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000024
+              stepCounter: "200000070"
+            dataType: timestamp
+            defaultValue: ""
+            description: The date that the order is required for delivery by the customer
+            name: requireddate
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000025
+              stepCounter: "200000070"
+            dataType: timestamp
+            defaultValue: ""
+            description: The date that the order was shipped from our factory
+            name: shippeddate
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000026
+              stepCounter: "200000070"
+            dataType: int
+            defaultValue: ""
+            description: Shipper internal id
+            name: shipperid
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000027
+              stepCounter: "200000070"
+            dataType: decimal(19,4)
+            defaultValue: ""
+            description: The order freight costs
+            name: freight
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000028
+              stepCounter: "200000070"
+            dataType: varchar(40)
+            defaultValue: ""
+            description: ""
+            name: shipname
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000029
+              stepCounter: "200000070"
+            dataType: varchar(60)
+            defaultValue: ""
+            description: ""
+            name: shipaddress
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000030
+              stepCounter: "200000070"
+            dataType: varchar(15)
+            defaultValue: ""
+            description: ""
+            name: shipcity
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000031
+              stepCounter: "200000070"
+            dataType: varchar(15)
+            defaultValue: ""
+            description: ""
+            name: shipregion
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000032
+              stepCounter: "200000070"
+            dataType: varchar(10)
+            defaultValue: ""
+            description: ""
+            name: shippostalcode
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000033
+              stepCounter: "200000070"
+            dataType: varchar(15)
+            defaultValue: ""
+            description: ""
+            name: shipcountry
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000019
+              stepCounter: "200000070"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: Record source.
+            name: dss_record_source
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000018
+              stepCounter: "200000070"
+            dataType: timestamp
+            defaultValue: ""
+            description: Load date.
+            name: dss_load_date
+            nullable: false
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ''
+            name: load_orders
+            noLinkRefs: []
+      name: load_orders
+      overrideSQL: false
+      sqlType: Source
+      table: load_orders
+      type: sourceInput
+    stepCounter: "200000070"
