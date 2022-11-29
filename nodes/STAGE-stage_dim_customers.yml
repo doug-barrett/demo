@@ -3,9 +3,10 @@ steps:
     operation:
       config:
         insertStrategy: INSERT
-        preSQL: ""
         postSQL: ""
+        preSQL: ""
         testsEnabled: true
+        truncateBefore: true
       database: ""
       dependencies: []
       deployEnabled: false
@@ -28,7 +29,7 @@ steps:
               - columnReferences:
                   - columnCounter: 2000000047
                     stepCounter: "200000144"
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000119
               stepCounter: "200000147"
@@ -41,7 +42,7 @@ steps:
               - columnReferences:
                   - columnCounter: 2000000048
                     stepCounter: "200000144"
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000120
               stepCounter: "200000147"
@@ -54,7 +55,7 @@ steps:
               - columnReferences:
                   - columnCounter: 2000000049
                     stepCounter: "200000144"
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000121
               stepCounter: "200000147"
@@ -67,7 +68,7 @@ steps:
               - columnReferences:
                   - columnCounter: 2000000050
                     stepCounter: "200000144"
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000122
               stepCounter: "200000147"
@@ -78,10 +79,9 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - &id001
-                    columnCounter: 2000000051
+                  - columnCounter: 2000000051
                     stepCounter: "200000144"
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000132
               stepCounter: "200000147"
@@ -92,7 +92,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - *id001
+                  - columnCounter: 2000000051
+                    stepCounter: "200000144"
                 transform: ds_customers.address + ',' + ds_customers.country
           - columnReference:
               columnCounter: 2000000123
@@ -106,7 +107,7 @@ steps:
               - columnReferences:
                   - columnCounter: 2000000052
                     stepCounter: "200000144"
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000124
               stepCounter: "200000147"
@@ -117,10 +118,9 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - &id002
-                    columnCounter: 2000000053
+                  - columnCounter: 2000000053
                     stepCounter: "200000144"
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000133
               stepCounter: "200000147"
@@ -131,7 +131,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - *id002
+                  - columnCounter: 2000000053
+                    stepCounter: "200000144"
                 transform: ""
           - columnReference:
               columnCounter: 2000000125
@@ -145,7 +146,7 @@ steps:
               - columnReferences:
                   - columnCounter: 2000000054
                     stepCounter: "200000144"
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000126
               stepCounter: "200000147"
@@ -158,7 +159,7 @@ steps:
               - columnReferences:
                   - columnCounter: 2000000055
                     stepCounter: "200000144"
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000127
               stepCounter: "200000147"
@@ -171,7 +172,7 @@ steps:
               - columnReferences:
                   - columnCounter: 2000000056
                     stepCounter: "200000144"
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000128
               stepCounter: "200000147"
@@ -184,7 +185,7 @@ steps:
               - columnReferences:
                   - columnCounter: 2000000058
                     stepCounter: "200000144"
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000129
               stepCounter: "200000147"
@@ -197,7 +198,7 @@ steps:
               - columnReferences:
                   - columnCounter: 2000000059
                     stepCounter: "200000144"
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000131
               stepCounter: "200000147"
@@ -208,7 +209,7 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences: []
-                transform: 'NULL'
+                transform: "NULL"
           - columnReference:
               columnCounter: 2000000130
               stepCounter: "200000147"
@@ -219,7 +220,7 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences: []
-                transform: 'NULL'
+                transform: "NULL"
         sourceMapping:
           - aliases: {}
             customSQL:
@@ -233,6 +234,6 @@ steps:
             noLinkRefs: []
       name: stage_dim_customers
       overrideSQL: false
-      sqlType: Stage Table
+      sqlType: Stage
       type: sql
     stepCounter: "200000147"

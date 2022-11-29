@@ -1,0 +1,388 @@
+steps:
+  DIM_stage_dim_customers-6199:
+    operation:
+      config:
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: DWH
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 61385
+              stepCounter: "6199"
+            config: {}
+            dataType: NUMBER
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSurrogateKey: true
+            name: DIM_stage_dim_customers_KEY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 61386
+              stepCounter: "6199"
+            dataType: nchar(5)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            isBusinessKey: true
+            name: customerid
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000118
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61387
+              stepCounter: "6199"
+            dataType: varchar(50)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: companyname
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000119
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61388
+              stepCounter: "6199"
+            dataType: varchar(50)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: contactname
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000120
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61389
+              stepCounter: "6199"
+            dataType: varchar(50)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: contacttitle
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000121
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61390
+              stepCounter: "6199"
+            dataType: varchar(60)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: address
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000122
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61391
+              stepCounter: "6199"
+            dataType: varchar(60)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: address_line
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000132
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61392
+              stepCounter: "6199"
+            dataType: varchar(50)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: city
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000123
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61393
+              stepCounter: "6199"
+            dataType: varchar(50)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: region
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000124
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61394
+              stepCounter: "6199"
+            dataType: varchar(50)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: region2
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000133
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61395
+              stepCounter: "6199"
+            dataType: varchar(50)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: postalcode
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000125
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61396
+              stepCounter: "6199"
+            dataType: varchar(50)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: country
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000126
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61397
+              stepCounter: "6199"
+            dataType: varchar(50)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: phone
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000127
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61398
+              stepCounter: "6199"
+            dataType: varchar(255)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: dss_record_source
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000128
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61399
+              stepCounter: "6199"
+            dataType: datetime
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: dss_load_date
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000129
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61400
+              stepCounter: "6199"
+            dataType: datetime
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: dss_create_time
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000131
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 61401
+              stepCounter: "6199"
+            dataType: datetime
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: dss_update_time
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000130
+                    stepCounter: "200000147"
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 61402
+              stepCounter: "6199"
+            config: {}
+            dataType: NUMBER
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemVersion: true
+            name: SYSTEM_VERSION
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 61403
+              stepCounter: "6199"
+            config: {}
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemCurrentFlag: true
+            name: SYSTEM_CURRENT_FLAG
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 61404
+              stepCounter: "6199"
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemStartDate: true
+            name: SYSTEM_START_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 61405
+              stepCounter: "6199"
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemEndDate: true
+            name: SYSTEM_END_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 61406
+              stepCounter: "6199"
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemCreateDate: true
+            name: SYSTEM_CREATE_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 61407
+              stepCounter: "6199"
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemUpdateDate: true
+            name: SYSTEM_UPDATE_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: stage_dim_customers
+            join:
+              joinCondition: FROM {{ ref('STAGE', 'stage_dim_customers') }} "stage_dim_customers"
+            name: DIM_stage_dim_customers
+            noLinkRefs: []
+      name: DIM_stage_dim_customers
+      overrideSQL: false
+      schema: ""
+      sqlType: Dimension
+      type: sql
+    stepCounter: "6199"
