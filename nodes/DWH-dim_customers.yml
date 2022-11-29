@@ -1,0 +1,250 @@
+steps:
+  dim_customers-200000149:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000002
+      locationName: DWH
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000188
+              stepCounter: "200000149"
+            dataType: integer identity(1,1)
+            defaultValue: ""
+            description: Generated artificial key
+            name: dim_customers_key
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000189
+              stepCounter: "200000149"
+            dataType: nchar(5)
+            defaultValue: ""
+            description: ""
+            name: customerid
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000118
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000190
+              stepCounter: "200000149"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: This is the customers registered name
+            name: companyname
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000119
+                    stepCounter: "200000147"
+                transform: ISNULL(stage_dim_customers.companyname, 'NULL')
+          - columnReference:
+              columnCounter: 2000000191
+              stepCounter: "200000149"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: ""
+            name: contactname
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000120
+                    stepCounter: "200000147"
+                transform: ISNULL(stage_dim_customers.contactname, 'NULL')
+          - columnReference:
+              columnCounter: 2000000192
+              stepCounter: "200000149"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: ""
+            name: contacttitle
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000121
+                    stepCounter: "200000147"
+                transform: ISNULL(stage_dim_customers.contacttitle, 'NULL')
+          - columnReference:
+              columnCounter: 2000000193
+              stepCounter: "200000149"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: ""
+            name: address
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000122
+                    stepCounter: "200000147"
+                transform: ISNULL(stage_dim_customers.address, 'NULL')
+          - columnReference:
+              columnCounter: 2000000194
+              stepCounter: "200000149"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: ""
+            name: address_line
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000132
+                    stepCounter: "200000147"
+                transform: ISNULL(stage_dim_customers.address_line, 'NULL')
+          - columnReference:
+              columnCounter: 2000000195
+              stepCounter: "200000149"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: This is the customers head office address city
+            name: city
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000123
+                    stepCounter: "200000147"
+                transform: ISNULL(stage_dim_customers.city, 'NULL')
+          - columnReference:
+              columnCounter: 2000000196
+              stepCounter: "200000149"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: ""
+            name: region
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000124
+                    stepCounter: "200000147"
+                transform: ISNULL(stage_dim_customers.region, 'NULL')
+          - columnReference:
+              columnCounter: 2000000197
+              stepCounter: "200000149"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: ""
+            name: region2
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000133
+                    stepCounter: "200000147"
+                transform: ISNULL(stage_dim_customers.region2, 'NULL')
+          - columnReference:
+              columnCounter: 2000000198
+              stepCounter: "200000149"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: ""
+            name: postalcode
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000125
+                    stepCounter: "200000147"
+                transform: ISNULL(stage_dim_customers.postalcode, 'NULL')
+          - columnReference:
+              columnCounter: 2000000199
+              stepCounter: "200000149"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: This is the customers head office address country
+            name: country
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000126
+                    stepCounter: "200000147"
+                transform: ISNULL(stage_dim_customers.country, 'NULL')
+          - columnReference:
+              columnCounter: 2000000200
+              stepCounter: "200000149"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: ""
+            name: phone
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000127
+                    stepCounter: "200000147"
+                transform: ISNULL(stage_dim_customers.phone, 'NULL')
+          - columnReference:
+              columnCounter: 2000000201
+              stepCounter: "200000149"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: Record source.
+            name: dss_record_source
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000128
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000202
+              stepCounter: "200000149"
+            dataType: datetime
+            defaultValue: ""
+            description: Load date.
+            name: dss_load_date
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000129
+                    stepCounter: "200000147"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000204
+              stepCounter: "200000149"
+            dataType: datetime
+            defaultValue: ""
+            description: Date and time the row was created in the data warehouse.
+            name: dss_create_time
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000203
+              stepCounter: "200000149"
+            dataType: datetime
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: dss_update_time
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: stage_dim_customers
+            join:
+              joinCondition: "FROM {{ ref('STAGE','stage_dim_customers') }} stage_dim_customers\
+                \  "
+            name: dim_customers
+            noLinkRefs: []
+      name: dim_customers
+      overrideSQL: false
+      sqlType: Dimension
+      type: sql
+    stepCounter: "200000149"

@@ -1,0 +1,85 @@
+steps:
+  ds_product_sales-200000080:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000001
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000020
+              stepCounter: "200000080"
+            dataType: nvarchar(15)
+            defaultValue: ""
+            description: ""
+            name: categoryname
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000036
+                    stepCounter: "200000072"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000021
+              stepCounter: "200000080"
+            dataType: nvarchar(40)
+            defaultValue: ""
+            description: ""
+            name: productname
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000037
+                    stepCounter: "200000072"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000022
+              stepCounter: "200000080"
+            dataType: money
+            defaultValue: ""
+            description: ""
+            name: productsales
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000038
+                    stepCounter: "200000072"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000023
+              stepCounter: "200000080"
+            dataType: datetime
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: dss_update_time
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: 'NULL'
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: load_product_sales
+            join:
+              joinCondition: "FROM {{ ref('STAGE','load_product_sales') }} load_product_sales\
+                \  "
+            name: ds_product_sales
+            noLinkRefs: []
+      name: ds_product_sales
+      overrideSQL: false
+      sqlType: persistentStage
+      type: sql
+    stepCounter: "200000080"

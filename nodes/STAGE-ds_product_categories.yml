@@ -1,0 +1,72 @@
+steps:
+  ds_product_categories-200000079:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000001
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000017
+              stepCounter: "200000079"
+            dataType: int
+            defaultValue: ""
+            description: ""
+            name: categoryid
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000034
+                    stepCounter: "200000071"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000018
+              stepCounter: "200000079"
+            dataType: nvarchar(15)
+            defaultValue: ""
+            description: The product marketing category
+            name: categoryname
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000035
+                    stepCounter: "200000071"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000019
+              stepCounter: "200000079"
+            dataType: datetime
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: dss_update_time
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: 'NULL'
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: load_product_categories
+            join:
+              joinCondition: "FROM {{ ref('STAGE','load_product_categories') }} load_product_categories\
+                \  "
+            name: ds_product_categories
+            noLinkRefs: []
+      name: ds_product_categories
+      overrideSQL: false
+      sqlType: persistentStage
+      type: sql
+    stepCounter: "200000079"

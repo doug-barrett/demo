@@ -1,0 +1,179 @@
+steps:
+  dim_require_date-200000090:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: Role playing dimension over generated date dimension
+      isMultisource: false
+      locationID: 20000002
+      locationName: DWH
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000072
+              stepCounter: "200000090"
+            dataType: integer
+            defaultValue: ""
+            description: Generated key for the date dimension. Nominal format is YYYYMMDD,
+              but DD equal to 0 and greater than 31 permited for special date handling.
+            name: dim_require_date_key
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000073
+              stepCounter: "200000090"
+            dataType: datetime
+            defaultValue: ""
+            description: The calendar date for this row.
+            name: requireddate
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000074
+              stepCounter: "200000090"
+            dataType: varchar(3)
+            defaultValue: ""
+            description: 'The day in the week. Format DDD. Example: mon, tue, wed.'
+            name: require_cal_day_in_week
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000075
+              stepCounter: "200000090"
+            dataType: integer
+            defaultValue: ""
+            description: The day number in the week. 1-7 where Sunday is day 1.
+            name: require_cal_day_in_week_no
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000076
+              stepCounter: "200000090"
+            dataType: integer
+            defaultValue: ""
+            description: The day in the month 1-31.
+            name: require_cal_day_in_month
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000077
+              stepCounter: "200000090"
+            dataType: integer
+            defaultValue: ""
+            description: The day in the year 1-366.
+            name: require_cal_day_in_year
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000078
+              stepCounter: "200000090"
+            dataType: integer
+            defaultValue: ""
+            description: The week in the year 0-53.
+            name: require_cal_week_in_year
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000079
+              stepCounter: "200000090"
+            dataType: integer
+            defaultValue: ""
+            description: The calendar month number 1-12.
+            name: require_cal_month_no
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000080
+              stepCounter: "200000090"
+            dataType: integer
+            defaultValue: ""
+            description: 'The calendar month representation. Format YYYYMM. Example:
+              200206.'
+            name: require_cal_month
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000081
+              stepCounter: "200000090"
+            dataType: varchar(7)
+            defaultValue: ""
+            description: 'The calendar month name. Format MON. Examples: jan, feb,
+              mar.'
+            name: require_cal_month_name
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000082
+              stepCounter: "200000090"
+            dataType: integer
+            defaultValue: ""
+            description: The calendar quarter number 1-4.
+            name: require_cal_quarter_no
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000083
+              stepCounter: "200000090"
+            dataType: integer
+            defaultValue: ""
+            description: The calendar quarter representation. Format YYYYQQ. Example
+              200204.
+            name: require_cal_quarter
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000084
+              stepCounter: "200000090"
+            dataType: integer
+            defaultValue: ""
+            description: The calendar year. Format YYYY
+            name: require_cal_year
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ''
+            name: dim_require_date
+            noLinkRefs: []
+      name: dim_require_date
+      overrideSQL: false
+      sqlType: Dimension View
+      type: sql
+    stepCounter: "200000090"

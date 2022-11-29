@@ -1,0 +1,225 @@
+steps:
+  stage_ds_customers-200000142:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000001
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000103
+              stepCounter: "200000142"
+            dataType: nchar(5)
+            defaultValue: ""
+            description: ""
+            name: customerid
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000084
+                    stepCounter: "200000141"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000104
+              stepCounter: "200000142"
+            dataType: varchar(50)
+            defaultValue: ""
+            description: This is the customers registered name
+            name: companyname
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000085
+                    stepCounter: "200000141"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000105
+              stepCounter: "200000142"
+            dataType: varchar(50)
+            defaultValue: ""
+            description: ""
+            name: contactname
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000086
+                    stepCounter: "200000141"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000106
+              stepCounter: "200000142"
+            dataType: varchar(50)
+            defaultValue: ""
+            description: ""
+            name: contacttitle
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000087
+                    stepCounter: "200000141"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000107
+              stepCounter: "200000142"
+            dataType: varchar(60)
+            defaultValue: ""
+            description: ""
+            name: address
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000088
+                    stepCounter: "200000141"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000108
+              stepCounter: "200000142"
+            dataType: varchar(50)
+            defaultValue: ""
+            description: This is the customers head office address city
+            name: city
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000089
+                    stepCounter: "200000141"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000109
+              stepCounter: "200000142"
+            dataType: varchar(50)
+            defaultValue: ""
+            description: ""
+            name: region
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000090
+                    stepCounter: "200000141"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000110
+              stepCounter: "200000142"
+            dataType: varchar(50)
+            defaultValue: ""
+            description: ""
+            name: postalcode
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000091
+                    stepCounter: "200000141"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000111
+              stepCounter: "200000142"
+            dataType: varchar(50)
+            defaultValue: ""
+            description: This is the customers head office address country
+            name: country
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000092
+                    stepCounter: "200000141"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000112
+              stepCounter: "200000142"
+            dataType: varchar(50)
+            defaultValue: ""
+            description: ""
+            name: phone
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - &id001
+                    columnCounter: 2000000093
+                    stepCounter: "200000141"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000117
+              stepCounter: "200000142"
+            dataType: varchar(50)
+            defaultValue: ""
+            description: ""
+            name: phone2
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - *id001
+                transform: ISNULL(load_customers.phone,'mt')
+          - columnReference:
+              columnCounter: 2000000113
+              stepCounter: "200000142"
+            dataType: varchar(255)
+            defaultValue: ""
+            description: Record source.
+            name: dss_record_source
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000083
+                    stepCounter: "200000141"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000114
+              stepCounter: "200000142"
+            dataType: datetime
+            defaultValue: ""
+            description: Load date.
+            name: dss_load_date
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000082
+                    stepCounter: "200000141"
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000116
+              stepCounter: "200000142"
+            dataType: datetime
+            defaultValue: ""
+            description: Date and time the row was created in the data warehouse.
+            name: dss_create_time
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: 'NULL'
+          - columnReference:
+              columnCounter: 2000000115
+              stepCounter: "200000142"
+            dataType: datetime
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: dss_update_time
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: 'NULL'
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: load_customers
+            join:
+              joinCondition: FROM {{ ref('STAGE','load_customers') }} load_customers
+            name: stage_ds_customers
+            noLinkRefs: []
+      name: stage_ds_customers
+      overrideSQL: false
+      sqlType: Stage Table
+      type: sql
+    stepCounter: "200000142"
