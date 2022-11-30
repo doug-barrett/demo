@@ -2,6 +2,7 @@ steps:
   DIM_SUPPLIER-1532:
     operation:
       config:
+        insertZeroKey: true
         postSQL: ""
         preSQL: ""
         testsEnabled: true
@@ -328,6 +329,6 @@ steps:
       name: DIM_SUPPLIER
       overrideSQL: false
       schema: ""
-      sqlType: Dimension
+      sqlType: "43"
       type: sql
     stepCounter: "1532"

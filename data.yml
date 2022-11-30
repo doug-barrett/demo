@@ -2116,7 +2116,7 @@ stepTypes:
       defaultStorageLocation: DWH
       error: null
       nodeMetadataSpec: |-
-        capitalized: Copy of Dimension
+        capitalized: Dimension with Zero Key
         short: DIM
         tagColor: '#1E339A'
         plural: Dimensions
@@ -2130,13 +2130,17 @@ stepTypes:
             options:
             - table
             - view
-            - TRANSIENT
 
           - type: multisourceToggle
             enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
 
           - type: businessKeyColumns
             isRequired: true
+
+          - type: toggleButton
+            attributeName: insertZeroKey
+            displayName: Insert Zero Key Record
+            default: true
 
           - type: changeTrackingColumns
             isRequired: false
@@ -2209,10 +2213,10 @@ stepTypes:
             {% if node.materializationType == 'table' %}
             	{{ stage('Create Dimension Table') }}
 
-            	CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+            	CREATE OR REPLACE TABLE {{ this }}
             	(
             		{% for col in columns %}
-            			"{{ col.name }}" {{ col.dataType }} dkfjsdljf
+            			"{{ col.name }}" {{ col.dataType }}
             			{% if col.isSurrogateKey %}
             		        identity
             			{% endif %}
@@ -2225,11 +2229,38 @@ stepTypes:
             	)
             	{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
 
+            	{% if config.insertZeroKey %}
+
+            		{{ stage('Insert Zero Record') }}
+            		INSERT INTO {{ this }}
+            		(SELECT 
+            		{% for col in sources[0].columns %}
+            			{% set dtparams = col.dataType.partition('(')[-1].rpartition(')')[0].split(',') %}
+            			{% if col.isSurrogateKey %}0
+            				{% elif col.isSystemCurrentFlag %}'Y'
+            				{% elif col.isSystemStartDate or col.isSystemEndDate or col.isSystemUpdateDate or col.isSystemCreateDate %}{{ get_source_transform(col) }}
+            				{% elif col.isSystemVersion%}1
+            				{% elif col.dataType[:3] | upper in ('NUM','INT','DEC','FLO') %}0
+            				{% elif col.dataType[:4] | upper in ('DATE','TIME') %}CAST('0001-01-01' AS {{ col.dataType }})
+            				{% elif col.dataType[:3] | upper in ('VAR','CHA','STR','BIN') %}
+            					{% if dtparams[0] and dtparams[0] | int < 7 %}
+            						SUBSTRING('UNKNOWN',1,{{ dtparams[0] }})
+            					{% else %}
+            						'UNKNOWN'
+            					{% endif %}
+            				{% elif col.nullable %}NULL
+            				{% else %}''
+            			{% endif %}
+            			AS "{{ col.name }}"
+            			{% if not loop.last %}, {% endif %}
+            		{% endfor %}
+            		)
+            	{% endif %}
 
             {% elif node.materializationType == 'view' %}
             	{{ stage('Create Dimension View') }}
 
-            	CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+            	CREATE OR REPLACE VIEW {{ this }}
             	(
             		{% for col in columns %}
             			"{{ col.name }}"
@@ -2555,7 +2586,7 @@ stepTypes:
             		{% endfor %}
             	{% endfor %}
             {% endif %}
-    name: Copy of Dimension
+    name: Dimension 0
     version: 1
   StepType-52:
     id: "52"
