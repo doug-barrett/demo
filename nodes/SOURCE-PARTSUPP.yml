@@ -1,10 +1,10 @@
 steps:
-  NATION-557:
+  PARTSUPP-6226:
     operation:
       database: ""
       dataset: ""
       deployEnabled: true
-      locationID: 4
+      locationID: ""
       locationName: SOURCE
       metadata:
         columns:
@@ -13,13 +13,13 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 6345
-              stepCounter: 557
+              columnCounter: 61743
+              stepCounter: 6226
             config: {}
             dataType: NUMBER(38,0)
             defaultValue: ""
             description: ""
-            name: N_NATIONKEY
+            name: PS_PARTKEY
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -28,28 +28,13 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 6346
-              stepCounter: 557
-            config: {}
-            dataType: VARCHAR(25)
-            defaultValue: ""
-            description: ""
-            name: N_NAME
-            nullable: false
-            primaryKey: false
-            uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 6347
-              stepCounter: 557
+              columnCounter: 61744
+              stepCounter: 6226
             config: {}
             dataType: NUMBER(38,0)
             defaultValue: ""
             description: ""
-            name: N_REGIONKEY
+            name: PS_SUPPKEY
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -58,21 +43,51 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 6348
-              stepCounter: 557
+              columnCounter: 61745
+              stepCounter: 6226
             config: {}
-            dataType: VARCHAR(152)
+            dataType: NUMBER(38,0)
             defaultValue: ""
             description: ""
-            name: N_COMMENT
+            name: PS_AVAILQTY
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 61746
+              stepCounter: 6226
+            config: {}
+            dataType: NUMBER(12,2)
+            defaultValue: ""
+            description: ""
+            name: PS_SUPPLYCOST
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 61747
+              stepCounter: 6226
+            config: {}
+            dataType: VARCHAR(199)
+            defaultValue: ""
+            description: ""
+            name: PS_COMMENT
             nullable: true
             primaryKey: false
             uniqueKey: false
         join:
-          joinCondition: FROM {{ ref('SOURCE', 'NATION') }}
-      name: NATION
+          joinCondition: FROM {{ ref('SOURCE', 'PARTSUPP') }}
+      name: PARTSUPP
       schema: ""
       sqlType: Source
-      table: NATION
+      table: PARTSUPP
       type: sourceInput
-    stepCounter: "557"
+    stepCounter: "6226"
