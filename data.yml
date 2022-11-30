@@ -24,22 +24,6 @@ locations:
       "3":
         database: COALESCE_SAMPLE_DATABASE
         schema: TPCH_SF001
-  SOURCE1:
-    mappingDefinitions:
-      "10":
-        database: SNOWFLAKE_SAMPLE_DATA
-        schema: TPCH_SF1
-      "3":
-        database: COALESCE_SAMPLE_DATABASE
-        schema: TPCH_SF001
-  SOURCE2:
-    mappingDefinitions:
-      "10":
-        database: SNOWFLAKE_SAMPLE_DATA
-        schema: TPCH_SF1
-      "3":
-        database: COALESCE_SAMPLE_DATABASE
-        schema: TPCH_SF001
   STAGE:
     mappingDefinitions:
       "10":
