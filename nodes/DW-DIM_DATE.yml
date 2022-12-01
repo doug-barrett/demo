@@ -1,0 +1,615 @@
+steps:
+  DIM_DATE-200000010:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: Date dimension, generated.
+      isMultisource: false
+      locationID: 20000002
+      locationName: DW
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000098
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Generated key for the date dimension. Nominal format is YYYYMMDD,
+              but DD equal to 0 and greater than 31 permited for special date handling.
+            name: DIM_DATE_KEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000099
+              stepCounter: "200000010"
+            dataType: DATETIME
+            defaultValue: ""
+            description: The calendar date for this row.
+            name: CALENDAR_DATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000100
+              stepCounter: "200000010"
+            dataType: VARCHAR(3)
+            defaultValue: ""
+            description: 'The day in the week. Format DDD. Example: mon, tue, wed.'
+            name: CAL_DAY_IN_WEEK
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000101
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The day number in the week. 1-7 where Sunday is day 1.
+            name: CAL_DAY_IN_WEEK_NO
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000102
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The day in the month 1-31.
+            name: CAL_DAY_IN_MONTH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000103
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The day in the year 1-366.
+            name: CAL_DAY_IN_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000104
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The week in the year 0-53.
+            name: CAL_WEEK_IN_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000105
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The calendar month number 1-12.
+            name: CAL_MONTH_NO
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000106
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: 'The calendar month representation. Format YYYYMM. Example:
+              200206.'
+            name: CAL_MONTH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000107
+              stepCounter: "200000010"
+            dataType: VARCHAR(7)
+            defaultValue: ""
+            description: 'The calendar month name. Format MON. Examples: jan, feb,
+              mar.'
+            name: CAL_MONTH_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000108
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The calendar quarter number 1-4.
+            name: CAL_QUARTER_NO
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000109
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The calendar quarter representation. Format YYYYQQ. Example
+              200204.
+            name: CAL_QUARTER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000110
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The calendar year. Format YYYY
+            name: CAL_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000111
+              stepCounter: "200000010"
+            dataType: DATETIME
+            defaultValue: ""
+            description: The financial date. Same as calendar date.
+            name: FINANCIAL_DATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000112
+              stepCounter: "200000010"
+            dataType: VARCHAR(3)
+            defaultValue: ""
+            description: 'The financial day in the week. Format DDD. Example: mon,tue,wed.'
+            name: FIN_DAY_IN_WEEK
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000113
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Day number in the current financial week.
+            name: FIN_DAY_IN_WEEK_NO
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000114
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Financial day in the month. Normally the same as calendar
+              day in the month, unless the financial period starts mid calendar month.
+            name: FIN_DAY_IN_MONTH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000115
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Financial day in the year. Number of days since the start
+              of the financial year.
+            name: FIN_DAY_IN_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000116
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: 'Financial week in the financial month. '
+            name: FIN_WEEK_IN_MONTH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000117
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Financial week in the financial year. Number of weeks since
+              the start of the financial year
+            name: FIN_WEEK_IN_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000118
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: 'Financial month number. Format MM. Examples: 1,2,3.'
+            name: FIN_MONTH_NO
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000119
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: 'Financial month representation. Fromat YYYYMM. Examples:
+              200101, 200102.'
+            name: FIN_MONTH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000120
+              stepCounter: "200000010"
+            dataType: VARCHAR(7)
+            defaultValue: ""
+            description: 'Financial month. Format MON. Examples: jan, feb, mar.'
+            name: FIN_MONTH_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000121
+              stepCounter: "200000010"
+            dataType: VARCHAR(20)
+            defaultValue: ""
+            description: 'Financial period. Format (YYYY-MM) MON-YYYY. Example: (2001-02)
+              Feb-2002.'
+            name: FIN_PERIOD
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000122
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Financial quarter number (1-4).
+            name: FIN_QUARTER_NO
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000123
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: 'Financial quarter representation. Format YYYYQQ. Example:
+              198901.'
+            name: FIN_QUARTER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000124
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Financial year. Format YYYY.
+            name: FIN_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000125
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate the current day. Normally set to the last
+              day information was updated in the data warehouse.
+            name: CURRENT_CAL_DAY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000126
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate the current week. Set as per current_cal_day.
+            name: CURRENT_CAL_WEEK
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000127
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate the current month. Set as per current_cal_day.
+            name: CURRENT_CAL_MONTH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000128
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate the current year. Set as per current_cal_day.
+            name: CURRENT_CAL_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000129
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate days in the current month to date. Set as
+              per current_cal_day.
+            name: CURRENT_CAL_MTD
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000130
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate days in the current year to date. Set as
+              per current_cal_day.
+            name: CURRENT_CAL_YTD
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000131
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate days that constitute a full year counting
+              back from the current day. Set as per current_cal_day.
+            name: MOVING_CAL_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000132
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate the current financial day. Normally set
+              to the last financial day information was updated in the data warehouse.
+            name: CURRENT_FIN_DAY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000133
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate the current financial week. Set as per current_fin_day.
+            name: CURRENT_FIN_WEEK
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000134
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate the current financial month. Set as per
+              current_fin_day.
+            name: CURRENT_FIN_MONTH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000135
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate the current financial quarter. Set as per
+              current_fin_day.
+            name: CURRENT_FIN_QUARTER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000136
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate the current financial year. Set as per current_fin_day.
+            name: CURRENT_FIN_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000137
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate days in the current financial month to date.
+              Set as per current_fin_day.
+            name: CURRENT_FIN_MTD
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000138
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate days in the current financial year to date.
+              Set as per current_fin_day.
+            name: CURRENT_FIN_YTD
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000139
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate days that constitute a quarter counting
+              back from the current financial day. Set as per current_fin_day.
+            name: MOVING_FIN_QUARTER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000140
+              stepCounter: "200000010"
+            dataType: VARCHAR(8)
+            defaultValue: ""
+            description: Flag to indicate days that constitute a financial year counting
+              back from the current financial day. Set as per current_fin_day.
+            name: MOVING_FIN_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000141
+              stepCounter: "200000010"
+            dataType: VARCHAR(1)
+            defaultValue: ""
+            description: Flag to indicate if a week day Y=week day N=week end.
+            name: WEEK_DAY_FLAG
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000142
+              stepCounter: "200000010"
+            dataType: VARCHAR(1)
+            defaultValue: ""
+            description: Flag to indicate a week end day. Y=week end, N=week day.
+            name: WEEK_END_FLAG
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000143
+              stepCounter: "200000010"
+            dataType: VARCHAR(1)
+            defaultValue: ""
+            description: Flag to indicate that the day in question is a holiday. Y=holiday,
+              N=normal.
+            name: HOLIDAY_FLAG
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000144
+              stepCounter: "200000010"
+            dataType: VARCHAR(64)
+            defaultValue: ""
+            description: Description of the holiday when a holiday.
+            name: HOLIDAY_DESC
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000145
+              stepCounter: "200000010"
+            dataType: VARCHAR(1)
+            defaultValue: ""
+            description: Flag to indicate a trading day. Y=trading, N=non trading.
+            name: TRADING_DAY_FLAG
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000146
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Number of trading days in this calendar month.
+            name: TRADING_DAYS_IN_MTH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000147
+              stepCounter: "200000010"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Number of trading days in the month so far.
+            name: TRADING_DAYS_SO_FAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000148
+              stepCounter: "200000010"
+            dataType: DATETIME
+            defaultValue: ""
+            description: Date/time that this record was updated in the data warehouse
+            name: DSS_UPDATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ''
+            name: DIM_DATE
+            noLinkRefs: []
+      name: DIM_DATE
+      overrideSQL: false
+      sqlType: Dimension
+      type: sql
+    stepCounter: "200000010"
