@@ -2573,7 +2573,7 @@ stepTypes:
       defaultStorageLocation: DWH
       error: null
       nodeMetadataSpec: |-
-        capitalized: Copy of Dimension
+        capitalized: Dimension with Zero Key
         short: DIM
         tagColor: '#1E339A'
         plural: Dimensions
@@ -2587,13 +2587,17 @@ stepTypes:
             options:
             - table
             - view
-            - TRANSIENT
 
           - type: multisourceToggle
             enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
 
           - type: businessKeyColumns
             isRequired: true
+
+          - type: toggleButton
+            attributeName: insertZeroKey
+            displayName: Insert Zero Key Record
+            default: true
 
           - type: changeTrackingColumns
             isRequired: false
@@ -3012,7 +3016,7 @@ stepTypes:
             		{% endfor %}
             	{% endfor %}
             {% endif %}
-    name: Copy of Dimension
+    name: Dimension 0
     version: 1
   StepType-9:
     id: "9"
