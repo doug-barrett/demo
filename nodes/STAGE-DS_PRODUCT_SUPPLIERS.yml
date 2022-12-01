@@ -1,0 +1,189 @@
+steps:
+  DS_PRODUCT_SUPPLIERS-200000081:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000001
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000024
+              stepCounter: "200000081"
+            dataType: INT
+            defaultValue: ""
+            description: ""
+            name: SUPPLIERID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000039
+                    stepCounter: "200000073"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000025
+              stepCounter: "200000081"
+            dataType: NVARCHAR(40)
+            defaultValue: ""
+            description: ""
+            name: COMPANYNAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000040
+                    stepCounter: "200000073"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000026
+              stepCounter: "200000081"
+            dataType: NVARCHAR(30)
+            defaultValue: ""
+            description: ""
+            name: CONTACTNAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000041
+                    stepCounter: "200000073"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000027
+              stepCounter: "200000081"
+            dataType: NVARCHAR(30)
+            defaultValue: ""
+            description: ""
+            name: CONTACTTITLE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000042
+                    stepCounter: "200000073"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000028
+              stepCounter: "200000081"
+            dataType: NVARCHAR(60)
+            defaultValue: ""
+            description: ""
+            name: ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000043
+                    stepCounter: "200000073"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000029
+              stepCounter: "200000081"
+            dataType: NVARCHAR(15)
+            defaultValue: ""
+            description: ""
+            name: CITY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000044
+                    stepCounter: "200000073"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000030
+              stepCounter: "200000081"
+            dataType: NVARCHAR(15)
+            defaultValue: ""
+            description: ""
+            name: REGION
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000045
+                    stepCounter: "200000073"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000031
+              stepCounter: "200000081"
+            dataType: NVARCHAR(10)
+            defaultValue: ""
+            description: ""
+            name: POSTALCODE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000046
+                    stepCounter: "200000073"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000032
+              stepCounter: "200000081"
+            dataType: NVARCHAR(15)
+            defaultValue: ""
+            description: ""
+            name: COUNTRY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000047
+                    stepCounter: "200000073"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000033
+              stepCounter: "200000081"
+            dataType: NVARCHAR(24)
+            defaultValue: ""
+            description: ""
+            name: PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000048
+                    stepCounter: "200000073"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000034
+              stepCounter: "200000081"
+            dataType: NVARCHAR(24)
+            defaultValue: ""
+            description: ""
+            name: FAX
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000049
+                    stepCounter: "200000073"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000035
+              stepCounter: "200000081"
+            dataType: DATETIME
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: DSS_UPDATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: LOAD_PRODUCT_SUPPLIERS
+            join:
+              joinCondition: "FROM {{ ref('STAGE','LOAD_PRODUCT_SUPPLIERS') }} LOAD_PRODUCT_SUPPLIERS\
+                \  "
+            name: DS_PRODUCT_SUPPLIERS
+            noLinkRefs: []
+      name: DS_PRODUCT_SUPPLIERS
+      overrideSQL: false
+      sqlType: persistentStage
+      type: sql
+    stepCounter: "200000081"

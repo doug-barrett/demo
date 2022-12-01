@@ -1,0 +1,108 @@
+steps:
+  LOAD_PRODUCTS-200000074:
+    operation:
+      config: {}
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000001
+      locationName: STAGE
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000051
+              stepCounter: "200000074"
+            dataType: INT
+            defaultValue: ""
+            description: ""
+            name: PRODUCTID
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000052
+              stepCounter: "200000074"
+            dataType: NVARCHAR(40)
+            defaultValue: ""
+            description: This is the primary market product name
+            name: PRODUCTNAME
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000053
+              stepCounter: "200000074"
+            dataType: INT
+            defaultValue: ""
+            description: ""
+            name: SUPPLIERID
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000054
+              stepCounter: "200000074"
+            dataType: INT
+            defaultValue: ""
+            description: ""
+            name: CATEGORYID
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000055
+              stepCounter: "200000074"
+            dataType: NVARCHAR(20)
+            defaultValue: ""
+            description: ""
+            name: QUANTITYPERUNIT
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000056
+              stepCounter: "200000074"
+            dataType: MONEY
+            defaultValue: ""
+            description: ""
+            name: UNITPRICE
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000057
+              stepCounter: "200000074"
+            dataType: SMALLINT
+            defaultValue: ""
+            description: ""
+            name: UNITSINSTOCK
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000058
+              stepCounter: "200000074"
+            dataType: SMALLINT
+            defaultValue: ""
+            description: ""
+            name: UNITSONORDER
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000059
+              stepCounter: "200000074"
+            dataType: SMALLINT
+            defaultValue: ""
+            description: ""
+            name: REORDERLEVEL
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000060
+              stepCounter: "200000074"
+            dataType: BIT
+            defaultValue: ""
+            description: ""
+            name: DISCONTINUED
+            nullable: false
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ''
+            name: LOAD_PRODUCTS
+            noLinkRefs: []
+      name: LOAD_PRODUCTS
+      overrideSQL: false
+      sqlType: Source
+      table: LOAD_PRODUCTS
+      type: sourceInput
+    stepCounter: "200000074"

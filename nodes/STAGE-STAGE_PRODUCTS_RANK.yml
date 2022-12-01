@@ -1,0 +1,215 @@
+steps:
+  STAGE_PRODUCTS_RANK-200000085:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: Applies business transforms - specifically Ranking transforms based
+        on sales amounts.
+      isMultisource: false
+      locationID: 20000001
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000032
+              stepCounter: "200000085"
+            dataType: INT
+            defaultValue: ""
+            description: Product ID
+            name: PRODUCTID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000021
+                    stepCounter: "200000084"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000033
+              stepCounter: "200000085"
+            dataType: NVARCHAR(40)
+            defaultValue: ""
+            description: This is the primary market product name
+            name: PRODUCTNAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000022
+                    stepCounter: "200000084"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000034
+              stepCounter: "200000085"
+            dataType: INT
+            defaultValue: ""
+            description: Supplier ID
+            name: SUPPLIERID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000023
+                    stepCounter: "200000084"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000035
+              stepCounter: "200000085"
+            dataType: NVARCHAR(40)
+            defaultValue: ""
+            description: Supplier Name
+            name: SUPPLIER_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000030
+                    stepCounter: "200000084"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000036
+              stepCounter: "200000085"
+            dataType: NVARCHAR(15)
+            defaultValue: ""
+            description: Supplier country of HQ
+            name: SUPPLIER_COUNTRY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000031
+                    stepCounter: "200000084"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000037
+              stepCounter: "200000085"
+            dataType: INT
+            defaultValue: ""
+            description: ""
+            name: CATEGORYID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000024
+                    stepCounter: "200000084"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000038
+              stepCounter: "200000085"
+            dataType: NVARCHAR(15)
+            defaultValue: ""
+            description: The product marketing category
+            name: CATEGORYNAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000028
+                    stepCounter: "200000084"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000039
+              stepCounter: "200000085"
+            dataType: NVARCHAR(20)
+            defaultValue: ""
+            description: ""
+            name: QUANTITYPERUNIT
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000025
+                    stepCounter: "200000084"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000040
+              stepCounter: "200000085"
+            dataType: MONEY
+            defaultValue: ""
+            description: ""
+            name: UNITPRICE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000026
+                    stepCounter: "200000084"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000041
+              stepCounter: "200000085"
+            dataType: MONEY
+            defaultValue: ""
+            description: ""
+            name: PRODUCTSALES
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - &id001
+                    columnCounter: 2000000029
+                    stepCounter: "200000084"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000043
+              stepCounter: "200000085"
+            dataType: INT
+            defaultValue: ""
+            description: Overall rank of product by historical sales
+            name: PRODUCT_RANK_BY_SALES
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - *id001
+                transform: RANK() OVER (ORDER BY STAGE_PRODUCTS.PRODUCTSALES)
+          - columnReference:
+              columnCounter: 2000000044
+              stepCounter: "200000085"
+            dataType: INT
+            defaultValue: ""
+            description: Overall rank of product in category by historical sales
+            name: PRODUCT_RANK_BY_SALES_CAT
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - *id001
+                transform: RANK() OVER (PARTITION BY STAGE_PRODUCTS.CATEGORYID ORDER
+                  BY STAGE_PRODUCTS.PRODUCTSALES)
+          - columnReference:
+              columnCounter: 2000000045
+              stepCounter: "200000085"
+            dataType: INT
+            defaultValue: ""
+            description: Overall rank of product by supplier by historical sales
+            name: PRODUCT_RANK_BY_SALES_SUPPLIER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - *id001
+                transform: RANK() OVER (PARTITION BY STAGE_PRODUCTS.SUPPLIERID ORDER
+                  BY STAGE_PRODUCTS.PRODUCTSALES)
+          - columnReference:
+              columnCounter: 2000000042
+              stepCounter: "200000085"
+            dataType: DATETIME
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: DSS_UPDATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: STAGE_PRODUCTS
+            join:
+              joinCondition: FROM      {{ ref('STAGE','STAGE_PRODUCTS') }}
+            name: STAGE_PRODUCTS_RANK
+            noLinkRefs: []
+      name: STAGE_PRODUCTS_RANK
+      overrideSQL: false
+      sqlType: Stage Table
+      type: sql
+    stepCounter: "200000085"
