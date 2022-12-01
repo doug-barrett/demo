@@ -35,8 +35,8 @@ locations:
   WEATHER:
     mappingDefinitions:
       "3":
-        database: ""
-        schema: ""
+        database: COALESCE_SAMPLE_DATABASE
+        schema: WEATHER
 macros:
   Macro-1:
     id: "1"
