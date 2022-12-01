@@ -1,7 +1,30 @@
 defaultStorageMapping: STAGE
 jobs:
+  Job-30:
+    excludeSelector: ""
+    id: 30
+    includeSelector: "+{ location: DWH name: HUB* }"
+    name: dv
+    steps: []
+    subgraphs: []
+  Job-31:
+    excludeSelector: ""
+    id: 31
+    includeSelector: "+{  name: HUB_* } OR +{  name: SAT_* }"
+    name: New Job
+    steps: []
+    subgraphs: []
+  Job-32:
+    excludeSelector: ""
+    id: 32
+    includeSelector: ""
+    name: New Job
+    steps: []
+    subgraphs: []
   Job-5:
+    excludeSelector: ""
     id: 5
+    includeSelector: "+{ name: DIM* }"
     name: Supplier pipeline
     steps:
       - "58"
@@ -1510,7 +1533,9 @@ stepTypes:
               {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
             ;
         run:
-          templateString: "{{ stage('Refresh External Table') }}\r\nALTER EXTERNAL TABLE {{ ref_no_link(node.location.name, node.name) }} REFRESH "
+          templateString: |-
+            {{ stage('Refresh External Table') }}
+            ALTER EXTERNAL TABLE {{ ref_no_link(node.location.name, node.name) }} REFRESH 
     name: External Table
     version: 1
   StepType-17:
@@ -2627,6 +2652,212 @@ stepTypes:
         run:
           templateString: ""
     name: ALL VIEW
+    version: 1
+  StepType-56:
+    id: "56"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: STAGE
+      error: null
+      nodeMetadataSpec: |
+        capitalized: Copy of Stage
+        short: STG
+        plural: Stages
+        tagColor: '#2EB67D'
+
+        config:
+        - groupName: Options
+          items:
+          - type: materializationSelector
+            default: table
+            options:
+            - table
+            - view
+            - GROUSE
+            isRequired: true
+
+          - type: multisourceToggle
+            enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}" 
+
+          - type: overrideSQLToggle
+            enableIf: "{% if node.materializationType == 'view' %} true {% else %} false {% endif %}"
+            
+          - displayName: Multi Source Strategy
+            attributeName: insertStrategy
+            type: dropdownSelector
+            default: INSERT
+            options:
+            - "INSERT"
+            - "UNION"
+            - "UNION ALL"
+            isRequired: true
+            enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
+
+          - displayName: Truncate Before
+            attributeName: truncateBefore
+            type: toggleButton
+            default: true
+
+          - displayName: Enable Tests
+            attributeName: testsEnabled
+            type: toggleButton
+            default: true
+            
+          - displayName: Pre-SQL
+            attributeName: preSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+
+          - displayName: Post-SQL
+            attributeName: postSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+      templates:
+        create:
+          templateString: |
+            {% if node.override.create.enabled %}
+            	
+            	{{ node.override.create.script }}
+
+            {% elif node.materializationType == 'table' %}
+            	{{ stage('Create Stage Table') }}
+
+            	CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+            	(
+            		{% for col in columns %}
+            			"{{ col.name }}" {{ col.dataType }} 
+            			{%- if not col.nullable %} NOT NULL
+            				{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            			{% endif %}
+            			{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            			{%- if not loop.last -%}, {% endif %}
+            		{% endfor %}
+            	)
+            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+
+
+            {% elif node.materializationType == 'view' %}
+                {{ stage('Create Stage View') }}
+
+                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+                (
+                    {% for col in columns %}
+                        "{{ col.name }}"
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                )
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+                AS
+                {% for source in sources %}
+                    SELECT
+                    {% for col in source.columns %}
+                        {{ get_source_transform(col) }} AS "{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+
+                    {{ source.join }}
+
+                    {% if not loop.last %}
+                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+                            {{ config.insertStrategy }}
+                        {% else %}
+                            UNION
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+            {% endif %}
+        run:
+          templateString: |2
+
+                {% for test in node.tests if config.testsEnabled %}
+                    {% if test.runOrder == 'Before' %}
+                        {{ test_stage(test.name, test.continueOnFailure) }}
+                        {{ test.templateString }}
+                    {% endif %}
+                {% endfor %}
+
+            {% if node.materializationType == 'table' %}
+            	{% if config.preSQL %}
+            		{{ stage('Pre-SQL') }}
+            		{{ config.preSQL }}
+            	{% endif %}
+            	
+            	
+            	
+            		{% if config.truncateBefore %}
+            	
+            			{{ stage('Truncate Stage Table') }}
+            			TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
+            	
+            		{% endif %}
+            	
+            	
+            		{% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+            			{{ stage( config.insertStrategy + ' Sources' | string ) }}
+            			INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+            				(
+            					{% for col in columns %}
+            						"{{ col.name }}"
+            						{%- if not loop.last -%},{% endif %}
+            					{% endfor %}
+            				)
+            		{% endif %}
+            	
+            	
+            		{% for source in sources %}
+            	
+            			{% if config.insertStrategy == 'INSERT' %}
+            				{{ stage('Insert ' + source.name | string ) }}
+            	
+            				INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+            				(
+            					{% for col in source.columns %}
+            						"{{ col.name }}"
+            						{%- if not loop.last -%},{% endif %}
+            					{% endfor %}
+            				)
+            			{% endif %}
+            	
+            			SELECT
+            			{% for col in source.columns %}
+                            {{ get_source_transform(col) }} AS "{{ col.name }}"
+            				{%- if not loop.last -%}, {% endif %}
+            			{% endfor %}
+            	
+            			{{ source.join }}
+            	
+            			{% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+            				{{config.insertStrategy}}
+            			{% endif %}
+            	
+            		{% endfor %}
+            	
+            	{% if config.postSQL %}
+            		{{ stage('Post-SQL') }}
+            		{{ config.postSQL }}
+            	{% endif %}
+            {% endif %}
+
+            {% if config.testsEnabled %}
+            	{% for test in node.tests %}
+            		{% if test.runOrder == 'After' %}
+            			{{ test_stage(test.name, test.continueOnFailure) }}
+            			{{ test.templateString }}
+                    {% endif %}
+            	{% endfor %}
+
+            	{% for column in columns %}
+            		{% for test in column.tests %}
+            			{{ test_stage(column.name + ": " + test.name) }}
+            			{{ test.templateString }}
+            		{% endfor %}
+            	{% endfor %}
+            {% endif %}
+    name: Copy of Stage
     version: 1
   StepType-9:
     id: "9"
@@ -4694,11 +4925,59 @@ subgraphs:
     name: Dim Part
     steps:
       - "1656"
+      - "1609"
+      - "1610"
+      - "1618"
+      - "1619"
+      - "1625"
+      - "1633"
+      - "1644"
+      - "1655"
+      - "1656"
   Subgraph-37:
     id: 37
     name: Dim Customer
     steps:
       - "1659"
+      - "45"
+      - "557"
+      - "1606"
+      - "1608"
+      - "1615"
+      - "1617"
+      - "1622"
+      - "1630"
+      - "1657"
+      - "1658"
+      - "1659"
+  Subgraph-42:
+    id: 42
+    name: New Sub-Graph
+    steps:
+      - "46"
+      - "1613"
+      - "1621"
+      - "1629"
+      - "1633"
+      - "1635"
+      - "1645"
+      - "1649"
+      - "1650"
+      - "1652"
+      - "1664"
+  Subgraph-48:
+    id: 48
+    name: New Sub-Graph
+    steps:
+      - "1647"
+      - "1653"
+      - "1654"
+      - "1661"
+      - "1662"
+      - "1710"
+      - "1711"
+      - "1712"
+      - "1713"
   Subgraph-7:
     id: 7
     name: Dim Supplier
@@ -4716,4 +4995,14 @@ subgraphs:
       - "1534"
       - "1604"
       - "1652"
+      - "557"
+      - "1610"
+      - "1613"
+      - "1619"
+      - "1621"
+      - "1629"
+      - "1635"
+      - "1645"
+      - "1649"
+      - "1650"
 version: 1

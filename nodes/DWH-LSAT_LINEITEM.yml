@@ -339,7 +339,9 @@ steps:
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - customSQL:
+          - aliases:
+              STG_LINEITEM: "1616"
+            customSQL:
               customSQL: ""
             dependencies:
               - locationName: STAGE

@@ -19,7 +19,7 @@ steps:
           - columnReference:
               columnCounter: 20138
               stepCounter: "1711"
-            dataType: CHAR(6)
+            dataType: DATE
             description: ""
             hashColumns: []
             hashDetails: null

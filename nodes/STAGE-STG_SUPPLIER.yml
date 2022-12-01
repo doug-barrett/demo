@@ -17,9 +17,20 @@ steps:
       locationName: STAGE
       materializationType: table
       metadata:
-        appliedNodeTests: []
+        appliedNodeTests:
+          - continueOnFailure: false
+            description: ""
+            name: Testing for DOUG
+            runOrder: After
+            templateString: |-
+              SELECT 1
+              FROM {{this}}
+              WHERE S_NAME = 'DOUG'
         columns:
-          - columnReference:
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: true
+            columnReference:
               columnCounter: 18549
               stepCounter: "1613"
             dataType: NUMBER(38,0)
@@ -31,7 +42,10 @@ steps:
                   - columnCounter: 491
                     stepCounter: "46"
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: false
+            columnReference:
               columnCounter: 18550
               stepCounter: "1613"
             dataType: VARCHAR(25)
@@ -43,7 +57,10 @@ steps:
                   - columnCounter: 492
                     stepCounter: "46"
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
               columnCounter: 18551
               stepCounter: "1613"
             dataType: VARCHAR(40)
@@ -55,7 +72,10 @@ steps:
                   - columnCounter: 493
                     stepCounter: "46"
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
               columnCounter: 18552
               stepCounter: "1613"
             dataType: NUMBER(38,0)
@@ -67,7 +87,10 @@ steps:
                   - columnCounter: 494
                     stepCounter: "46"
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
               columnCounter: 18553
               stepCounter: "1613"
             dataType: VARCHAR(15)
@@ -79,7 +102,10 @@ steps:
                   - columnCounter: 495
                     stepCounter: "46"
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
               columnCounter: 18554
               stepCounter: "1613"
             dataType: NUMBER(12,2)
@@ -91,7 +117,10 @@ steps:
                   - columnCounter: 496
                     stepCounter: "46"
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
               columnCounter: 18555
               stepCounter: "1613"
             dataType: VARCHAR(101)
@@ -103,7 +132,10 @@ steps:
                   - columnCounter: 497
                     stepCounter: "46"
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
               columnCounter: 18621
               stepCounter: "1613"
             dataType: VARCHAR(25)
@@ -115,7 +147,10 @@ steps:
                   - columnCounter: 6346
                     stepCounter: "557"
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
               columnCounter: 18622
               stepCounter: "1613"
             dataType: VARCHAR(25)
@@ -130,7 +165,9 @@ steps:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
               columnCounter: 18623
               stepCounter: "1613"
@@ -151,7 +188,9 @@ steps:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
               columnCounter: 18624
               stepCounter: "1613"
@@ -174,7 +213,9 @@ steps:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
               columnCounter: 18848
               stepCounter: "1613"
@@ -203,7 +244,9 @@ steps:
               - columnReferences: []
                 transform: ""
         cteString: ""
-        enabledColumnTestIDs: []
+        enabledColumnTestIDs:
+          - isDistinct
+          - hasNull
         sourceMapping:
           - aliases:
               NATION: "557"

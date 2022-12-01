@@ -212,7 +212,7 @@ steps:
               - locationName: DWH
                 nodeName: SAT_PART
             join:
-              joinCondition: |-
+              joinCondition: |
                 FROM {{ ref('DWH', 'HUB_PART') }} "HUB_PART"
                 INNER JOIN {{ ref('DWH', 'SAT_PART') }} "SAT_PART"
                 ON "HUB_PART"."H_PART_KEY" = "SAT_PART"."H_PART_KEY"

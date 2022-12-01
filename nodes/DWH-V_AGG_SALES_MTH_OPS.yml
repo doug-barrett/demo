@@ -19,7 +19,7 @@ steps:
           - columnReference:
               columnCounter: 20168
               stepCounter: "1713"
-            dataType: CHAR(6)
+            dataType: DATE
             description: ""
             hashColumns: []
             hashDetails: null
@@ -132,8 +132,6 @@ steps:
                 nodeName: AGG_SALES_MONTHLY
             join:
               joinCondition: |-
-
-
                 FROM {{ ref('DWH', 'AGG_SALES_MONTHLY') }} "AGG_SALES_MONTHLY"
                 LEFT JOIN {{ ref('DWH', 'DIM_ORDERS') }} "DIM_ORDERS"
                 ON  "AGG_SALES_MONTHLY"."DIM_ORDERS_KEY" = "DIM_ORDERS"."DIM_ORDERS_KEY"
