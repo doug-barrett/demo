@@ -1,0 +1,207 @@
+steps:
+  DIM_ORDER_DATE-200000089:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: Role playing dimension over generated date dimension
+      isMultisource: false
+      locationID: 20000002
+      locationName: DW
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000059
+              stepCounter: "200000089"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Generated key for the date dimension. Nominal format is YYYYMMDD,
+              but DD equal to 0 and greater than 31 permited for special date handling.
+            name: DIM_ORDER_DATE_KEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000098
+                    stepCounter: "200000010"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000060
+              stepCounter: "200000089"
+            dataType: DATETIME
+            defaultValue: ""
+            description: The calendar date for this row.
+            name: ORDERDATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000099
+                    stepCounter: "200000010"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000061
+              stepCounter: "200000089"
+            dataType: VARCHAR(3)
+            defaultValue: ""
+            description: 'The day in the week. Format DDD. Example: mon, tue, wed.'
+            name: ORDER_CAL_DAY_IN_WEEK
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000100
+                    stepCounter: "200000010"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000062
+              stepCounter: "200000089"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The day number in the week. 1-7 where Sunday is day 1.
+            name: ORDER_CAL_DAY_IN_WEEK_NO
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000101
+                    stepCounter: "200000010"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000063
+              stepCounter: "200000089"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The day in the month 1-31.
+            name: ORDER_CAL_DAY_IN_MONTH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000102
+                    stepCounter: "200000010"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000064
+              stepCounter: "200000089"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The day in the year 1-366.
+            name: ORDER_CAL_DAY_IN_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000103
+                    stepCounter: "200000010"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000065
+              stepCounter: "200000089"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The week in the year 0-53.
+            name: ORDER_CAL_WEEK_IN_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000104
+                    stepCounter: "200000010"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000066
+              stepCounter: "200000089"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The calendar month number 1-12.
+            name: ORDER_CAL_MONTH_NO
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000105
+                    stepCounter: "200000010"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000067
+              stepCounter: "200000089"
+            dataType: INTEGER
+            defaultValue: ""
+            description: 'The calendar month representation. Format YYYYMM. Example:
+              200206.'
+            name: ORDER_CAL_MONTH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000106
+                    stepCounter: "200000010"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000068
+              stepCounter: "200000089"
+            dataType: VARCHAR(7)
+            defaultValue: ""
+            description: 'The calendar month name. Format MON. Examples: jan, feb,
+              mar.'
+            name: ORDER_CAL_MONTH_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000107
+                    stepCounter: "200000010"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000069
+              stepCounter: "200000089"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The calendar quarter number 1-4.
+            name: ORDER_CAL_QUARTER_NO
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000108
+                    stepCounter: "200000010"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000070
+              stepCounter: "200000089"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The calendar quarter representation. Format YYYYQQ. Example
+              200204.
+            name: ORDER_CAL_QUARTER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000109
+                    stepCounter: "200000010"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000071
+              stepCounter: "200000089"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The calendar year. Format YYYY
+            name: ORDER_CAL_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000110
+                    stepCounter: "200000010"
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DW
+                nodeName: DIM_DATE
+            join:
+              joinCondition: ''
+            name: DIM_ORDER_DATE
+            noLinkRefs: []
+      name: DIM_ORDER_DATE
+      overrideSQL: false
+      sqlType: Dimension View
+      type: sql
+    stepCounter: "200000089"
