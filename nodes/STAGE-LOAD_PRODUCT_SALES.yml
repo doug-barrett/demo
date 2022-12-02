@@ -1,0 +1,52 @@
+steps:
+  LOAD_PRODUCT_SALES-200000072:
+    operation:
+      config: {}
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000001
+      locationName: STAGE
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000036
+              stepCounter: "200000072"
+            dataType: varchar(15)
+            defaultValue: ""
+            description: ""
+            name: CATEGORYNAME
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000037
+              stepCounter: "200000072"
+            dataType: varchar(40)
+            defaultValue: ""
+            description: ""
+            name: PRODUCTNAME
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000038
+              stepCounter: "200000072"
+            dataType: decimal(19,4)
+            defaultValue: ""
+            description: ""
+            name: PRODUCTSALES
+            nullable: false
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ''
+            name: LOAD_PRODUCT_SALES
+            noLinkRefs: []
+      name: LOAD_PRODUCT_SALES
+      overrideSQL: false
+      sqlType: Source
+      table: LOAD_PRODUCT_SALES
+      type: sourceInput
+    stepCounter: "200000072"

@@ -1,0 +1,112 @@
+steps:
+  AGG_ORDERS-200000154:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000002
+      locationName: DW
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000023
+              stepCounter: "200000154"
+            dataType: INTEGER
+            defaultValue: ""
+            description: The calendar year. Format YYYY
+            name: ORDER_CAL_YEAR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000071
+                    stepCounter: "200000089"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000022
+              stepCounter: "200000154"
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: This is the customers head office address country
+            name: COUNTRY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000199
+                    stepCounter: "200000149"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000001
+              stepCounter: "200000154"
+            dataType: INT
+            defaultValue: ""
+            description: This is the internal order id
+            name: ORDER_COUNT
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000021
+                    stepCounter: "200000181"
+                transform: COUNT(1)
+          - columnReference:
+              columnCounter: 2000000012
+              stepCounter: "200000154"
+            dataType: decimal(19,4)
+            defaultValue: ""
+            description: The order freight costs
+            name: FREIGHT
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000033
+                    stepCounter: "200000181"
+                transform: SUM(FACT_ORDERS.FREIGHT)
+          - columnReference:
+              columnCounter: 2000000021
+              stepCounter: "200000154"
+            dataType: DATETIME
+            defaultValue: ""
+            description: Date and time the row was created in the data warehouse.
+            name: DSS_CREATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000020
+              stepCounter: "200000154"
+            dataType: DATETIME
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: DSS_UPDATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DW
+                nodeName: DIM_ORDER_DATE
+              - locationName: DW
+                nodeName: DIM_CUSTOMERS
+              - locationName: DW
+                nodeName: FACT_ORDERS
+            join:
+              joinCondition: "FROM {{ ref('DW','FACT_ORDERS') }} FACT_ORDERS  "
+            name: AGG_ORDERS
+            noLinkRefs: []
+      name: AGG_ORDERS
+      overrideSQL: false
+      sqlType: Fact
+      type: sql
+    stepCounter: "200000154"

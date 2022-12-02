@@ -1,0 +1,187 @@
+steps:
+  STAGE_PRODUCTS-200000084:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: Denormalizes related product tables using a LEFT join from Products
+      isMultisource: false
+      locationID: 20000001
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000021
+              stepCounter: "200000084"
+            dataType: INT
+            defaultValue: ""
+            description: Product ID
+            name: PRODUCTID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000036
+                    stepCounter: "200000082"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000022
+              stepCounter: "200000084"
+            dataType: varchar(40)
+            defaultValue: ""
+            description: This is the primary market product name
+            name: PRODUCTNAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000037
+                    stepCounter: "200000082"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000023
+              stepCounter: "200000084"
+            dataType: INT
+            defaultValue: ""
+            description: Supplier ID
+            name: SUPPLIERID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000038
+                    stepCounter: "200000082"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000030
+              stepCounter: "200000084"
+            dataType: varchar(40)
+            defaultValue: ""
+            description: Supplier Name
+            name: SUPPLIER_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000025
+                    stepCounter: "200000081"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000031
+              stepCounter: "200000084"
+            dataType: varchar(15)
+            defaultValue: ""
+            description: Supplier country of HQ
+            name: SUPPLIER_COUNTRY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000032
+                    stepCounter: "200000081"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000024
+              stepCounter: "200000084"
+            dataType: INT
+            defaultValue: ""
+            description: ""
+            name: CATEGORYID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000039
+                    stepCounter: "200000082"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000028
+              stepCounter: "200000084"
+            dataType: varchar(15)
+            defaultValue: ""
+            description: The product marketing category
+            name: CATEGORYNAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000018
+                    stepCounter: "200000079"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000025
+              stepCounter: "200000084"
+            dataType: varchar(20)
+            defaultValue: ""
+            description: ""
+            name: QUANTITYPERUNIT
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000040
+                    stepCounter: "200000082"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000026
+              stepCounter: "200000084"
+            dataType: decimal(19,4)
+            defaultValue: ""
+            description: ""
+            name: UNITPRICE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000041
+                    stepCounter: "200000082"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000029
+              stepCounter: "200000084"
+            dataType: decimal(19,4)
+            defaultValue: ""
+            description: ""
+            name: PRODUCTSALES
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2000000022
+                    stepCounter: "200000080"
+                transform: ""
+          - columnReference:
+              columnCounter: 2000000027
+              stepCounter: "200000084"
+            dataType: DATETIME
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: DSS_UPDATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: DS_PRODUCTS
+              - locationName: STAGE
+                nodeName: DS_PRODUCT_SUPPLIERS
+              - locationName: STAGE
+                nodeName: DS_PRODUCT_CATEGORIES
+              - locationName: STAGE
+                nodeName: DS_PRODUCT_SALES
+            join:
+              joinCondition: FROM {{ ref('STAGE','DS_PRODUCTS') }}  LEFT OUTER JOIN
+                {{ ref('STAGE','DS_PRODUCT_SUPPLIERS') }}  ON DS_PRODUCTS.SUPPLIERID
+                = DS_PRODUCT_SUPPLIERS.SUPPLIERID  LEFT OUTER JOIN {{ ref('STAGE','DS_PRODUCT_CATEGORIES')
+                }}  ON DS_PRODUCTS.CATEGORYID = DS_PRODUCT_CATEGORIES.CATEGORYID  LEFT
+                OUTER JOIN {{ ref('STAGE','DS_PRODUCT_SALES') }}  ON DS_PRODUCTS.PRODUCTNAME
+                = DS_PRODUCT_SALES.PRODUCTNAME
+            name: STAGE_PRODUCTS
+            noLinkRefs: []
+      name: STAGE_PRODUCTS
+      overrideSQL: false
+      sqlType: Stage
+      type: sql
+    stepCounter: "200000084"

@@ -1,0 +1,124 @@
+steps:
+  LOAD_CUSTOMERS-200000141:
+    operation:
+      config: {}
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000001
+      locationName: STAGE
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000000084
+              stepCounter: "200000141"
+            dataType: varchar(5)
+            defaultValue: ""
+            description: ""
+            name: CUSTOMERID
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000085
+              stepCounter: "200000141"
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: This is the customers registered name
+            name: COMPANYNAME
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000086
+              stepCounter: "200000141"
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: ""
+            name: CONTACTNAME
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000087
+              stepCounter: "200000141"
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: ""
+            name: CONTACTTITLE
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000088
+              stepCounter: "200000141"
+            dataType: VARCHAR(60)
+            defaultValue: ""
+            description: ""
+            name: ADDRESS
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000089
+              stepCounter: "200000141"
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: This is the customers head office address city
+            name: CITY
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000090
+              stepCounter: "200000141"
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: ""
+            name: REGION
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000091
+              stepCounter: "200000141"
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: ""
+            name: POSTALCODE
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000092
+              stepCounter: "200000141"
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: This is the customers head office address country
+            name: COUNTRY
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000093
+              stepCounter: "200000141"
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: ""
+            name: PHONE
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000083
+              stepCounter: "200000141"
+            dataType: VARCHAR(255)
+            defaultValue: ""
+            description: Record source.
+            name: DSS_RECORD_SOURCE
+            nullable: false
+          - columnReference:
+              columnCounter: 2000000082
+              stepCounter: "200000141"
+            dataType: DATETIME
+            defaultValue: ""
+            description: Load date.
+            name: DSS_LOAD_DATE
+            nullable: false
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ''
+            name: LOAD_CUSTOMERS
+            noLinkRefs: []
+      name: LOAD_CUSTOMERS
+      overrideSQL: false
+      sqlType: Source
+      table: LOAD_CUSTOMERS
+      type: sourceInput
+    stepCounter: "200000141"
