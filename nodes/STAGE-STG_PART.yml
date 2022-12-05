@@ -24,8 +24,6 @@ steps:
               stepCounter: "1618"
             dataType: NUMBER(38,0)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: P_PARTKEY
             nullable: false
             sourceColumnReferences:
@@ -38,8 +36,6 @@ steps:
               stepCounter: "1618"
             dataType: VARCHAR(55)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: P_NAME
             nullable: false
             sourceColumnReferences:
@@ -52,8 +48,6 @@ steps:
               stepCounter: "1618"
             dataType: VARCHAR(25)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: P_MFGR
             nullable: false
             sourceColumnReferences:
@@ -66,8 +60,6 @@ steps:
               stepCounter: "1618"
             dataType: VARCHAR(10)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: P_BRAND
             nullable: false
             sourceColumnReferences:
@@ -80,8 +72,6 @@ steps:
               stepCounter: "1618"
             dataType: VARCHAR(25)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: P_TYPE
             nullable: false
             sourceColumnReferences:
@@ -94,8 +84,6 @@ steps:
               stepCounter: "1618"
             dataType: NUMBER(38,0)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: P_SIZE
             nullable: false
             sourceColumnReferences:
@@ -108,8 +96,6 @@ steps:
               stepCounter: "1618"
             dataType: VARCHAR(10)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: P_CONTAINER
             nullable: false
             sourceColumnReferences:
@@ -122,8 +108,6 @@ steps:
               stepCounter: "1618"
             dataType: NUMBER(12,2)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: P_RETAILPRICE
             nullable: false
             sourceColumnReferences:
@@ -136,8 +120,6 @@ steps:
               stepCounter: "1618"
             dataType: VARCHAR(23)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: P_COMMENT
             nullable: true
             sourceColumnReferences:
@@ -156,7 +138,6 @@ steps:
             dataType: STRING
             defaultValue: ""
             description: ""
-            hashColumns: []
             hashDetails:
               hashAlgorithm: SHA1
             hashedColumns:
@@ -178,7 +159,6 @@ steps:
             dataType: STRING
             defaultValue: ""
             description: ""
-            hashColumns: []
             hashDetails:
               hashAlgorithm: SHA1
             hashedColumns:
