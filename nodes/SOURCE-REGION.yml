@@ -3,6 +3,7 @@ steps:
     operation:
       database: ""
       dataset: ""
+      deployEnabled: true
       locationID: 4
       locationName: SOURCE
       metadata:
