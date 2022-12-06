@@ -187,7 +187,7 @@ steps:
           - columnReference:
               columnCounter: 17392
               stepCounter: "1533"
-            dataType: VARCHAR(40)
+            dataType: varchar(255)
             description: ""
             hashColumns: []
             hashDetails: null
@@ -215,7 +215,7 @@ steps:
           - columnReference:
               columnCounter: 17394
               stepCounter: "1533"
-            dataType: VARCHAR(50)
+            dataType: varchar(255)
             description: ""
             hashColumns: []
             hashDetails: null

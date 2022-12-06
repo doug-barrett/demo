@@ -48,7 +48,7 @@ steps:
               - columnReferences:
                   - columnCounter: 6315
                     stepCounter: "553"
-                transform: loweR("STG_REGION"."R_NAME")
+                transform: NVL("STG_REGION"."R_NAME",'')
           - appliedColumnTests:
               hasNull: false
               isDistinct: false
@@ -196,7 +196,7 @@ steps:
               columnCounter: 2434
               stepCounter: "57"
             config: {}
-            dataType: VARCHAR(40)
+            dataType: varchar(255)
             description: ""
             name: S_ADDRESS
             nullable: false
@@ -228,7 +228,7 @@ steps:
               columnCounter: 5519
               stepCounter: "57"
             config: {}
-            dataType: VARCHAR(50)
+            dataType: varchar(255)
             description: ""
             name: MKT_SUPPLIER
             nullable: false

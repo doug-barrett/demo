@@ -63,7 +63,7 @@ steps:
             columnReference:
               columnCounter: 2174
               stepCounter: 186
-            dataType: VARCHAR(40)
+            dataType: varchar(255)
             description: ""
             name: S_ADDRESS
             nullable: false
@@ -189,7 +189,11 @@ steps:
               - locationName: SOURCE
                 nodeName: SUPPLIER
             join:
-              joinCondition: "FROM {{ ref('SOURCE', 'SUPPLIER') }} \"SUPPLIER\"\r\nLEFT JOIN {{ ref_no_link('DWH', 'DIM_SUPPLIER') }} \"DIM_SUPPLIER\"\r\nON \"SUPPLIER\".\"S_SUPPKEY\" = \"DIM_SUPPLIER\".\"S_SUPPKEY\"\r\nWHERE \"DIM_SUPPLIER\".\"S_SUPPKEY\" IS NULL\r\n"
+              joinCondition: |
+                FROM {{ ref('SOURCE', 'SUPPLIER') }} "SUPPLIER"
+                LEFT JOIN {{ ref_no_link('DWH', 'DIM_SUPPLIER') }} "DIM_SUPPLIER"
+                ON "SUPPLIER"."S_SUPPKEY" = "DIM_SUPPLIER"."S_SUPPKEY"
+                WHERE "DIM_SUPPLIER"."S_SUPPKEY" IS NULL
             name: STG_SUPPLIER
             noLinkRefs:
               - locationName: DWH

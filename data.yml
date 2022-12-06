@@ -2121,6 +2121,7 @@ stepTypes:
             options:
             - table
             - view
+            - Transient
 
           - type: multisourceToggle
             enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
@@ -2207,7 +2208,7 @@ stepTypes:
             	CREATE OR REPLACE TABLE {{ this }}
             	(
             		{% for col in columns %}
-            			"{{ col.name }}" {{ col.dataType }}
+            			"{{ col.name }}" {{ col.dataType }} 
             			{% if col.isSurrogateKey %}
             		        identity
             			{% endif %}
@@ -5383,6 +5384,11 @@ stepTypes:
     name: Persistent Stage
     version: 1
 subgraphs:
+  Subgraph-52:
+    id: 52
+    name: New Sub-Graph
+    steps:
+      - "1532"
   Subgraph-7:
     id: 7
     name: Dim Supplier

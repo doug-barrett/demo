@@ -1,0 +1,227 @@
+steps:
+  STG_CUSTOMER-6291:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: true
+            columnReference:
+              columnCounter: 62495
+              stepCounter: "6291"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 62448
+                    stepCounter: "6286"
+                transform: ""
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: false
+            columnReference:
+              columnCounter: 62496
+              stepCounter: "6291"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 62449
+                    stepCounter: "6286"
+                transform: NVL("CUSTOMER"."C_NAME",'')
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 62503
+              stepCounter: "6291"
+            config: {}
+            dataType: VARCHAR(25)
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            keyColumnType: None
+            name: NATION_NAME
+            nullable: false
+            primaryKey: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6346
+                    stepCounter: "557"
+                transform: ""
+            systemColumnType: None
+            type: Column
+            uniqueKey: false
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 62497
+              stepCounter: "6291"
+            dataType: varchar(255)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 62450
+                    stepCounter: "6286"
+                transform: ""
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 62498
+              stepCounter: "6291"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 62451
+                    stepCounter: "6286"
+                transform: ""
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 62499
+              stepCounter: "6291"
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 62452
+                    stepCounter: "6286"
+                transform: ""
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 62500
+              stepCounter: "6291"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ACCTBAL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 62453
+                    stepCounter: "6286"
+                transform: ""
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 62501
+              stepCounter: "6291"
+            dataType: VARCHAR(10)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_MKTSEGMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 62454
+                    stepCounter: "6286"
+                transform: ""
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 62502
+              stepCounter: "6291"
+            dataType: VARCHAR(117)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 62455
+                    stepCounter: "6286"
+                transform: ""
+          - acceptedValues:
+              strictMatch: false
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 62536
+              stepCounter: "6291"
+            dataType: VARCHAR(117)
+            description: ""
+            name: C_COMMENT1
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 62455
+                    stepCounter: "6286"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs:
+          - hasNull
+          - isDistinct
+        sourceMapping:
+          - aliases:
+              CUSTOMER: "6286"
+              NATION: "557"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE
+                nodeName: NATION
+              - locationName: SOURCE
+                nodeName: CUSTOMER
+            join:
+              joinCondition: |-
+                FROM {{ ref('SOURCE', 'NATION') }} "NATION"
+                INNER JOIN {{ ref('SOURCE', 'CUSTOMER') }} "CUSTOMER"
+                ON "NATION"."N_NATIONKEY" = "CUSTOMER"."C_NATIONKEY"
+            name: STG_CUSTOMER
+            noLinkRefs: []
+      name: STG_CUSTOMER
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "6291"
