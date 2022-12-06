@@ -932,6 +932,8 @@ stepTypes:
         isDisabled: false
         plural: External Tables
 
+        deployStrategy: advanced
+
         config:
         - groupName: File Location
           items: 
@@ -939,16 +941,18 @@ stepTypes:
           - displayName: Stage
             attributeName: fileLocation
             type: dropdownSelector
-            default: ""
+            default: "DOUG_DB.PUBLIC.DOUGS3"
             options:
             - "DOUG_DB.PUBLIC.DOUGS3"
-            - "Create them in Snowflake"
+            - "Create external stages on Snowflake"
+            - "Place them in the same storage location"
+            - "List the storage locations in this dropdown"
             isRequired: true
 
           - displayName: File Pattern
             attributeName: filePattern
             type: textBox
-            default: "salesforce/.*[.]json"
+            default: ".*[.]json"
             isRequired: true
 
         - groupName: File Format 
@@ -1032,7 +1036,7 @@ stepTypes:
             attributeName: snsTopic
             type: textBox
             enableIf: "{{ config.autoRefresh }}"
-            default: "arn:aws:sns:your-region:123456789012:your-notification"
+            default: "arn:aws:sns:us-east-1:121674918127:prod-emea-s3-notification"
             isRequired: false
 
         - groupName: Hidden config
@@ -1040,10 +1044,10 @@ stepTypes:
           items:
           - displayName: Type
             type: materializationSelector
-            default: view
+            default: table
             options:
-            - view
-            isRequired: false
+            - table
+            isRequired: true
 
         systemColumns:
 
@@ -1052,7 +1056,6 @@ stepTypes:
           transform: ''
           dataType: VARIANT
           placement: beginning
-          
         - displayName: 'METADATA$FILENAME'
           attributeName: 'METADATA$FILENAME'
           transform: ''
@@ -1079,7 +1082,7 @@ stepTypes:
                 {% endfor %}
               {% endif %}
               
-              with location = @{{ ref_no_link(desiredState.node.location.name, desiredState.config.fileLocation | upper) | trim }}
+              with location = @{{ desiredState.config.fileLocation | upper  }}
               pattern='{{ desiredState.config.filePattern }}'
               file_format = (type = {{ desiredState.config.fileType }}
               {% if desiredState.config.fileType == "CSV" %}
