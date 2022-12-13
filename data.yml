@@ -26,6 +26,16 @@ locations:
       "3":
         database: COALESCE_SAMPLE_DATABASE
         schema: TPCH_SF001
+  SOURCE_2:
+    mappingDefinitions:
+      "3":
+        database: ""
+        schema: ""
+  SOURCE_3:
+    mappingDefinitions:
+      "3":
+        database: ""
+        schema: ""
   STAGE:
     mappingDefinitions:
       "10":
@@ -2535,6 +2545,7 @@ stepTypes:
             options:
             - table
             - view
+            - Scott
             isRequired: true
 
           - type: multisourceToggle
@@ -2588,7 +2599,7 @@ stepTypes:
             	CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
             	(
             		{% for col in columns %}
-            			"{{ col.name }}" {{ col.dataType }}
+            			"{{ col.name }}" {{ col.dataType }} 
             			{%- if not col.nullable %} NOT NULL
             				{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             			{% endif %}
@@ -2719,6 +2730,95 @@ stepTypes:
             	{% endfor %}
             {% endif %}
     name: Copy of Stage
+    version: 1
+  StepType-63:
+    id: "63"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: DWH
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: MT Loop
+        short: VUNION
+        plural: MT Loop
+        tagColor: 'black'
+        config:
+        - groupName: Additional Options
+          items:
+          - displayName: Truncate Before
+            attributeName: truncateBefore
+            type: toggleButton
+            default: true
+            isRequired: true
+          - displayName: Pre-SQL
+            attributeName: preSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+          - displayName: Post-SQL
+            attributeName: postSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+        - groupName: Storage Location Query
+          items:
+          - displayName: Starts With
+            attributeName: storageLocationSearchText
+            type: textBox
+            default: 'TABLE_NAME_'
+            isRequired: true
+
+        - groupName: Hidden config
+          enableIf: "false"
+          items:
+          - displayName: Type
+            type: materializationSelector
+            default: view
+            options:
+            - view
+            isRequired: true
+        systemColumns:
+        - displayName: "SOURCE"
+          transform: ''
+          dataType: VARCHAR
+          placement: end
+          attributeName: isSystemSource
+      templates:
+        create:
+          templateString: |
+            {{ stage('Create Stage View') }}
+            CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+                (
+                    {% for col in columns %}
+                        "{{ col.name }}" 
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                )
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+                AS
+                {% for item in parameters.table_union %}
+                    SELECT
+                    {% for col in columns %}
+                        {% if col.isSystemSource %}
+                            '{{ ref_no_link(item.storageLocation, item.prefix+"_" + node.name|replace("VUNION_",""))}}'
+                        {% else %}
+                            "{{ col.name }}" 
+                        {% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}       
+                    FROM {{ ref_no_link(item.storageLocation, item.prefix+"_" + node.name|replace("VUNION_",""))}}
+                    {% if not loop.last %}
+                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+                            {{ config.insertStrategy }}
+                        {% else %}
+                            UNION
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+        run:
+          templateString: ""
+    name: Multi-Table Union View
     version: 1
   StepType-9:
     id: "9"
