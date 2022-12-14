@@ -26,16 +26,6 @@ locations:
       "3":
         database: COALESCE_SAMPLE_DATABASE
         schema: TPCH_SF001
-  SOURCE_2:
-    mappingDefinitions:
-      "3":
-        database: ""
-        schema: ""
-  SOURCE_3:
-    mappingDefinitions:
-      "3":
-        database: ""
-        schema: ""
   STAGE:
     mappingDefinitions:
       "10":
