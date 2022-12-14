@@ -1,0 +1,246 @@
+steps:
+  V_CUSTOMER_SALES-6396:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: false
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: DWH
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 63747
+              stepCounter: "6396"
+            dataType: NUMBER
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: DIM_CUSTOMER_KEY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63732
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63748
+              stepCounter: "6396"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63733
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63749
+              stepCounter: "6396"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63734
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63750
+              stepCounter: "6396"
+            dataType: VARCHAR(40)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63735
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63751
+              stepCounter: "6396"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63736
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63752
+              stepCounter: "6396"
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63737
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63753
+              stepCounter: "6396"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ACCTBAL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63738
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63754
+              stepCounter: "6396"
+            dataType: VARCHAR(10)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_MKTSEGMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63739
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63755
+              stepCounter: "6396"
+            dataType: VARCHAR(117)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63740
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63756
+              stepCounter: "6396"
+            dataType: NUMBER
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SYSTEM_VERSION
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63741
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63757
+              stepCounter: "6396"
+            dataType: VARCHAR
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SYSTEM_CURRENT_FLAG
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63742
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63758
+              stepCounter: "6396"
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SYSTEM_START_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63743
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63759
+              stepCounter: "6396"
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SYSTEM_END_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63744
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63760
+              stepCounter: "6396"
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SYSTEM_CREATE_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63745
+                    stepCounter: "6395"
+                transform: ""
+          - columnReference:
+              columnCounter: 63761
+              stepCounter: "6396"
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SYSTEM_UPDATE_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 63746
+                    stepCounter: "6395"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DWH
+                nodeName: DIM_CUSTOMER
+            join:
+              joinCondition: FROM {{ ref('DWH', 'DIM_CUSTOMER') }} "DIM_CUSTOMER"
+            name: V_CUSTOMER_SALES
+            noLinkRefs: []
+      name: V_CUSTOMER_SALES
+      overrideSQL: false
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: "6396"
