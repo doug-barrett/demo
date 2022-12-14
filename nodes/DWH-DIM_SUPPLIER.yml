@@ -185,7 +185,7 @@ steps:
             hashColumns: []
             hashDetails: null
             name: MKT_SUPPLIER1
-            nullable: false
+            nullable: true
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 5519
