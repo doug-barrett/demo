@@ -2733,7 +2733,7 @@ stepTypes:
     version: 1
   StepType-63:
     id: "63"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: DWH
       error: null
