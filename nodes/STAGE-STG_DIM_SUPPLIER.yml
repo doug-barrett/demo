@@ -254,51 +254,6 @@ steps:
                     stepCounter: "186"
                 transform: ""
           - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 4638
-              stepCounter: "57"
-            config: {}
-            dataType: STRING
-            defaultValue: ""
-            description: ""
-            hashDetails:
-              hashAlgorithm: SHA1
-            hashedColumns:
-              - columnCounter: 592
-                stepCounter: "57"
-              - columnCounter: 593
-                stepCounter: "57"
-              - columnCounter: 594
-                stepCounter: "57"
-              - columnCounter: 602
-                stepCounter: "57"
-              - columnCounter: 603
-                stepCounter: "57"
-              - columnCounter: 604
-                stepCounter: "57"
-              - columnCounter: 2432
-                stepCounter: "57"
-              - columnCounter: 2433
-                stepCounter: "57"
-              - columnCounter: 2434
-                stepCounter: "57"
-              - columnCounter: 2435
-                stepCounter: "57"
-              - columnCounter: 2436
-                stepCounter: "57"
-              - columnCounter: 2437
-                stepCounter: "57"
-              - columnCounter: 3786
-                stepCounter: "57"
-            name: SUPPLIER_HASH
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - acceptedValues:
               strictMatch: false
               values: []
             appliedColumnTests: {}

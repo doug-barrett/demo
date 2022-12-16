@@ -31,20 +31,6 @@ steps:
                     stepCounter: "1532"
                 transform: ""
           - columnReference:
-              columnCounter: 17380
-              stepCounter: "1533"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: R_REGIONKEY
-            nullable: "true"
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 17356
-                    stepCounter: "1532"
-                transform: ""
-          - columnReference:
               columnCounter: 17381
               stepCounter: "1533"
             dataType: VARCHAR(25)
@@ -56,34 +42,6 @@ steps:
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 17357
-                    stepCounter: "1532"
-                transform: ""
-          - columnReference:
-              columnCounter: 17382
-              stepCounter: "1533"
-            dataType: VARCHAR(152)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: R_COMMENT
-            nullable: "true"
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 17358
-                    stepCounter: "1532"
-                transform: ""
-          - columnReference:
-              columnCounter: 17383
-              stepCounter: "1533"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: N_NATIONKEY
-            nullable: "true"
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 17359
                     stepCounter: "1532"
                 transform: ""
           - columnReference:
@@ -112,20 +70,6 @@ steps:
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 17361
-                    stepCounter: "1532"
-                transform: ""
-          - columnReference:
-              columnCounter: 17387
-              stepCounter: "1533"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: N_REGIONKEY
-            nullable: "true"
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 17363
                     stepCounter: "1532"
                 transform: ""
           - columnReference:
@@ -238,20 +182,6 @@ steps:
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 17371
-                    stepCounter: "1532"
-                transform: ""
-          - columnReference:
-              columnCounter: 17396
-              stepCounter: "1533"
-            dataType: STRING
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: SUPPLIER_HASH
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 17372
                     stepCounter: "1532"
                 transform: ""
           - columnReference:
