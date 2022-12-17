@@ -1,0 +1,181 @@
+steps:
+  STG_SUPPLIER_JOIN-6421:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: 2
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 64008
+              stepCounter: "6421"
+            config: {}
+            dataType: VARCHAR(15)
+            description: ""
+            name: SUPPLIER_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2176
+                    stepCounter: "186"
+                transform: ""
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 64009
+              stepCounter: "6421"
+            config: {}
+            dataType: NUMBER(12,2)
+            description: ""
+            name: SUPPLIER_ACCTBAL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2177
+                    stepCounter: "186"
+                transform: ""
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: true
+            columnReference:
+              columnCounter: 64010
+              stepCounter: "6421"
+            config: {}
+            dataType: NUMBER(38,0)
+            description: ""
+            name: SUPPLIER_SUPPKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2172
+                    stepCounter: "186"
+                transform: ""
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: true
+            columnReference:
+              columnCounter: 64011
+              stepCounter: "6421"
+            config: {}
+            dataType: VARCHAR(25)
+            description: ""
+            name: SUPPLIER_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2173
+                    stepCounter: "186"
+                transform: ""
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 64012
+              stepCounter: "6421"
+            config: {}
+            dataType: varchar(255)
+            description: ""
+            name: SUPPLIER_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2174
+                    stepCounter: "186"
+                transform: ""
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 64013
+              stepCounter: "6421"
+            config: {}
+            dataType: NUMBER(38,0)
+            description: ""
+            name: SUPPLIER_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2175
+                    stepCounter: "186"
+                transform: ""
+          - acceptedValues:
+              strictMatch: false
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 64014
+              stepCounter: "6421"
+            dataType: VARCHAR(101)
+            description: ""
+            name: SUPPLIER_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3785
+                    stepCounter: "186"
+                transform: ""
+          - acceptedValues:
+              strictMatch: false
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 64015
+              stepCounter: "6421"
+            dataType: VARCHAR(152)
+            description: ""
+            name: N_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 61574
+                    stepCounter: "56"
+                transform: ""
+        enabledColumnTestIDs:
+          - hasNull
+          - isDistinct
+        sourceMapping:
+          - aliases:
+              STG_NATION: "56"
+              STG_REGION: "553"
+              STG_SUPPLIER: "186"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: STG_NATION
+              - locationName: STAGE
+                nodeName: STG_SUPPLIER
+              - locationName: STAGE
+                nodeName: STG_REGION
+            join:
+              joinCondition: |
+                FROM {{ ref('STAGE', 'STG_SUPPLIER') }} "STG_SUPPLIER"
+                INNER JOIN {{ ref('STAGE', 'STG_NATION') }} "STG_NATION"
+                ON STG_SUPPLIER.S_NATIONKEY= "STG_NATION".N_NATIONKEY
+                INNER JOIN {{ ref('STAGE', 'STG_REGION') }} "STG_REGION"
+                ON STG_NATION.N_REGIONKEY = STG_REGION.R_REGIONKEY
+            name: STG_SUPPLIER_JOIN
+            noLinkRefs: []
+      name: STG_SUPPLIER_JOIN
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "6421"

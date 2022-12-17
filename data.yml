@@ -54,7 +54,7 @@ locations:
 macros:
   Macro-1:
     id: "1"
-    macroString: |-
+    macroString: |
       {%- macro row_number(order_by, partition_by=[], order='') -%}
           ROW_NUMBER() OVER (
               {%- for p_col in partition_by %}
@@ -3235,7 +3235,7 @@ stepTypes:
     metadata:
       defaultStorageLocation: STAGE
       error: null
-      nodeMetadataSpec: |
+      nodeMetadataSpec: |-
         capitalized: Copy of Stage
         short: STG
         plural: Stages
@@ -3244,41 +3244,23 @@ stepTypes:
         config:
         - groupName: Options
           items:
-          - type: materializationSelector
-            default: table
-            options:
-            - table
-            - view
-            - Scott
-            isRequired: true
+          - type: businessKeyColumns
+            isRequired: false
 
-          - type: multisourceToggle
-            enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}" 
-
-          - type: overrideSQLToggle
-            enableIf: "{% if node.materializationType == 'view' %} true {% else %} false {% endif %}"
-            
-          - displayName: Multi Source Strategy
-            attributeName: insertStrategy
+          - displayName: Target Location
+            attributeName: tgtLocation
             type: dropdownSelector
-            default: INSERT
+            default: "DWH"
             options:
-            - "INSERT"
-            - "UNION"
-            - "UNION ALL"
-            isRequired: true
-            enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
-
-          - displayName: Truncate Before
-            attributeName: truncateBefore
-            type: toggleButton
-            default: true
+            - "DWH"
+            - "STAGE"
+            isRequired: false
 
           - displayName: Enable Tests
             attributeName: testsEnabled
             type: toggleButton
             default: true
-            
+
           - displayName: Pre-SQL
             attributeName: preSQL
             type: textBox
@@ -3290,132 +3272,117 @@ stepTypes:
             type: textBox
             syntax: sql
             isRequired: false
+
+        - groupName: Hidden
+          items:
+          - type: materializationSelector
+            enableIf: "false"
+            default: table
+            options:
+            - table
+            isRequired: true
+
+        systemColumns:
+        - displayName: "DELETE_FLAG"
+          transform: ''
+          dataType: CHAR(1)
+          placement: end
+          attributeName: isDeleteFlag
       templates:
         create:
+          templateString: |+
+            {{ stage('Create Stage Table') }}
+
+            CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+            (
+                {% for col in columns %}
+                    "{{ col.name }}" {{ col.dataType }} 
+                    {%- if not col.nullable %} NOT NULL
+                        {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+                    {% endif %}
+                    {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+                    {%- if not loop.last -%}, {% endif %}
+                {% endfor %}
+            )
+            {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+
+        run:
           templateString: |
-            {% if node.override.create.enabled %}
-            	
-            	{{ node.override.create.script }}
+            {% for test in node.tests if config.testsEnabled %}
+            	{% if test.runOrder == 'Before' %}
+            		{{ test_stage(test.name, test.continueOnFailure) }}
+            		{{ test.templateString }}
+            	{% endif %}
+            {% endfor %}
 
-            {% elif node.materializationType == 'table' %}
-            	{{ stage('Create Stage Table') }}
+            {% if config.preSQL %}
+            	{{ stage('Pre-SQL') }}
+            	{{ config.preSQL }}
+            {% endif %}
 
-            	CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+
+            {{ stage('Truncate Stage Table') }}
+            TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
+
+
+            {% for source in sources %}
+            	{{ stage('Insert ' + source.name | string ) }}
+
+            	INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
             	(
-            		{% for col in columns %}
-            			"{{ col.name }}" {{ col.dataType }} 
-            			{%- if not col.nullable %} NOT NULL
-            				{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
-            			{% endif %}
-            			{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            		{% for col in source.columns %}
+            			"{{ col.name }}"
             			{%- if not loop.last -%}, {% endif %}
             		{% endfor %}
             	)
-            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+            	SELECT
+            	{% for col in source.columns %}
+            		{% if col.isDeleteFlag %}
+                        'N'
+                    {% else %}
+            			{{ get_source_transform(col) }} 
+            		{% endif %} as "{{ col.name }}"
+            		{%- if not loop.last -%}, {% endif %}
+            	{% endfor %}
+            	{{ source.join }}
 
-
-            {% elif node.materializationType == 'view' %}
-                {{ stage('Create Stage View') }}
-
-                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
-                (
-                    {% for col in columns %}
-                        "{{ col.name }}"
-                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
-                        {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
-                )
-                {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
-                AS
-                {% for source in sources %}
-                    SELECT
-                    {% for col in source.columns %}
-                        {{ get_source_transform(col) }} AS "{{ col.name }}"
-                        {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
-
-                    {{ source.join }}
-
-                    {% if not loop.last %}
-                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
-                            {{ config.insertStrategy }}
-                        {% else %}
-                            UNION
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-
-            {% endif %}
-        run:
-          templateString: |2
-
-                {% for test in node.tests if config.testsEnabled %}
-                    {% if test.runOrder == 'Before' %}
-                        {{ test_stage(test.name, test.continueOnFailure) }}
-                        {{ test.templateString }}
-                    {% endif %}
-                {% endfor %}
-
-            {% if node.materializationType == 'table' %}
-            	{% if config.preSQL %}
-            		{{ stage('Pre-SQL') }}
-            		{{ config.preSQL }}
-            	{% endif %}
-            	
-            	
-            	
-            		{% if config.truncateBefore %}
-            	
-            			{{ stage('Truncate Stage Table') }}
-            			TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
-            	
-            		{% endif %}
-            	
-            	
-            		{% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
-            			{{ stage( config.insertStrategy + ' Sources' | string ) }}
-            			INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
-            				(
-            					{% for col in columns %}
-            						"{{ col.name }}"
-            						{%- if not loop.last -%},{% endif %}
-            					{% endfor %}
-            				)
-            		{% endif %}
-            	
-            	
-            		{% for source in sources %}
-            	
-            			{% if config.insertStrategy == 'INSERT' %}
-            				{{ stage('Insert ' + source.name | string ) }}
-            	
-            				INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
-            				(
-            					{% for col in source.columns %}
-            						"{{ col.name }}"
-            						{%- if not loop.last -%},{% endif %}
-            					{% endfor %}
-            				)
+            	{{ stage('Insert ' + source.name | string + ' Deletes' ) }}
+            	INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+            	(
+            	{% for col in source.columns %}
+            		"{{ col.name }}"
+            		{%- if not loop.last -%}, {% endif %}
+            	{% endfor %}
+            	)
+            	SELECT
+            	{% for col in source.columns %}
+            		{% if col.isDeleteFlag %}
+            			'Y'
+            		{% else %}
+            			"TGT"."{{ col.name }}"
+            		{% endif %} as "{{ col.name }}"
+            		{%- if not loop.last -%}, {% endif %}
+            	{% endfor %}
+            	FROM  {{ ref_no_link(node.location.name, node.name+"_DELETE") }}  "SRC" 
+            	JOIN  {{ ref_no_link(config.tgtLocation, node.name)|replace("STG_", "")}} "TGT"
+            	ON
+            		{% for col in source.columns if col.isBusinessKey -%}
+            			{% if not loop.first %}
+            				AND
             			{% endif %}
-            	
-            			SELECT
-            			{% for col in source.columns %}
-                            {{ get_source_transform(col) }} AS "{{ col.name }}"
-            				{%- if not loop.last -%}, {% endif %}
-            			{% endfor %}
-            	
-            			{{ source.join }}
-            	
-            			{% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
-            				{{config.insertStrategy}}
-            			{% endif %}
-            	
+            			"TGT"."{{ col.name }}" = "SRC"."{{ col.name }}"
             		{% endfor %}
-            	
-            	{% if config.postSQL %}
-            		{{ stage('Post-SQL') }}
-            		{{ config.postSQL }}
-            	{% endif %}
+            	WHERE "TGT"."SYSTEM_CURRENT_FLAG" = 'Y'
+
+
+            {% endfor %}
+
+
+
+
+            {% if config.postSQL %}
+            	{{ stage('Post-SQL') }}
+            	{{ config.postSQL }}
             {% endif %}
 
             {% if config.testsEnabled %}
@@ -3423,7 +3390,7 @@ stepTypes:
             		{% if test.runOrder == 'After' %}
             			{{ test_stage(test.name, test.continueOnFailure) }}
             			{{ test.templateString }}
-                    {% endif %}
+            		{% endif %}
             	{% endfor %}
 
             	{% for column in columns %}
@@ -3433,7 +3400,7 @@ stepTypes:
             		{% endfor %}
             	{% endfor %}
             {% endif %}
-    name: Copy of Stage
+    name: Stage Merge Delete
     version: 1
   StepType-63:
     id: "63"
@@ -3755,11 +3722,11 @@ stepTypes:
             			{%- if not col.nullable %} NOT NULL
             				{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             			{% endif %}
-            			{%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+            			{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             			{%- if not loop.last -%}, {% endif %}
             		{% endfor %}
             	)
-            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
 
 
             {% elif node.materializationType == 'view' %}
@@ -3769,11 +3736,11 @@ stepTypes:
             	(
             		{% for col in columns %}
             			"{{ col.name }}"
-            			{%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+            			{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             			{%- if not loop.last -%},{% endif %}
             		{% endfor %}
             	)
-            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
             	AS
             	{% for source in sources %}
 
@@ -4160,11 +4127,11 @@ stepTypes:
                             {%- if not col.nullable %} NOT NULL
                                 {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
                             {% endif %}
-                            {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                            {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
                             {%- if not loop.last -%}, {% endif %}
                         {% endfor %}
                     )
-                    {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+                    {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
                 
                 
                 {% elif node.materializationType == 'view' %}
@@ -4174,11 +4141,11 @@ stepTypes:
                     (
                         {% for col in columns %}
                             "{{ col.name }}"
-                            {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                            {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
                             {%- if not loop.last -%},{% endif %}
                         {% endfor %}
                     )
-                    {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+                    {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
                     AS
                     {% for source in sources %}
                 
@@ -4386,11 +4353,11 @@ stepTypes:
             						{%- if not col.nullable %} NOT NULL
             							{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             						{% endif %}
-            						{%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+            						{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             						{%- if not loop.last -%}, {% endif %}
             					{% endfor %}
             				)
-            				{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+            				{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
             			
             			{% endif %}
         run:
@@ -4552,11 +4519,11 @@ stepTypes:
             						{%- if not col.nullable %} NOT NULL
             							{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             						{% endif %}
-            						{%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+            						{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             						{%- if not loop.last -%}, {% endif %}
             					{% endfor %}
             				)
-            				{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+            				{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
             			
             			{% endif %}
         run:
@@ -4717,11 +4684,11 @@ stepTypes:
             						{%- if not col.nullable %} NOT NULL
             							{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             						{% endif %}
-            						{%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+            						{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             						{%- if not loop.last -%}, {% endif %}
             					{% endfor %}
             				)
-            				{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+            				{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
             			
             			{% endif %}
         run:
@@ -4907,11 +4874,11 @@ stepTypes:
             			{%- if not col.nullable %} NOT NULL
             				{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             			{% endif %}
-            			{%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+            			{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             			{%- if not loop.last -%}, {% endif %}
             		{% endfor %}
             	)
-            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
 
 
             {% elif node.materializationType == 'view' %}
@@ -4921,11 +4888,11 @@ stepTypes:
                 (
                     {% for col in columns %}
                         "{{ col.name }}"
-                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
                         {%- if not loop.last -%}, {% endif %}
                     {% endfor %}
                 )
-                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
                 AS
                 {% for source in sources %}
                     SELECT
@@ -5087,11 +5054,11 @@ stepTypes:
                 (
                     {% for col in columns %}
                         "{{ col.name }}"
-                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
                         {%- if not loop.last -%}, {% endif %}
                     {% endfor %}
                 )
-                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
                 AS
                 {% for source in sources %}
                     SELECT {% if config.selectDistinct %} DISTINCT {% endif %}
@@ -5222,11 +5189,11 @@ stepTypes:
                         {%- if not col.nullable %} NOT NULL
                             {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
                         {% endif %}
-                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
                         {%- if not loop.last -%}, {% endif %}
                     {% endfor %}
                 )
-                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
 
 
             {% elif node.materializationType == 'view' %}
@@ -5236,11 +5203,11 @@ stepTypes:
                 (
                     {% for col in columns %}
                         "{{ col.name }}"
-                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
                         {%- if not loop.last -%},{% endif %}
                     {% endfor %}
                 )
-                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
                 AS
                 {% for source in sources %}
 
@@ -5597,7 +5564,6 @@ subgraphs:
       - "45"
       - "46"
       - "56"
-      - "57"
       - "150"
       - "152"
       - "153"
