@@ -33,27 +33,6 @@ steps:
                   - columnCounter: 491
                     stepCounter: "46"
                 transform: ""
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 63986
-              stepCounter: "6419"
-            config: {}
-            dataType: CHAR(1)
-            defaultValue: ""
-            description: ""
-            keyColumnType: None
-            name: DELETE_FLAG
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 0
-                    stepCounter: "0"
-                transform: "'Y'"
-            systemColumnType: None
-            transform: ""
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:

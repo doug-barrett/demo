@@ -3274,9 +3274,9 @@ stepTypes:
             isRequired: false
 
         - groupName: Hidden
+          enableIf: "false"
           items:
           - type: materializationSelector
-            enableIf: "false"
             default: table
             options:
             - table
