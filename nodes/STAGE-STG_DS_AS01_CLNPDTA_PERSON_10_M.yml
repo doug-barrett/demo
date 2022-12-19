@@ -1,0 +1,99 @@
+steps:
+  STG_DS_AS01_CLNPDTA_PERSON_10_M-200006175:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000002
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000080558
+              stepCounter: "200006175"
+            dataType: NUMBER(20)
+            defaultValue: ""
+            description: ""
+            name: CLIENT_ID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000080559
+              stepCounter: "200006175"
+            dataType: VARCHAR(15)
+            defaultValue: ""
+            description: Batch Number for the Process Cycle
+            name: BATCH_NUMBER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000080560
+              stepCounter: "200006175"
+            dataType: TIMESTAMP_LTZ
+            defaultValue: ""
+            description: CUTOFF Source Capture Time in TIMESTAMP format
+            name: CUTOFF_HVRCAPTSTAMP
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000080563
+              stepCounter: "200006175"
+            dataType: TIMESTAMP_LTZ
+            defaultValue: ""
+            description: ""
+            name: REFRESH_HVRCAPTSTAMP
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000080562
+              stepCounter: "200006175"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Date and time the row was created in the data warehouse.
+            name: DSS_CREATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000080561
+              stepCounter: "200006175"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: DSS_UPDATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ''
+            name: STG_DS_AS01_CLNPDTA_PERSON_10_M
+            noLinkRefs: []
+      name: STG_DS_AS01_CLNPDTA_PERSON_10_M
+      overrideSQL: false
+      sqlType: Stage
+      type: sql
+    stepCounter: "200006175"
