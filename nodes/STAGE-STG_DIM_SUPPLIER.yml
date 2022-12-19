@@ -1,179 +1,217 @@
 steps:
-  STG_DIM_SUPPLIER-6423:
+  STG_DIM_SUPPLIER-6421:
     operation:
       config:
+        insertStrategy: INSERT
         postSQL: ""
         preSQL: ""
         testsEnabled: true
-        tgtLocation: DWH
-        tgtPrefix: DIM
+        truncateBefore: true
       database: ""
       dependencies: []
       deployEnabled: true
       description: ""
       isDataVault: false
       isMultisource: false
-      locationID: ""
+      locationID: 2
       locationName: STAGE
       materializationType: table
       metadata:
         appliedNodeTests: []
         columns:
-          - columnReference:
-              columnCounter: 64115
-              stepCounter: "6423"
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: true
+            columnReference:
+              columnCounter: 64010
+              stepCounter: "6421"
+            config: {}
             dataType: NUMBER(38,0)
             description: ""
-            hashColumns: []
-            hashDetails: null
-            isBusinessKey: true
             name: SUPPLIER_SUPPKEY
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64010
-                    stepCounter: "6421"
+                  - columnCounter: 2172
+                    stepCounter: "186"
                 transform: ""
-          - columnReference:
-              columnCounter: 64116
-              stepCounter: "6423"
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: true
+            columnReference:
+              columnCounter: 64011
+              stepCounter: "6421"
+            config: {}
             dataType: VARCHAR(25)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: SUPPLIER_NAME
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64011
-                    stepCounter: "6421"
+                  - columnCounter: 2173
+                    stepCounter: "186"
                 transform: ""
           - columnReference:
-              columnCounter: 64113
-              stepCounter: "6423"
-            dataType: VARCHAR(15)
+              columnCounter: 64249
+              stepCounter: "6421"
+            config: {}
+            dataType: VARCHAR(25)
             description: ""
             hashColumns: []
             hashDetails: null
+            keyColumnType: None
+            name: NATION_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 589
+                    stepCounter: "56"
+                transform: ""
+            systemColumnType: None
+            type: Column
+          - columnReference:
+              columnCounter: 64250
+              stepCounter: "6421"
+            config: {}
+            dataType: VARCHAR(255)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            keyColumnType: None
+            name: CONCAT_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 589
+                    stepCounter: "56"
+                transform: "\"STG_SUPPLIER\".\"S_NAME\"||' '||\"STG_NATION\".\"N_NAME\""
+            systemColumnType: None
+            type: Column
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 64008
+              stepCounter: "6421"
+            config: {}
+            dataType: VARCHAR(15)
+            description: ""
             name: SUPPLIER_PHONE
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64008
-                    stepCounter: "6421"
+                  - columnCounter: 2176
+                    stepCounter: "186"
                 transform: ""
-          - columnReference:
-              columnCounter: 64114
-              stepCounter: "6423"
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 64009
+              stepCounter: "6421"
+            config: {}
             dataType: NUMBER(12,2)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: SUPPLIER_ACCTBAL
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64009
-                    stepCounter: "6421"
+                  - columnCounter: 2177
+                    stepCounter: "186"
                 transform: ""
-          - columnReference:
-              columnCounter: 64117
-              stepCounter: "6423"
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 64012
+              stepCounter: "6421"
+            config: {}
             dataType: varchar(255)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: SUPPLIER_ADDRESS
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64012
-                    stepCounter: "6421"
+                  - columnCounter: 2174
+                    stepCounter: "186"
                 transform: ""
-          - columnReference:
-              columnCounter: 64118
-              stepCounter: "6423"
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 64013
+              stepCounter: "6421"
+            config: {}
             dataType: NUMBER(38,0)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: SUPPLIER_NATIONKEY
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64013
-                    stepCounter: "6421"
+                  - columnCounter: 2175
+                    stepCounter: "186"
                 transform: ""
-          - columnReference:
-              columnCounter: 64119
-              stepCounter: "6423"
+          - acceptedValues:
+              strictMatch: false
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 64014
+              stepCounter: "6421"
             dataType: VARCHAR(101)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: SUPPLIER_COMMENT
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64014
-                    stepCounter: "6421"
+                  - columnCounter: 3785
+                    stepCounter: "186"
                 transform: ""
-          - columnReference:
-              columnCounter: 64120
-              stepCounter: "6423"
+          - acceptedValues:
+              strictMatch: false
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 64015
+              stepCounter: "6421"
             dataType: VARCHAR(152)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: N_COMMENT
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64015
-                    stepCounter: "6421"
+                  - columnCounter: 61574
+                    stepCounter: "56"
                 transform: ""
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 64121
-              stepCounter: "6423"
-            config: {}
-            dataType: CHAR(1)
-            defaultValue: ""
-            description: ""
-            hashColumns: []
-            isDeleteFlag: true
-            name: DELETE_FLAG
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-        cteString: ""
-        enabledColumnTestIDs: []
+        enabledColumnTestIDs:
+          - hasNull
+          - isDistinct
         sourceMapping:
           - aliases:
-              STG_DIM_SUPPLIER_DELETE: "6419"
-              STG_SUPPLIER_JOIN: "6421"
+              STG_NATION: "56"
+              STG_REGION: "553"
+              STG_SUPPLIER: "186"
             customSQL:
               customSQL: ""
             dependencies:
               - locationName: STAGE
-                nodeName: STG_DIM_SUPPLIER_DELETE
+                nodeName: STG_NATION
               - locationName: STAGE
-                nodeName: STG_SUPPLIER_JOIN
+                nodeName: STG_SUPPLIER
+              - locationName: STAGE
+                nodeName: STG_REGION
             join:
-              joinCondition: |-
-                FROM {{ ref('STAGE', 'STG_SUPPLIER_JOIN') }} "STG_SUPPLIER_JOIN"
-                LEFT JOIN {{ ref('STAGE', 'STG_DIM_SUPPLIER_DELETE') }} "STG_DIM_SUPPLIER_DELETE"
-                ON "STG_SUPPLIER_JOIN"."SUPPLIER_SUPPKEY" = "STG_DIM_SUPPLIER_DELETE"."SUPPLIER_SUPPKEY"
-                WHERE "STG_DIM_SUPPLIER_DELETE"."SUPPLIER_SUPPKEY" IS NULL
+              joinCondition: |
+                FROM {{ ref('STAGE', 'STG_SUPPLIER') }} "STG_SUPPLIER"
+                INNER JOIN {{ ref('STAGE', 'STG_NATION') }} "STG_NATION"
+                ON STG_SUPPLIER.S_NATIONKEY= "STG_NATION".N_NATIONKEY
+                INNER JOIN {{ ref('STAGE', 'STG_REGION') }} "STG_REGION"
+                ON STG_NATION.N_REGIONKEY = STG_REGION.R_REGIONKEY
             name: STG_DIM_SUPPLIER
             noLinkRefs: []
       name: STG_DIM_SUPPLIER
       overrideSQL: false
       schema: ""
-      sqlType: "62"
+      sqlType: Stage
       type: sql
-    stepCounter: "6423"
+    stepCounter: "6421"

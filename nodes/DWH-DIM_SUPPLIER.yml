@@ -40,7 +40,7 @@ steps:
               hasNull: true
               isDistinct: true
             columnReference:
-              columnCounter: 63992
+              columnCounter: 64251
               stepCounter: "1532"
             config: {}
             dataType: NUMBER(38,0)
@@ -53,8 +53,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64115
-                    stepCounter: "6423"
+                  - columnCounter: 64010
+                    stepCounter: "6421"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -62,7 +62,7 @@ steps:
               hasNull: true
               isDistinct: true
             columnReference:
-              columnCounter: 63993
+              columnCounter: 64252
               stepCounter: "1532"
             config: {}
             dataType: VARCHAR(25)
@@ -74,8 +74,45 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64116
-                    stepCounter: "6423"
+                  - columnCounter: 64011
+                    stepCounter: "6421"
+                transform: ""
+            systemColumnType: None
+            type: Column
+          - columnReference:
+              columnCounter: 64253
+              stepCounter: "1532"
+            config: {}
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            isChangeTracking: true
+            keyColumnType: None
+            name: NATION_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 64249
+                    stepCounter: "6421"
+                transform: ""
+            systemColumnType: None
+            type: Column
+          - columnReference:
+              columnCounter: 64254
+              stepCounter: "1532"
+            config: {}
+            dataType: VARCHAR(255)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            keyColumnType: None
+            name: CONCAT_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 64250
+                    stepCounter: "6421"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -83,7 +120,7 @@ steps:
               hasNull: false
               isDistinct: false
             columnReference:
-              columnCounter: 63990
+              columnCounter: 64255
               stepCounter: "1532"
             config: {}
             dataType: VARCHAR(15)
@@ -95,8 +132,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64113
-                    stepCounter: "6423"
+                  - columnCounter: 64008
+                    stepCounter: "6421"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -104,20 +141,21 @@ steps:
               hasNull: false
               isDistinct: false
             columnReference:
-              columnCounter: 63991
+              columnCounter: 64256
               stepCounter: "1532"
             config: {}
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
             hashDetails: null
+            isChangeTracking: true
             keyColumnType: None
             name: SUPPLIER_ACCTBAL
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64114
-                    stepCounter: "6423"
+                  - columnCounter: 64009
+                    stepCounter: "6421"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -125,7 +163,7 @@ steps:
               hasNull: false
               isDistinct: false
             columnReference:
-              columnCounter: 63994
+              columnCounter: 64257
               stepCounter: "1532"
             config: {}
             dataType: varchar(255)
@@ -137,8 +175,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64117
-                    stepCounter: "6423"
+                  - columnCounter: 64012
+                    stepCounter: "6421"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -146,7 +184,7 @@ steps:
               hasNull: false
               isDistinct: false
             columnReference:
-              columnCounter: 63995
+              columnCounter: 64258
               stepCounter: "1532"
             config: {}
             dataType: NUMBER(38,0)
@@ -158,8 +196,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64118
-                    stepCounter: "6423"
+                  - columnCounter: 64013
+                    stepCounter: "6421"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -168,7 +206,7 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 63996
+              columnCounter: 64259
               stepCounter: "1532"
             config: {}
             dataType: VARCHAR(101)
@@ -180,8 +218,8 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64119
-                    stepCounter: "6423"
+                  - columnCounter: 64014
+                    stepCounter: "6421"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -190,7 +228,7 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 63997
+              columnCounter: 64260
               stepCounter: "1532"
             config: {}
             dataType: VARCHAR(152)
@@ -202,35 +240,10 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64120
-                    stepCounter: "6423"
+                  - columnCounter: 64015
+                    stepCounter: "6421"
                 transform: ""
             systemColumnType: None
-            type: Column
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 63998
-              stepCounter: "1532"
-            config: {}
-            dataType: CHAR(1)
-            defaultValue: ""
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            isChangeTracking: true
-            keyColumnType: None
-            name: DELETE_FLAG
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 64121
-                    stepCounter: "6423"
-                transform: ""
-            systemColumnType: None
-            transform: ""
             type: Column
           - acceptedValues:
               strictMatch: true
@@ -343,7 +356,7 @@ steps:
         enabledColumnTestIDs: []
         sourceMapping:
           - aliases:
-              STG_DIM_SUPPLIER: "6423"
+              STG_DIM_SUPPLIER: "6421"
             customSQL:
               customSQL: ""
             dependencies:
