@@ -21,6 +21,11 @@ locations:
       "4":
         database: DOUG_DB
         schema: PROD_EDW
+  RAW:
+    mappingDefinitions:
+      "3":
+        database: ""
+        schema: ""
   SOURCE:
     mappingDefinitions:
       "10":
@@ -43,14 +48,6 @@ locations:
       "4":
         database: DOUG_DB
         schema: PROD_STG
-  WEATHER:
-    mappingDefinitions:
-      "3":
-        database: COALESCE_SAMPLE_DATABASE
-        schema: WEATHER
-      "4":
-        database: COALESCE_SAMPLE_DATABASE
-        schema: WEATHER
 macros:
   Macro-1:
     id: "1"
