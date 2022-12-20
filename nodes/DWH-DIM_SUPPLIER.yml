@@ -76,7 +76,7 @@ steps:
               - columnReferences:
                   - columnCounter: 64011
                     stepCounter: "6421"
-                transform: UPPER("STG_DIM_SUPPLIER"."SUPPLIER_NAME")
+                transform: LOWER("STG_DIM_SUPPLIER"."SUPPLIER_NAME")
             systemColumnType: None
             type: Column
           - columnReference:
