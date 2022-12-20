@@ -1,0 +1,455 @@
+steps:
+  STG_DS_AS01_CLNPDTA_PERSON_20_ROWNUM-200006208:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000002
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000191973
+              stepCounter: "200006208"
+            dataType: VARCHAR(25)
+            defaultValue: ""
+            description: ""
+            name: FIRST_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191974
+              stepCounter: "200006208"
+            dataType: NUMBER(20)
+            defaultValue: ""
+            description: ""
+            name: CLIENT_ID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191975
+              stepCounter: "200006208"
+            dataType: VARCHAR(20)
+            defaultValue: ""
+            description: ""
+            name: MIDDLE_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191976
+              stepCounter: "200006208"
+            dataType: VARCHAR(35)
+            defaultValue: ""
+            description: ""
+            name: LAST_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191977
+              stepCounter: "200006208"
+            dataType: VARCHAR(15)
+            defaultValue: ""
+            description: ""
+            name: PROFESSIONAL_DESIGNATION
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191978
+              stepCounter: "200006208"
+            dataType: NUMBER(9)
+            defaultValue: ""
+            description: ""
+            name: SOCIAL_SECURITY_NBR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191979
+              stepCounter: "200006208"
+            dataType: DATE
+            defaultValue: ""
+            description: ""
+            name: DATE_OF_BIRTH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191980
+              stepCounter: "200006208"
+            dataType: DATE
+            defaultValue: ""
+            description: ""
+            name: DATE_OF_DEATH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191981
+              stepCounter: "200006208"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            name: PERSON_CREATE_DATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191982
+              stepCounter: "200006208"
+            dataType: VARCHAR(10)
+            defaultValue: ""
+            description: ""
+            name: PERSON_CREATE_USERID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191983
+              stepCounter: "200006208"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            name: PERSON_LAST_CHG_DATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191984
+              stepCounter: "200006208"
+            dataType: VARCHAR(10)
+            defaultValue: ""
+            description: ""
+            name: PERSON_LAST_CHG_USERID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191985
+              stepCounter: "200006208"
+            dataType: VARCHAR(1)
+            defaultValue: ""
+            description: ""
+            name: GENDER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191986
+              stepCounter: "200006208"
+            dataType: VARCHAR(5)
+            defaultValue: ""
+            description: ""
+            name: SUFFIX
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191987
+              stepCounter: "200006208"
+            dataType: VARCHAR(5)
+            defaultValue: ""
+            description: ""
+            name: NOMINATIVE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191988
+              stepCounter: "200006208"
+            dataType: VARCHAR(5)
+            defaultValue: ""
+            description: ""
+            name: PREFIX_CODE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191989
+              stepCounter: "200006208"
+            dataType: VARCHAR(18)
+            defaultValue: ""
+            description: ""
+            name: NICKNAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191990
+              stepCounter: "200006208"
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            name: HVRCAPLOC
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191991
+              stepCounter: "200006208"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            name: HVRCAPTSTAMP
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CASE WHEN ODS_AS01_CLNPDTA_PERSON.HVR_REFRESH_SEQNO <>  ODS_CTRL_HVRREFRESH_HISTORY.HVR_REFRESH_SEQNO_HIST
+                  THEN  STG_DS_AS01_CLNPDTA_PERSON_15_UNIQUE.REFRESH_HVRCAPTSTAMP  ELSE
+                  ODS_AS01_CLNPDTA_PERSON.HVRCAPTSTAMP END
+          - columnReference:
+              columnCounter: 2000191992
+              stepCounter: "200006208"
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            name: HVRCAPUSER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191993
+              stepCounter: "200006208"
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            name: HVRINTEGKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191994
+              stepCounter: "200006208"
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            name: HVRINTEGSEQ
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191995
+              stepCounter: "200006208"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            name: HVRINTEGTSTAMP
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191996
+              stepCounter: "200006208"
+            dataType: NUMBER(38)
+            defaultValue: ""
+            description: ""
+            name: HVROP
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191997
+              stepCounter: "200006208"
+            dataType: NUMBER(38)
+            defaultValue: ""
+            description: ""
+            name: HVRTXCOUNTDOWN
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191998
+              stepCounter: "200006208"
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            name: HVRTXSEQ
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000191999
+              stepCounter: "200006208"
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: ""
+            name: HVRCAPTUREKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000192007
+              stepCounter: "200006208"
+            dataType: NUMBER
+            defaultValue: ""
+            description: Refresh SEQNO for the HVR Table
+            name: HVR_REFRESH_SEQNO
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000192008
+              stepCounter: "200006208"
+            dataType: NUMBER
+            defaultValue: ""
+            description: Refresh SEQNO for the HVR Table
+            name: CUR_REFRESH_SEQNO
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000192000
+              stepCounter: "200006208"
+            dataType: VARCHAR(15)
+            defaultValue: ""
+            description: ODS Batch Number for the Process Cycle
+            name: ODS_BATCH_NUMBER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000192005
+              stepCounter: "200006208"
+            dataType: VARCHAR(15)
+            defaultValue: ""
+            description: DS Batch Number for the Process Cycle
+            name: DS_BATCH_NUMBER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000192009
+              stepCounter: "200006208"
+            dataType: INTEGER
+            defaultValue: ""
+            description: ""
+            name: ROW_NUM
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ROW_NUMBER() OVER(   PARTITION BY   ODS_AS01_CLNPDTA_PERSON.CLIENT_ID  ORDER
+                  BY  ODS_AS01_CLNPDTA_PERSON.HVR_REFRESH_SEQNO DESC,  ODS_AS01_CLNPDTA_PERSON.HVRINTEGSEQ
+                  DESC  )
+          - columnReference:
+              columnCounter: 2000192006
+              stepCounter: "200006208"
+            dataType: CHAR(1)
+            defaultValue: ""
+            description: ""
+            name: DELETE_FLAG
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CASE WHEN ODS_AS01_CLNPDTA_PERSON.HVROP = 0 THEN 'Y'     WHEN
+                  ODS_AS01_CLNPDTA_PERSON.HVR_REFRESH_SEQNO <>  ODS_CTRL_HVRREFRESH_HISTORY.HVR_REFRESH_SEQNO_HIST
+                  THEN 'Y'     ELSE 'N'  END
+          - columnReference:
+              columnCounter: 2000192001
+              stepCounter: "200006208"
+            dataType: VARCHAR(64)
+            defaultValue: ""
+            description: Record source.
+            name: DSS_RECORD_SOURCE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000192002
+              stepCounter: "200006208"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Load date.
+            name: DSS_LOAD_DATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000192004
+              stepCounter: "200006208"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Date and time the row was created in the data warehouse.
+            name: DSS_CREATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000192003
+              stepCounter: "200006208"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: DSS_UPDATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: "FROM {{ ref('DWH','ODS_AS01_CLNPDTA_PERSON') }} ODS_AS01_CLNPDTA_PERSON\
+                \  JOIN {{ ref('STAGE','STG_DS_AS01_CLNPDTA_PERSON_15_UNIQUE') }}\
+                \ STG_DS_AS01_CLNPDTA_PERSON_15_UNIQUE    ON ODS_AS01_CLNPDTA_PERSON.CLIENT_ID\
+                \ = STG_DS_AS01_CLNPDTA_PERSON_15_UNIQUE.CLIENT_ID   AND ODS_AS01_CLNPDTA_PERSON.HVRCAPTSTAMP\
+                \ < STG_DS_AS01_CLNPDTA_PERSON_15_UNIQUE.CUTOFF_HVRCAPTSTAMP  JOIN\
+                \ {{ ref('DWH','ODS_CTRL_HVRREFRESH_HISTORY') }} ODS_CTRL_HVRREFRESH_HISTORY\
+                \    ON ODS_AS01_CLNPDTA_PERSON.DSS_RECORD_SOURCE = ODS_CTRL_HVRREFRESH_HISTORY.HVR_RECORD_SOURCE\
+                \   AND STG_DS_AS01_CLNPDTA_PERSON_15_UNIQUE.CUTOFF_HVRCAPTSTAMP BETWEEN\
+                \ ODS_CTRL_HVRREFRESH_HISTORY.FROM_DATE AND ODS_CTRL_HVRREFRESH_HISTORY.THRU_DATE\
+                \ WHERE ODS_AS01_CLNPDTA_PERSON.HVROP IN (0,1,2) "
+            name: STG_DS_AS01_CLNPDTA_PERSON_20_ROWNUM
+            noLinkRefs: []
+      name: STG_DS_AS01_CLNPDTA_PERSON_20_ROWNUM
+      overrideSQL: false
+      sqlType: Stage
+      type: sql
+    stepCounter: "200006208"
