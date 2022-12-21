@@ -43,8 +43,8 @@ steps:
                     stepCounter: "46"
                 transform: ""
           - appliedColumnTests:
-              hasNull: true
-              isDistinct: true
+              hasNull: false
+              isDistinct: false
             columnReference:
               columnCounter: 2173
               stepCounter: 186
@@ -56,9 +56,9 @@ steps:
               - columnReferences:
                   - columnCounter: 492
                     stepCounter: "46"
-                transform: upper("SUPPLIER"."S_NAME")
+                transform: UPPER("SUPPLIER"."S_NAME")
           - appliedColumnTests:
-              hasNull: true
+              hasNull: false
               isDistinct: false
             columnReference:
               columnCounter: 2174

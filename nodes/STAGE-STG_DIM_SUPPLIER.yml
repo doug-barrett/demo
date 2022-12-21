@@ -50,7 +50,7 @@ steps:
               - columnReferences:
                   - columnCounter: 2173
                     stepCounter: "186"
-                transform: ""
+                transform: UPPER("STG_SUPPLIER"."S_NAME")
           - columnReference:
               columnCounter: 64249
               stepCounter: "6421"
