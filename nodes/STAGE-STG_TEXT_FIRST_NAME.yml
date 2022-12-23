@@ -1,0 +1,99 @@
+steps:
+  STG_TEXT_FIRST_NAME-6545:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 65816
+              stepCounter: "6545"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 65685
+                    stepCounter: "6535"
+                transform: ""
+          - columnReference:
+              columnCounter: 65817
+              stepCounter: "6545"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: c1
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 65686
+                    stepCounter: "6535"
+                transform: ""
+          - columnReference:
+              columnCounter: 65848
+              stepCounter: "6545"
+            dataType: STRING
+            description: ""
+            name: first_name
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 65706
+                    stepCounter: "6538"
+                transform: ""
+          - columnReference:
+              columnCounter: 65858
+              stepCounter: "6545"
+            dataType: INT
+            description: ""
+            name: RN
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 65856
+                    stepCounter: "6535"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              STG_TEXT_FILE: "6535"
+              V_FIRST_NAME: "6538"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: STG_TEXT_FILE
+              - locationName: DWH
+                nodeName: V_FIRST_NAME
+            join:
+              joinCondition: |-
+                FROM {{  ref(   'STAGE', 'STG_TEXT_FILE') }} "STG_TEXT_FILE"
+                LEFT JOIN {{ ref('DWH', 'V_FIRST_NAME') }} "V_FIRST_NAME"
+                ON ' '||"STG_TEXT_FILE"."c1"||' ' LIKE '% '||"V_FIRST_NAME"."first_name"||' %'
+            name: STG_TEXT_FIRST_NAME
+            noLinkRefs: []
+      name: STG_TEXT_FIRST_NAME
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "6545"

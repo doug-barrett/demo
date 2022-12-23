@@ -1,0 +1,92 @@
+steps:
+  STG_TEXT_FILE-6535:
+    operation:
+      config:
+        insertStrategy: UNION
+        postSQL: ""
+        preSQL: ""
+        selectDistinct: false
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 65685
+              stepCounter: "6535"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 65683
+                    stepCounter: "6534"
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 65686
+              stepCounter: "6535"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: c1
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 65682
+                    stepCounter: "6534"
+                transform: "\"EXT_TEXT_FILE\".\"VALUE\":\"c1\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 65856
+              stepCounter: "6535"
+            config: {}
+            dataType: INT
+            defaultValue: ""
+            description: ""
+            keyColumnType: None
+            name: RN
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 0
+                    stepCounter: "0"
+                transform: ROW_NUMBER() OVER (ORDER BY "EXT_TEXT_FILE"."VALUE")
+            systemColumnType: None
+            transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: EXT_TEXT_FILE
+            join:
+              joinCondition: FROM {{ ref('STAGE', 'EXT_TEXT_FILE') }} "EXT_TEXT_FILE"
+            name: STG_TEXT_FILE
+            noLinkRefs: []
+      name: STG_TEXT_FILE
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "6535"

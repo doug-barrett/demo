@@ -1,0 +1,50 @@
+steps:
+  V_GENDER-6539:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: DWH
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 65722
+              stepCounter: "6539"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: gender
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 65700
+                    stepCounter: "6537"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DWH
+                nodeName: V_NODE_CSV
+            join:
+              joinCondition: FROM {{ ref('DWH', 'V_NODE_CSV') }} "V_NODE_CSV"
+            name: V_GENDER
+            noLinkRefs: []
+      name: V_GENDER
+      overrideSQL: false
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: "6539"

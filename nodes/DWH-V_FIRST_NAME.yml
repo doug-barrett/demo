@@ -1,0 +1,53 @@
+steps:
+  V_FIRST_NAME-6538:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: DWH
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 65706
+              stepCounter: "6538"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: first_name
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 65697
+                    stepCounter: "6537"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DWH
+                nodeName: V_NODE_CSV
+            join:
+              joinCondition: |-
+                FROM {{ ref('DWH', 'V_NODE_CSV') }} "V_NODE_CSV"
+                LIMIT 100
+            name: V_FIRST_NAME
+            noLinkRefs: []
+      name: V_FIRST_NAME
+      overrideSQL: false
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: "6538"

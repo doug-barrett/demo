@@ -1,0 +1,99 @@
+steps:
+  STG_TEXT_COUNTRY-6544:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 65786
+              stepCounter: "6544"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 65685
+                    stepCounter: "6535"
+                transform: ""
+          - columnReference:
+              columnCounter: 65857
+              stepCounter: "6544"
+            dataType: INT
+            description: ""
+            name: RN
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 65856
+                    stepCounter: "6535"
+                transform: ""
+          - columnReference:
+              columnCounter: 65787
+              stepCounter: "6544"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: c1
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 65686
+                    stepCounter: "6535"
+                transform: ""
+          - columnReference:
+              columnCounter: 65815
+              stepCounter: "6544"
+            dataType: STRING
+            description: ""
+            name: country
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 65737
+                    stepCounter: "6540"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              STG_TEXT_FILE: "6535"
+              V_COUNTRY: "6540"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: STG_TEXT_FILE
+              - locationName: DWH
+                nodeName: V_COUNTRY
+            join:
+              joinCondition: |-
+                FROM  {{ ref('STAGE', 'STG_TEXT_FILE') }} "STG_TEXT_FILE"
+                LEFT JOIN {{ ref('DWH', 'V_COUNTRY') }} "V_COUNTRY"
+                ON ' '||"STG_TEXT_FILE"."c1"||' ' LIKE '% '||"V_COUNTRY"."country"||' %'
+            name: STG_TEXT_COUNTRY
+            noLinkRefs: []
+      name: STG_TEXT_COUNTRY
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "6544"
