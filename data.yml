@@ -1,90 +1,5 @@
 defaultStorageMapping: STAGE
-jobs:
-  Job-1:
-    id: 1
-    name: Process Dimensions
-    steps: []
-    subgraphs:
-      - 3
-  Job-13:
-    id: 13
-    name: New Job
-    steps:
-      - "58"
-      - "170"
-      - "602"
-    subgraphs: []
-  Job-2:
-    id: 2
-    name: Process Suppliers
-    steps:
-      - "54"
-      - "249"
-    subgraphs:
-      - 5
-      - 7
-  Job-20:
-    id: 20
-    name: New Job
-    steps:
-      - "1532"
-    subgraphs: []
-  Job-21:
-    id: 21
-    name: Create Stored Procedures
-    steps:
-      - "1857"
-    subgraphs: []
-  Job-25:
-    excludeSelector: ""
-    id: 25
-    includeSelector: "{ location: STAGE name: EXT_XML } OR { location: STAGE name: STG_XML }"
-    name: Process XML
-    steps: []
-    subgraphs: []
-  Job-26:
-    excludeSelector: ""
-    id: 26
-    includeSelector: "{ location: STAGE }"
-    name: Process Stage
-    steps: []
-    subgraphs: []
-  Job-27:
-    excludeSelector: ""
-    id: 27
-    includeSelector: "+{ location: DWH }"
-    name: New Job
-    steps: []
-    subgraphs: []
-  Job-28:
-    excludeSelector: ""
-    id: 28
-    includeSelector: "{ subgraph: \"Customers\" }"
-    name: Dimensions
-    steps: []
-    subgraphs: []
-  Job-29:
-    excludeSelector: ""
-    id: 29
-    includeSelector: "{ subgraph: \"Customers\" }"
-    name: Dim Customer
-    steps: []
-    subgraphs: []
-  Job-5:
-    excludeSelector: ""
-    id: 5
-    includeSelector: "{ location: STAGE name: STG_SUPPLIER }"
-    name: Supplier pipeline
-    steps:
-      - "58"
-      - "1532"
-    subgraphs: []
-  Job-6:
-    id: 6
-    name: New Job
-    steps:
-      - "312"
-    subgraphs: []
+jobs: {}
 locations:
   DWH:
     mappingDefinitions:
@@ -92,9 +7,6 @@ locations:
         database: DOUG_DB
         schema: QA_DWH
       "3":
-        database: DOUG_DB
-        schema: PROD_EDW
-      "4":
         database: DOUG_DB
         schema: PROD_EDW
   SOURCE:
@@ -105,9 +17,6 @@ locations:
       "3":
         database: COALESCE_SAMPLE_DATABASE
         schema: TPCH_SF001
-      "4":
-        database: SNOWFLAKE_SAMPLE_DATA
-        schema: TPCH_SF1
   STAGE:
     mappingDefinitions:
       "10":
@@ -116,15 +25,9 @@ locations:
       "3":
         database: DOUG_DB
         schema: PROD_STG
-      "4":
-        database: DOUG_DB
-        schema: PROD_STG
   WEATHER:
     mappingDefinitions:
       "3":
-        database: COALESCE_SAMPLE_DATABASE
-        schema: WEATHER
-      "4":
         database: COALESCE_SAMPLE_DATABASE
         schema: WEATHER
 macros:
@@ -7016,104 +6919,5 @@ stepTypes:
             {% endif %}
     name: Persistent Stage
     version: 1
-subgraphs:
-  Subgraph-10:
-    id: 10
-    name: New Sub-Graph
-    steps:
-      - "311"
-      - "312"
-  Subgraph-11:
-    id: 11
-    name: New Sub-Graph
-    steps: []
-  Subgraph-22:
-    id: 22
-    name: Customer
-    steps:
-      - "1047"
-      - "1048"
-      - "1244"
-  Subgraph-29:
-    id: 29
-    name: Dim Supplier Views
-    steps:
-      - "58"
-      - "45"
-      - "46"
-      - "56"
-      - "57"
-      - "150"
-      - "152"
-      - "153"
-      - "270"
-      - "332"
-      - "170"
-      - "602"
-  Subgraph-3:
-    id: 3
-    name: Dim Events
-    steps:
-      - "58"
-  Subgraph-33:
-    id: 33
-    name: New Sub-Graph
-    steps:
-      - "1542"
-      - "1543"
-  Subgraph-38:
-    id: 38
-    name: New Sub-Graph
-    steps: []
-  Subgraph-4:
-    id: 4
-    name: New Sub-Graph
-    steps:
-      - "58"
-  Subgraph-43:
-    id: 43
-    name: Customers
-    steps:
-      - "45"
-      - "557"
-      - "2090"
-      - "2095"
-      - "2096"
-  Subgraph-5:
-    id: 5
-    name: New Sub-Graph
-    steps:
-      - "77"
-  Subgraph-52:
-    id: 52
-    name: New Sub-Graph
-    steps:
-      - "1532"
-  Subgraph-6:
-    id: 6
-    name: New Sub-Graph
-    steps:
-      - "96"
-  Subgraph-7:
-    id: 7
-    name: Dim Supplier
-    steps:
-      - "45"
-      - "46"
-      - "56"
-      - "150"
-      - "152"
-      - "153"
-      - "270"
-      - "332"
-      - "1532"
-      - "1533"
-      - "1534"
-      - "557"
-      - "186"
-      - "553"
-  Subgraph-9:
-    id: 9
-    name: Customer Related Nodes
-    steps: []
+subgraphs: {}
 version: 1
