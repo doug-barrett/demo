@@ -925,6 +925,8 @@ stepTypes:
         isDisabled: false
         plural: External Tables
 
+        deployStrategy: advanced
+
         config:
         - groupName: File Location
           items: 
@@ -1054,7 +1056,14 @@ stepTypes:
       templates:
         create:
           templateString: |-
+            {% if desiredState == undefined %}
+
+              DROP EXTERNAL TABLE {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+
+            {% else %}
+
             {{ stage('Create External Table') }}
+
 
             CREATE OR REPLACE EXTERNAL TABLE {{ ref_no_link(node.location.name, node.name) }}
               {% if config.fileType == "CSV" %}
@@ -1082,6 +1091,7 @@ stepTypes:
               {% if config.autoRefresh and config.snsTopic != '' %}aws_sns_topic = '{{ config.snsTopic }}'{% endif %}
               {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
             ;
+            {% endif %}
         run:
           templateString: |-
             {{ stage('Refresh External Table') }}
