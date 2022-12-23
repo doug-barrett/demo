@@ -934,16 +934,18 @@ stepTypes:
           - displayName: Stage
             attributeName: fileLocation
             type: dropdownSelector
-            default: ""
+            default: "DOUG_DB.PUBLIC.DOUGS3"
             options:
             - "DOUG_DB.PUBLIC.DOUGS3"
-            - "Create them in Snowflake"
+            - "Create external stages on Snowflake"
+            - "Place them in the same storage location"
+            - "List the storage locations in this dropdown"
             isRequired: true
 
           - displayName: File Pattern
             attributeName: filePattern
             type: textBox
-            default: "salesforce/.*[.]json"
+            default: ".*[.]json"
             isRequired: true
 
         - groupName: File Format 
@@ -1027,7 +1029,7 @@ stepTypes:
             attributeName: snsTopic
             type: textBox
             enableIf: "{{ config.autoRefresh }}"
-            default: "arn:aws:sns:your-region:123456789012:your-notification"
+            default: "arn:aws:sns:us-east-1:121674918127:prod-emea-s3-notification"
             isRequired: false
 
         - groupName: Hidden config
@@ -1035,10 +1037,10 @@ stepTypes:
           items:
           - displayName: Type
             type: materializationSelector
-            default: view
+            default: table
             options:
-            - view
-            isRequired: false
+            - table
+            isRequired: true
 
         systemColumns:
 
@@ -1047,7 +1049,6 @@ stepTypes:
           transform: ''
           dataType: VARIANT
           placement: beginning
-          
         - displayName: 'METADATA$FILENAME'
           attributeName: 'METADATA$FILENAME'
           transform: ''
@@ -1057,17 +1058,16 @@ stepTypes:
         create:
           templateString: |-
             {% if desiredState == undefined %}
-
+              {{ stage('Drop External Table') }}
               DROP EXTERNAL TABLE {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
 
             {% else %}
 
             {{ stage('Create External Table') }}
 
-
-            CREATE OR REPLACE EXTERNAL TABLE {{ ref_no_link(node.location.name, node.name) }}
-              {% if config.fileType == "CSV" %}
-                {% for col in sources[0].columns if (col.name | upper != "VALUE" and col.name | upper != "METADATA$FILENAME") %}
+            CREATE OR REPLACE EXTERNAL TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+              {% if desiredState.config.fileType == "CSV" %}
+                {% for col in desiredState.sources[0].columns if (col.name | upper != "VALUE" and col.name | upper != "METADATA$FILENAME") %}
                   {% if loop.first %}({% endif %}
                     "{{ col.name }}" {{ col.dataType }} AS (value:c{{ loop.index }}::{{ col.dataType }})
                   {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
@@ -1075,27 +1075,27 @@ stepTypes:
                 {% endfor %}
               {% endif %}
               
-              with location = @{{config.fileLocation}}
-              pattern='{{ config.filePattern }}'
-              file_format = (type = {{ config.fileType }}
-              {% if config.fileType == "CSV" %}
-                {% if config.recDelim != '' %}record_delimiter = '{{ config.recDelim }}'{% endif %}
-                {% if config.fieldDelim != '' %}field_delimiter = '{{ config.fieldDelim }}'{% endif %}
-                {% if config.fieldEnclosed != '' %}field_optionally_enclosed_by = '{{ config.fieldEnclosed }}'{% endif %}
-                {% if config.skipHeader != '' %}skip_header = {{ config.skipHeader }}{% endif %}
-                {% if config.skipBlankLines %}skip_blank_lines = {{ config.skipBlankLines }}{% endif %}
-                {% if config.trimSpace %}trim_space = {{ config.trimSpace }}{% endif %}
+              with location = @{{ desiredState.config.fileLocation | upper  }}
+              pattern='{{ desiredState.config.filePattern }}'
+              file_format = (type = {{ desiredState.config.fileType }}
+              {% if desiredState.config.fileType == "CSV" %}
+                {% if desiredState.config.recDelim != null %}record_delimiter = '{{ desiredState.config.recDelim }}'{% endif %}
+                {% if desiredState.config.fieldDelim != null %}field_delimiter = '{{ desiredState.config.fieldDelim }}'{% endif %}
+                {% if desiredState.config.fieldEnclosed != null %}field_optionally_enclosed_by = '{{ desiredState.config.fieldEnclosed }}'{% endif %}
+                {% if desiredState.config.skipHeader != null %}skip_header = {{ desiredState.config.skipHeader }}{% endif %}
+                {% if desiredState.config.skipBlankLines %}skip_blank_lines = {{ desiredState.config.skipBlankLines }}{% endif %}
+                {% if desiredState.config.trimSpace %}trim_space = {{ desiredState.config.trimSpace }}{% endif %}
               {% endif %}
               )
-              auto_refresh = {{ config.autoRefresh }}
-              {% if config.autoRefresh and config.snsTopic != '' %}aws_sns_topic = '{{ config.snsTopic }}'{% endif %}
-              {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+              auto_refresh = {{ desiredState.config.autoRefresh }}
+              {% if desiredState.config.autoRefresh and desiredState.config.snsTopic != null %}aws_sns_topic = '{{ desiredState.config.snsTopic }}'{% endif %}
+              {%- if desiredState.node.description | length > 0 %} COMMENT = '{{ desiredState.node.description }}'{% endif %}
             ;
             {% endif %}
         run:
           templateString: |-
             {{ stage('Refresh External Table') }}
-            ALTER EXTERNAL TABLE {{ ref_no_link(node.location.name, node.name) }} REFRESH 
+            ALTER EXTERNAL TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }} REFRESH 
     name: External Table
     version: 1
   StepType-17:
