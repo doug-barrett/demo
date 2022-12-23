@@ -74,9 +74,7 @@ steps:
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - aliases:
-              STG_TEXT_FILE: "6535"
-              V_TITLE: "6541"
+          - aliases: {}
             customSQL:
               customSQL: ""
             dependencies:
@@ -89,6 +87,7 @@ steps:
                 FROM  {{ ref('STAGE', 'STG_TEXT_FILE') }}  "STG_TEXT_FILE"
                 LEFT JOIN {{ ref('DWH', 'V_TITLE') }} "V_TITLE"
                 ON ' '||"STG_TEXT_FILE"."c1"||' ' LIKE '% '||"V_TITLE"."title"||' %'
+                WHERE {{parameters.run_title}} = 1
             name: STG_TEXT_TITLE
             noLinkRefs: []
       name: STG_TEXT_TITLE

@@ -74,9 +74,7 @@ steps:
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - aliases:
-              STG_TEXT_FILE: "6535"
-              V_GENDER: "6539"
+          - aliases: {}
             customSQL:
               customSQL: ""
             dependencies:
@@ -89,6 +87,7 @@ steps:
                 FROM {{ ref('STAGE', 'STG_TEXT_FILE') }} "STG_TEXT_FILE"
                 LEFT JOIN {{ ref('DWH', 'V_GENDER') }} "V_GENDER"
                 ON ' '||"STG_TEXT_FILE"."c1"||' ' LIKE '% '||"V_GENDER"."gender"||' %'
+                WHERE {{parameters.run_gender}} = 1
             name: STG_TEXT_GENDER
             noLinkRefs: []
       name: STG_TEXT_GENDER

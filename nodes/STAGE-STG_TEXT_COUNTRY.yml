@@ -74,9 +74,7 @@ steps:
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - aliases:
-              STG_TEXT_FILE: "6535"
-              V_COUNTRY: "6540"
+          - aliases: {}
             customSQL:
               customSQL: ""
             dependencies:
@@ -89,6 +87,7 @@ steps:
                 FROM  {{ ref('STAGE', 'STG_TEXT_FILE') }} "STG_TEXT_FILE"
                 LEFT JOIN {{ ref('DWH', 'V_COUNTRY') }} "V_COUNTRY"
                 ON ' '||"STG_TEXT_FILE"."c1"||' ' LIKE '% '||"V_COUNTRY"."country"||' %'
+                WHERE {{parameters.run_country}} = 1
             name: STG_TEXT_COUNTRY
             noLinkRefs: []
       name: STG_TEXT_COUNTRY
