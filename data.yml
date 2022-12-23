@@ -18,9 +18,6 @@ locations:
       "3":
         database: DOUG_DB
         schema: PROD_EDW
-      "4":
-        database: DOUG_DB
-        schema: PROD_EDW
   SOURCE:
     mappingDefinitions:
       "10":
@@ -29,9 +26,6 @@ locations:
       "3":
         database: COALESCE_SAMPLE_DATABASE
         schema: TPCH_SF001
-      "4":
-        database: SNOWFLAKE_SAMPLE_DATA
-        schema: TPCH_SF1
   STAGE:
     mappingDefinitions:
       "10":
@@ -40,15 +34,9 @@ locations:
       "3":
         database: DOUG_DB
         schema: PROD_STG
-      "4":
-        database: DOUG_DB
-        schema: PROD_STG
   WEATHER:
     mappingDefinitions:
       "3":
-        database: COALESCE_SAMPLE_DATABASE
-        schema: WEATHER
-      "4":
         database: COALESCE_SAMPLE_DATABASE
         schema: WEATHER
 macros:
