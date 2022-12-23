@@ -1095,7 +1095,7 @@ stepTypes:
         run:
           templateString: |-
             {{ stage('Refresh External Table') }}
-            ALTER EXTERNAL TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }} REFRESH 
+            ALTER EXTERNAL TABLE {{ ref_no_link(node.location.name, node.name) }} REFRESH 
     name: External Table
     version: 1
   StepType-17:
