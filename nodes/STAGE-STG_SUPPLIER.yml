@@ -20,7 +20,7 @@ steps:
         appliedNodeTests:
           - continueOnFailure: true
             description: ""
-            name: Supplier Name Succeed
+            name: Look for Doug
             runOrder: After
             templateString: |-
               SELECT S_NAME
@@ -28,7 +28,7 @@ steps:
               WHERE S_NAME NOT LIKE 'Doug%'
         columns:
           - appliedColumnTests:
-              hasNull: true
+              hasNull: false
               isDistinct: true
             columnReference:
               columnCounter: 2172

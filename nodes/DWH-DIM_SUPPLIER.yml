@@ -53,8 +53,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64010
-                    stepCounter: "6421"
+                  - columnCounter: 2432
+                    stepCounter: "57"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -74,9 +74,9 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64011
-                    stepCounter: "6421"
-                transform: LOWER("STG_DIM_SUPPLIER"."SUPPLIER_NAME")
+                  - columnCounter: 2433
+                    stepCounter: "57"
+                transform: LOWER("STG_DIM_SUPPLIER"."S_NAME")
             systemColumnType: None
             type: Column
           - columnReference:
@@ -93,8 +93,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64249
-                    stepCounter: "6421"
+                  - columnCounter: 603
+                    stepCounter: "57"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -111,8 +111,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64250
-                    stepCounter: "6421"
+                  - columnCounter: 5033
+                    stepCounter: "57"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -132,8 +132,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64008
-                    stepCounter: "6421"
+                  - columnCounter: 2436
+                    stepCounter: "57"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -154,8 +154,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64009
-                    stepCounter: "6421"
+                  - columnCounter: 2437
+                    stepCounter: "57"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -175,8 +175,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64012
-                    stepCounter: "6421"
+                  - columnCounter: 2434
+                    stepCounter: "57"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -196,8 +196,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64013
-                    stepCounter: "6421"
+                  - columnCounter: 2435
+                    stepCounter: "57"
                 transform: ""
             systemColumnType: None
             type: Column
@@ -218,8 +218,8 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 64014
-                    stepCounter: "6421"
+                  - columnCounter: 3786
+                    stepCounter: "57"
                 transform: ""
             systemColumnType: None
             type: Column
