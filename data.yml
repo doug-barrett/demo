@@ -3,7 +3,7 @@ jobs:
   Job-5:
     excludeSelector: ""
     id: 5
-    includeSelector: "{ location: STAGE name: STG_SUPPLIER }"
+    includeSelector: "+{ name: DIM_SUPPLIER }+"
     name: Supplier pipeline
     steps:
       - "58"
