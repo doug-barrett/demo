@@ -1,0 +1,107 @@
+steps:
+  STG_DS_AS01_CLNPDTA_PERSON_05_ID_LAG-200006159:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000002
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000028360
+              stepCounter: "200006159"
+            dataType: NUMBER(20)
+            defaultValue: ""
+            description: ""
+            name: CLIENT_ID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000028363
+              stepCounter: "200006159"
+            dataType: VARCHAR(15)
+            defaultValue: ""
+            description: Batch Number for the Process Cycle
+            name: BATCH_NUMBER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000028364
+              stepCounter: "200006159"
+            dataType: TIMESTAMP_LTZ
+            defaultValue: ""
+            description: Source Capture Time in TIMESTAMP format
+            name: HVRCAPTSTAMP
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000046915
+              stepCounter: "200006159"
+            dataType: TIMESTAMP_LTZ
+            defaultValue: ""
+            description: ""
+            name: REFRESH_HVRCAPTSTAMP
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ( SELECT REFRESH_HVRCAPTSTAMP    FROM STAGE.STG_DS_AS01_CLNPDTA_PERSON_05_ID_LAG_RFRSH_TSMP  )
+          - columnReference:
+              columnCounter: 2000028362
+              stepCounter: "200006159"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Date and time the row was created in the data warehouse.
+            name: DSS_CREATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000028361
+              stepCounter: "200006159"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: DSS_UPDATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases:
+              ODS_AS01_CLNPDTA_PERSON: "200006133"
+              ODS_CTRL_HVRCAPTSTAMP: "200009999"
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: "FROM {{ ref('DWH','ODS_AS01_CLNPDTA_PERSON') }} ODS_AS01_CLNPDTA_PERSON\
+                \  JOIN {{ ref('DWH','ODS_CTRL_HVRCAPTSTAMP') }} ODS_CTRL_HVRCAPTSTAMP\
+                \    ON ODS_AS01_CLNPDTA_PERSON.HVRCAPTSTAMP >= ODS_CTRL_HVRCAPTSTAMP.HVRCAPTSTAMP_PREVIOUS\
+                \   AND ODS_AS01_CLNPDTA_PERSON.HVRCAPTSTAMP < ODS_CTRL_HVRCAPTSTAMP.HVRCAPTSTAMP\
+                \   AND ODS_AS01_CLNPDTA_PERSON.BATCH_NUMBER <> ODS_CTRL_HVRCAPTSTAMP.BATCH_NUMBER\
+                \   AND ODS_AS01_CLNPDTA_PERSON.HVRCAPTUREKEY = ODS_CTRL_HVRCAPTSTAMP.HVRCAPTUREKEY\
+                \ WHERE ODS_AS01_CLNPDTA_PERSON.HVROP IN (0,1,2) "
+            name: STG_DS_AS01_CLNPDTA_PERSON_05_ID_LAG
+            noLinkRefs: []
+      name: STG_DS_AS01_CLNPDTA_PERSON_05_ID_LAG
+      overrideSQL: false
+      sqlType: Stage
+      type: sql
+    stepCounter: "200006159"
