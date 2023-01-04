@@ -1,0 +1,103 @@
+steps:
+  STG_DS_AS01_CLNPDTA_PERSON_15_UNIQUE-200006191:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000002
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000028425
+              stepCounter: "200006191"
+            dataType: NUMBER(20)
+            defaultValue: ""
+            description: ""
+            name: CLIENT_ID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000028426
+              stepCounter: "200006191"
+            dataType: VARCHAR(15)
+            defaultValue: ""
+            description: Batch Number for the Process Cycle
+            name: BATCH_NUMBER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000028427
+              stepCounter: "200006191"
+            dataType: TIMESTAMP_LTZ
+            defaultValue: ""
+            description: CUTOFF Source Capture Time in TIMESTAMP format
+            name: CUTOFF_HVRCAPTSTAMP
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000047005
+              stepCounter: "200006191"
+            dataType: TIMESTAMP_LTZ
+            defaultValue: ""
+            description: ""
+            name: REFRESH_HVRCAPTSTAMP
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: MAX(STG_DS_AS01_CLNPDTA_PERSON_10_M.REFRESH_HVRCAPTSTAMP)
+          - columnReference:
+              columnCounter: 2000028429
+              stepCounter: "200006191"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Date and time the row was created in the data warehouse.
+            name: DSS_CREATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000028428
+              stepCounter: "200006191"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: DSS_UPDATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases:
+              STG_DS_AS01_CLNPDTA_PERSON_10_M: "200006175"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: STG_DS_AS01_CLNPDTA_PERSON_10_M
+            join:
+              joinCondition: FROM {{ ref('STAGE','STG_DS_AS01_CLNPDTA_PERSON_10_M')
+                }} STG_DS_AS01_CLNPDTA_PERSON_10_M  GROUP BY STG_DS_AS01_CLNPDTA_PERSON_10_M.CLIENT_ID,  STG_DS_AS01_CLNPDTA_PERSON_10_M.BATCH_NUMBER,  STG_DS_AS01_CLNPDTA_PERSON_10_M.CUTOFF_HVRCAPTSTAMP
+            name: STG_DS_AS01_CLNPDTA_PERSON_15_UNIQUE
+            noLinkRefs: []
+      name: STG_DS_AS01_CLNPDTA_PERSON_15_UNIQUE
+      overrideSQL: false
+      sqlType: Stage
+      type: sql
+    stepCounter: "200006191"

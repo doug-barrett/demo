@@ -1,0 +1,455 @@
+steps:
+  DS_AS01_CLNPDTA_PERSON-200006235:
+    operation:
+      config:
+        insertStrategy: INSERT
+        preSQL: ""
+        postSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: false
+      description: ""
+      isMultisource: false
+      locationID: 20000004
+      locationName: DWH
+      materializationType: table
+      metadata:
+        columns:
+          - columnReference:
+              columnCounter: 2000109876
+              stepCounter: "200006235"
+            dataType: VARCHAR(25)
+            defaultValue: ""
+            description: ""
+            name: FIRST_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109877
+              stepCounter: "200006235"
+            dataType: NUMBER(20)
+            defaultValue: ""
+            description: ""
+            name: CLIENT_ID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109878
+              stepCounter: "200006235"
+            dataType: VARCHAR(20)
+            defaultValue: ""
+            description: ""
+            name: MIDDLE_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109879
+              stepCounter: "200006235"
+            dataType: VARCHAR(35)
+            defaultValue: ""
+            description: ""
+            name: LAST_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109880
+              stepCounter: "200006235"
+            dataType: VARCHAR(15)
+            defaultValue: ""
+            description: ""
+            name: PROFESSIONAL_DESIGNATION
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109881
+              stepCounter: "200006235"
+            dataType: NUMBER(9)
+            defaultValue: ""
+            description: ""
+            name: SOCIAL_SECURITY_NBR
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109882
+              stepCounter: "200006235"
+            dataType: DATE
+            defaultValue: ""
+            description: ""
+            name: DATE_OF_BIRTH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109883
+              stepCounter: "200006235"
+            dataType: DATE
+            defaultValue: ""
+            description: ""
+            name: DATE_OF_DEATH
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109884
+              stepCounter: "200006235"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            name: PERSON_CREATE_DATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109885
+              stepCounter: "200006235"
+            dataType: VARCHAR(10)
+            defaultValue: ""
+            description: ""
+            name: PERSON_CREATE_USERID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109886
+              stepCounter: "200006235"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            name: PERSON_LAST_CHG_DATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109887
+              stepCounter: "200006235"
+            dataType: VARCHAR(10)
+            defaultValue: ""
+            description: ""
+            name: PERSON_LAST_CHG_USERID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109888
+              stepCounter: "200006235"
+            dataType: VARCHAR(1)
+            defaultValue: ""
+            description: ""
+            name: GENDER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109889
+              stepCounter: "200006235"
+            dataType: VARCHAR(5)
+            defaultValue: ""
+            description: ""
+            name: SUFFIX
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109890
+              stepCounter: "200006235"
+            dataType: VARCHAR(5)
+            defaultValue: ""
+            description: ""
+            name: NOMINATIVE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109891
+              stepCounter: "200006235"
+            dataType: VARCHAR(5)
+            defaultValue: ""
+            description: ""
+            name: PREFIX_CODE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109892
+              stepCounter: "200006235"
+            dataType: VARCHAR(18)
+            defaultValue: ""
+            description: ""
+            name: NICKNAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109893
+              stepCounter: "200006235"
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            name: HVRCAPLOC
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109894
+              stepCounter: "200006235"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            name: HVRCAPTSTAMP
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109895
+              stepCounter: "200006235"
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            name: HVRCAPUSER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109896
+              stepCounter: "200006235"
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            name: HVRINTEGKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109897
+              stepCounter: "200006235"
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            name: HVRINTEGSEQ
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109898
+              stepCounter: "200006235"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            name: HVRINTEGTSTAMP
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109899
+              stepCounter: "200006235"
+            dataType: NUMBER(38)
+            defaultValue: ""
+            description: ""
+            name: HVROP
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109900
+              stepCounter: "200006235"
+            dataType: NUMBER(38)
+            defaultValue: ""
+            description: ""
+            name: HVRTXCOUNTDOWN
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109901
+              stepCounter: "200006235"
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            name: HVRTXSEQ
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109902
+              stepCounter: "200006235"
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: ""
+            name: HVRCAPTUREKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109903
+              stepCounter: "200006235"
+            dataType: VARCHAR(15)
+            defaultValue: ""
+            description: ODS Batch Number for the Process Cycle
+            name: ODS_BATCH_NUMBER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109904
+              stepCounter: "200006235"
+            dataType: VARCHAR(15)
+            defaultValue: ""
+            description: DS Batch Number for the Process Cycle
+            name: DS_BATCH_NUMBER
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109905
+              stepCounter: "200006235"
+            dataType: CHAR(1)
+            defaultValue: ""
+            description: ""
+            name: DELETE_FLAG
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109906
+              stepCounter: "200006235"
+            dataType: VARCHAR(64)
+            defaultValue: ""
+            description: Record source.
+            name: DSS_RECORD_SOURCE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109907
+              stepCounter: "200006235"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Load date.
+            name: DSS_LOAD_DATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109912
+              stepCounter: "200006235"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Datetime a business key was started.
+            name: DSS_START_DATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109913
+              stepCounter: "200006235"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Datetime a business key was retired.
+            name: DSS_END_DATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109910
+              stepCounter: "200006235"
+            dataType: CHAR(1)
+            defaultValue: ""
+            description: Flag to indicate the current (latest) version of a business
+              key.
+            name: DSS_CURRENT_FLAG
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109911
+              stepCounter: "200006235"
+            dataType: INTEGER
+            defaultValue: ""
+            description: Version number of a business key.
+            name: DSS_VERSION
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109909
+              stepCounter: "200006235"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Date and time the row was created in the data warehouse.
+            name: DSS_CREATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 2000109908
+              stepCounter: "200006235"
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: Date and time the row was updated in the data warehouse.
+            name: DSS_UPDATE_TIME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        sourceMapping:
+          - aliases:
+              STG_DS_AS01_CLNPDTA_PERSON_25_CURRENT: "200006221"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: STG_DS_AS01_CLNPDTA_PERSON_25_CURRENT
+            join:
+              joinCondition: "FROM {{ ref('STAGE','STG_DS_AS01_CLNPDTA_PERSON_25_CURRENT')\
+                \ }} STG_DS_AS01_CLNPDTA_PERSON_25_CURRENT  "
+            name: DS_AS01_CLNPDTA_PERSON
+            noLinkRefs: []
+      name: DS_AS01_CLNPDTA_PERSON
+      overrideSQL: false
+      sqlType: persistentStage
+      type: sql
+    stepCounter: "200006235"
