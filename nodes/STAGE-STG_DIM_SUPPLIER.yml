@@ -106,10 +106,8 @@ steps:
             name: S_PHONE
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2176
-                    stepCounter: "186"
-                transform: ""
+              - columnReferences: []
+                transform: STG_SUPPLIER_EXTENDED."S_PHONE"
           - appliedColumnTests:
               hasNull: false
               isDistinct: false
@@ -278,6 +276,7 @@ steps:
               STG_NATION: "56"
               STG_REGION: "553"
               STG_SUPPLIER: "186"
+              STG_SUPPLIER_EXTENDED: "186"
             customSQL:
               customSQL: ""
             dependencies:
@@ -290,6 +289,8 @@ steps:
             join:
               joinCondition: |
                 FROM {{ ref('STAGE', 'STG_SUPPLIER') }} "STG_SUPPLIER"
+                JOIN {{ ref('STAGE', 'STG_SUPPLIER') }} "STG_SUPPLIER_EXTENDED"
+                ON "STG_SUPPLIER"."S_SUPPKEY" = "STG_SUPPLIER_EXTENDED"."S_SUPPKEY"
                 INNER JOIN {{ ref('STAGE', 'STG_NATION') }} "STG_NATION"
                 ON STG_SUPPLIER.S_NATIONKEY= "STG_NATION".N_NATIONKEY
                 INNER JOIN {{ ref('STAGE', 'STG_REGION') }} "STG_REGION"
