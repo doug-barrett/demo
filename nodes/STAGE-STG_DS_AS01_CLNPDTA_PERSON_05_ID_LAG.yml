@@ -89,7 +89,11 @@ steps:
               ODS_CTRL_HVRCAPTSTAMP: "200009999"
             customSQL:
               customSQL: ""
-            dependencies: []
+            dependencies:
+              - locationName: DWH
+                nodeName: ODS_AS01_CLNPDTA_PERSON
+              - locationName: DWH
+                nodeName: ODS_CTRL_HVRCAPTSTAMP
             join:
               joinCondition: "FROM {{ ref('DWH','ODS_AS01_CLNPDTA_PERSON') }} ODS_AS01_CLNPDTA_PERSON\
                 \  JOIN {{ ref('DWH','ODS_CTRL_HVRCAPTSTAMP') }} ODS_CTRL_HVRCAPTSTAMP\
