@@ -1905,6 +1905,18 @@ stepTypes:
         deployStrategy: advanced
 
         config:
+        - groupName: Documentation
+          items:
+          - displayName: Description
+            attributename: description
+            type: textBox
+            isRequired: false
+            default: "Data Store Node\n\n
+              This is a persistent table that requires a business key or natural key\n
+              in order to process create and process.  Changing attributes can optionally be \n
+              selected to track changes with a new system_start_time.\n\n
+              Note: Failing to select a business will cause an error on Create or Run\n
+              "
         - groupName: Options
           items:
           

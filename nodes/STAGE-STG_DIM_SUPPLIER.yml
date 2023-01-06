@@ -48,7 +48,7 @@ steps:
               - columnReferences:
                   - columnCounter: 6315
                     stepCounter: "553"
-                transform: UPPER("STG_REGION"."R_NAME")
+                transform: LOWER("STG_REGION"."R_NAME")
           - appliedColumnTests:
               hasNull: false
               isDistinct: false
