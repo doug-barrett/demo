@@ -1,0 +1,257 @@
+steps:
+  V_CUSTOMER_DATA_PARSED-6665:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: false
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: DWH
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 67355
+              stepCounter: "6665"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67128
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67357
+              stepCounter: "6665"
+            dataType: INTEGER
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: ROW_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67137
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67358
+              stepCounter: "6665"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: KEY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67138
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67359
+              stepCounter: "6665"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: YEAR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67139
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67378
+              stepCounter: "6665"
+            dataType: INTEGER
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: YEAR_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67147
+                    stepCounter: "6653"
+                transform: ""
+          - columnReference:
+              columnCounter: 67361
+              stepCounter: "6665"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: MAKE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67140
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67379
+              stepCounter: "6665"
+            dataType: INTEGER
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: MAKE_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67183
+                    stepCounter: "6657"
+                transform: ""
+          - columnReference:
+              columnCounter: 67363
+              stepCounter: "6665"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: MODEL
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67141
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67380
+              stepCounter: "6665"
+            dataType: INTEGER
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: MODEL_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67199
+                    stepCounter: "6658"
+                transform: ""
+          - columnReference:
+              columnCounter: 67377
+              stepCounter: "6665"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: YEAR_MAKE_MODEL_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67219
+                    stepCounter: "6660"
+                transform: ""
+          - columnReference:
+              columnCounter: 67371
+              stepCounter: "6665"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: YEAR_MAKE_MODEL
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67216
+                    stepCounter: "6659"
+                transform: ""
+          - columnReference:
+              columnCounter: 67367
+              stepCounter: "6665"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: REMAINDER
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67132
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67368
+              stepCounter: "6665"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: NOTE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67276
+                    stepCounter: "6661"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              LU_MAKEID: "6657"
+              LU_MODELID: "6658"
+              LU_YEARID: "6653"
+              STG_YEAR_MAKE_MODEL: "6659"
+              STG_YEAR_MAKE_MODEL_ID: "6660"
+              STG_YEAR_MAKE_MODEL_NOTE: "6661"
+              V_S3_CUSTOMER_DATA: "6652"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DWH
+                nodeName: V_S3_CUSTOMER_DATA
+              - locationName: STAGE
+                nodeName: LU_YEARID
+              - locationName: STAGE
+                nodeName: LU_MAKEID
+              - locationName: STAGE
+                nodeName: LU_MODELID
+              - locationName: STAGE
+                nodeName: STG_YEAR_MAKE_MODEL
+              - locationName: STAGE
+                nodeName: STG_YEAR_MAKE_MODEL_ID
+              - locationName: STAGE
+                nodeName: STG_YEAR_MAKE_MODEL_NOTE
+            join:
+              joinCondition: |-
+                FROM {{ ref('DWH', 'V_S3_CUSTOMER_DATA') }} "V_S3_CUSTOMER_DATA"
+                LEFT JOIN {{ ref('STAGE', 'LU_YEARID') }} "LU_YEARID"
+                ON "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_YEARID"."METADATA$FILENAME"
+                AND "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_YEARID"."ROW_ID"
+                LEFT JOIN {{ ref('STAGE', 'LU_MAKEID') }} "LU_MAKEID"
+                ON "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_MAKEID"."METADATA$FILENAME"
+                AND "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_MAKEID"."ROW_ID"
+                LEFT JOIN {{ ref('STAGE', 'LU_MODELID') }} "LU_MODELID"
+                ON "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_MODELID"."METADATA$FILENAME"
+                AND "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_MODELID"."ROW_ID"
+                LEFT JOIN {{ ref('STAGE', 'STG_YEAR_MAKE_MODEL') }} "STG_YEAR_MAKE_MODEL"
+                ON "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "STG_YEAR_MAKE_MODEL"."METADATA$FILENAME"
+                AND "V_S3_CUSTOMER_DATA"."ROW_ID" = "STG_YEAR_MAKE_MODEL"."ROW_ID"
+                LEFT JOIN {{ ref('STAGE', 'STG_YEAR_MAKE_MODEL_ID') }} "STG_YEAR_MAKE_MODEL_ID"
+                ON "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "STG_YEAR_MAKE_MODEL_ID"."METADATA$FILENAME"
+                AND "V_S3_CUSTOMER_DATA"."ROW_ID" = "STG_YEAR_MAKE_MODEL_ID"."ROW_ID"
+                LEFT JOIN {{ ref('STAGE', 'STG_YEAR_MAKE_MODEL_NOTE') }} "STG_YEAR_MAKE_MODEL_NOTE"
+                ON "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "STG_YEAR_MAKE_MODEL_NOTE"."METADATA$FILENAME"
+                AND "V_S3_CUSTOMER_DATA"."ROW_ID" = "STG_YEAR_MAKE_MODEL_NOTE"."ROW_ID"
+            name: V_CUSTOMER_DATA_PARSED
+            noLinkRefs: []
+      name: V_CUSTOMER_DATA_PARSED
+      overrideSQL: false
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: "6665"
