@@ -13,6 +13,9 @@ locations:
       "10":
         database: DOUG_DB
         schema: QA_DWH
+      "12":
+        database: DOUG_DB
+        schema: QA_DWH
       "3":
         database: DOUG_DB
         schema: PROD_EDW
@@ -21,12 +24,18 @@ locations:
       "10":
         database: SNOWFLAKE_SAMPLE_DATA
         schema: TPCH_SF1
+      "12":
+        database: SNOWFLAKE_SAMPLE_DATA
+        schema: TPCH_SF1
       "3":
         database: COALESCE_SAMPLE_DATABASE
         schema: TPCH_SF001
   STAGE:
     mappingDefinitions:
       "10":
+        database: DOUG_DB
+        schema: QA_STG
+      "12":
         database: DOUG_DB
         schema: QA_STG
       "3":
