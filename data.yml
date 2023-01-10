@@ -19,6 +19,9 @@ locations:
       "3":
         database: DOUG_DB
         schema: PROD_EDW
+      "6":
+        database: DOUG_DB
+        schema: QA_DWH
   SOURCE:
     mappingDefinitions:
       "10":
@@ -30,6 +33,9 @@ locations:
       "3":
         database: COALESCE_SAMPLE_DATABASE
         schema: TPCH_SF001
+      "6":
+        database: SNOWFLAKE_SAMPLE_DATA
+        schema: TPCH_SF1
   STAGE:
     mappingDefinitions:
       "10":
@@ -41,6 +47,9 @@ locations:
       "3":
         database: DOUG_DB
         schema: PROD_STG
+      "6":
+        database: DOUG_DB
+        schema: QA_STG
 macros:
   Macro-1:
     id: "1"
