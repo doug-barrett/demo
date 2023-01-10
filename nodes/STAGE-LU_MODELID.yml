@@ -78,10 +78,7 @@ steps:
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - aliases:
-              VCDB_MODEL: "6655"
-              VCDB_MODEL_ALIAS01: "6655"
-              V_S3_CUSTOMER_DATA: "6652"
+          - aliases: {}
             customSQL:
               customSQL: ""
             dependencies:
@@ -93,9 +90,9 @@ steps:
               joinCondition: |-
                 FROM {{ ref('DWH', 'V_S3_CUSTOMER_DATA') }} "V_S3_CUSTOMER_DATA"
                 LEFT JOIN {{ ref('DWH', 'VCDB_MODEL') }} "VCDB_MODEL"
-                ON "V_S3_CUSTOMER_DATA"."MODEL"= "VCDB_MODEL"."MODEL"
+                ON "V_S3_CUSTOMER_DATA"."MODEL" ILIKE "VCDB_MODEL"."MODEL"
                 LEFT JOIN {{ ref('DWH', 'VCDB_MODEL') }} "VCDB_MODEL_ALIAS01"
-                ON "V_S3_CUSTOMER_DATA"."MODEL"= "VCDB_MODEL_ALIAS01"."MODEL_ALIAS01"
+                ON "V_S3_CUSTOMER_DATA"."MODEL" ILIKE "VCDB_MODEL_ALIAS01"."MODEL_ALIAS01"
             name: LU_MODELID
             noLinkRefs: []
       name: LU_MODELID

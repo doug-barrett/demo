@@ -101,7 +101,9 @@ steps:
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - customSQL:
+          - aliases:
+              EXT_S3_VCDB_MODEL: "6648"
+            customSQL:
               customSQL: ""
             dependencies:
               - locationName: STAGE

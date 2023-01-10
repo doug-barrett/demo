@@ -78,14 +78,7 @@ steps:
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - aliases:
-              VCDB_MAKE: "6654"
-              VCDB_MAKE_ALIAS01: "6654"
-              VCDB_MAKE_ALIAS02: "6654"
-              VCDB_MAKE_ALIAS03: "6654"
-              VCDB_MAKE_ALIAS04: "6654"
-              VCDB_MAKE_ALIAS05: "6654"
-              V_S3_CUSTOMER_DATA: "6652"
+          - aliases: {}
             customSQL:
               customSQL: ""
             dependencies:
@@ -97,17 +90,17 @@ steps:
               joinCondition: |-
                 FROM {{ ref('DWH', 'V_S3_CUSTOMER_DATA') }} "V_S3_CUSTOMER_DATA"
                 LEFT JOIN {{ ref('DWH', 'VCDB_MAKE') }} "VCDB_MAKE"
-                ON "V_S3_CUSTOMER_DATA"."MAKE" = "VCDB_MAKE"."MAKE"
+                ON "V_S3_CUSTOMER_DATA"."MAKE" ILIKE "VCDB_MAKE"."MAKE"
                 LEFT JOIN {{ ref('DWH', 'VCDB_MAKE') }} "VCDB_MAKE_ALIAS01"
-                ON "V_S3_CUSTOMER_DATA"."MAKE" = "VCDB_MAKE_ALIAS01"."MAKE_ALIAS01"
+                ON "V_S3_CUSTOMER_DATA"."MAKE" ILIKE "VCDB_MAKE_ALIAS01"."MAKE_ALIAS01"
                 LEFT JOIN {{ ref('DWH', 'VCDB_MAKE') }} "VCDB_MAKE_ALIAS02"
-                ON "V_S3_CUSTOMER_DATA"."MAKE" = "VCDB_MAKE_ALIAS02"."MAKE_ALIAS02"
+                ON "V_S3_CUSTOMER_DATA"."MAKE" ILIKE "VCDB_MAKE_ALIAS02"."MAKE_ALIAS02"
                 LEFT JOIN {{ ref('DWH', 'VCDB_MAKE') }} "VCDB_MAKE_ALIAS03"
-                ON "V_S3_CUSTOMER_DATA"."MAKE" = "VCDB_MAKE_ALIAS03"."MAKE_ALIAS03"
+                ON "V_S3_CUSTOMER_DATA"."MAKE" ILIKE "VCDB_MAKE_ALIAS03"."MAKE_ALIAS03"
                 LEFT JOIN {{ ref('DWH', 'VCDB_MAKE') }} "VCDB_MAKE_ALIAS04"
-                ON "V_S3_CUSTOMER_DATA"."MAKE" = "VCDB_MAKE_ALIAS04"."MAKE_ALIAS04"
+                ON "V_S3_CUSTOMER_DATA"."MAKE" ILIKE "VCDB_MAKE_ALIAS04"."MAKE_ALIAS04"
                 LEFT JOIN {{ ref('DWH', 'VCDB_MAKE') }} "VCDB_MAKE_ALIAS05"
-                ON "V_S3_CUSTOMER_DATA"."MAKE" = "VCDB_MAKE_ALIAS05"."MAKE_ALIAS05"
+                ON "V_S3_CUSTOMER_DATA"."MAKE" ILIKE "VCDB_MAKE_ALIAS05"."MAKE_ALIAS05"
             name: LU_MAKEID
             noLinkRefs: []
       name: LU_MAKEID
