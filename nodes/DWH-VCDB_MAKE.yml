@@ -1,0 +1,169 @@
+steps:
+  VCDB_MAKE-6654:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: false
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: DWH
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 67157
+              stepCounter: "6654"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67112
+                    stepCounter: "6647"
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67162
+              stepCounter: "6654"
+            config: {}
+            dataType: INTEGER
+            description: ""
+            name: MAKE_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67111
+                    stepCounter: "6647"
+                transform: "\"EXT_S3_VCDB_MAKE\".\"VALUE\":\"c1\"::NUMBER"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67163
+              stepCounter: "6654"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: MAKE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67111
+                    stepCounter: "6647"
+                transform: "\"EXT_S3_VCDB_MAKE\".\"VALUE\":\"c2\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67167
+              stepCounter: "6654"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: MAKE_ALIAS01
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67111
+                    stepCounter: "6647"
+                transform: "\"EXT_S3_VCDB_MAKE\".\"VALUE\":\"c3\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67168
+              stepCounter: "6654"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: MAKE_ALIAS02
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67111
+                    stepCounter: "6647"
+                transform: "\"EXT_S3_VCDB_MAKE\".\"VALUE\":\"c4\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67169
+              stepCounter: "6654"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: MAKE_ALIAS03
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67111
+                    stepCounter: "6647"
+                transform: "\"EXT_S3_VCDB_MAKE\".\"VALUE\":\"c5\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67170
+              stepCounter: "6654"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: MAKE_ALIAS04
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67111
+                    stepCounter: "6647"
+                transform: "\"EXT_S3_VCDB_MAKE\".\"VALUE\":\"c6\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67171
+              stepCounter: "6654"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: MAKE_ALIAS05
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67111
+                    stepCounter: "6647"
+                transform: "\"EXT_S3_VCDB_MAKE\".\"VALUE\":\"c7\"::STRING"
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: EXT_S3_VCDB_MAKE
+            join:
+              joinCondition: FROM {{ ref('STAGE', 'EXT_S3_VCDB_MAKE') }} "EXT_S3_VCDB_MAKE"
+            name: VCDB_MAKE
+            noLinkRefs: []
+      name: VCDB_MAKE
+      overrideSQL: false
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: "6654"

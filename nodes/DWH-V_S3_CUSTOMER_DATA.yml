@@ -1,5 +1,5 @@
 steps:
-  V_NODE_CSV-6537:
+  V_S3_CUSTOMER_DATA-6652:
     operation:
       config:
         insertStrategy: UNION
@@ -17,8 +17,8 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 65690
-              stepCounter: "6537"
+              columnCounter: 67128
+              stepCounter: "6652"
             dataType: STRING
             description: ""
             hashColumns: []
@@ -27,228 +27,248 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65688
-                    stepCounter: "6536"
+                  - columnCounter: 67122
+                    stepCounter: "6651"
                 transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65691
-              stepCounter: "6537"
+              columnCounter: 67129
+              stepCounter: "6652"
             config: {}
             dataType: STRING
             description: ""
-            name: registration_dttm
+            name: COL_TYPE
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65687
-                    stepCounter: "6536"
-                transform: "\"EXT_NODE_CSV\".\"VALUE\":\"c1\"::STRING"
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c1\"::STRING"
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65696
-              stepCounter: "6537"
+              columnCounter: 67137
+              stepCounter: "6652"
             config: {}
-            dataType: STRING
+            dataType: INTEGER
             description: ""
-            name: id
+            name: ROW_ID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65687
-                    stepCounter: "6536"
-                transform: "\"EXT_NODE_CSV\".\"VALUE\":\"c2\"::STRING"
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c2\"::NUMBER"
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65697
-              stepCounter: "6537"
+              columnCounter: 67138
+              stepCounter: "6652"
             config: {}
             dataType: STRING
             description: ""
-            name: first_name
+            name: KEY
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65687
-                    stepCounter: "6536"
-                transform: "\"EXT_NODE_CSV\".\"VALUE\":\"c3\"::STRING"
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c3\"::STRING"
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65698
-              stepCounter: "6537"
+              columnCounter: 67139
+              stepCounter: "6652"
             config: {}
             dataType: STRING
             description: ""
-            name: last_name
+            name: YEAR
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65687
-                    stepCounter: "6536"
-                transform: "\"EXT_NODE_CSV\".\"VALUE\":\"c4\"::STRING"
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c4\"::STRING"
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65699
-              stepCounter: "6537"
+              columnCounter: 67134
+              stepCounter: "6652"
             config: {}
             dataType: STRING
             description: ""
-            name: email
+            name: YEAR_ID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65687
-                    stepCounter: "6536"
-                transform: "\"EXT_NODE_CSV\".\"VALUE\":\"c5\"::STRING"
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c5\"::STRING"
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65700
-              stepCounter: "6537"
+              columnCounter: 67140
+              stepCounter: "6652"
             config: {}
             dataType: STRING
             description: ""
-            name: gender
+            name: MAKE
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65687
-                    stepCounter: "6536"
-                transform: "\"EXT_NODE_CSV\".\"VALUE\":\"c6\"::STRING"
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c6\"::STRING"
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65701
-              stepCounter: "6537"
+              columnCounter: 67135
+              stepCounter: "6652"
             config: {}
             dataType: STRING
             description: ""
-            name: cc
+            name: MAKE_ID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65687
-                    stepCounter: "6536"
-                transform: "\"EXT_NODE_CSV\".\"VALUE\":\"c7\"::STRING"
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c7\"::STRING"
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65702
-              stepCounter: "6537"
+              columnCounter: 67141
+              stepCounter: "6652"
             config: {}
             dataType: STRING
             description: ""
-            name: country
+            name: MODEL
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65687
-                    stepCounter: "6536"
-                transform: "\"EXT_NODE_CSV\".\"VALUE\":\"c9\"::STRING"
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c8\"::STRING"
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65692
-              stepCounter: "6537"
+              columnCounter: 67136
+              stepCounter: "6652"
             config: {}
             dataType: STRING
             description: ""
-            name: birthdate
+            name: MODEL_ID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65687
-                    stepCounter: "6536"
-                transform: "\"EXT_NODE_CSV\".\"VALUE\":\"c10\"::STRING"
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c9\"::STRING"
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65693
-              stepCounter: "6537"
+              columnCounter: 67130
+              stepCounter: "6652"
             config: {}
             dataType: STRING
             description: ""
-            name: salary
+            name: YEAR_MAKE_MODEL
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65687
-                    stepCounter: "6536"
-                transform: "\"EXT_NODE_CSV\".\"VALUE\":\"c11\"::STRING"
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c10\"::STRING"
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65694
-              stepCounter: "6537"
+              columnCounter: 67131
+              stepCounter: "6652"
             config: {}
             dataType: STRING
             description: ""
-            name: title
+            name: YEAR_MAKE_MODEL_ID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65687
-                    stepCounter: "6536"
-                transform: "\"EXT_NODE_CSV\".\"VALUE\":\"c12\"::STRING"
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c11\"::STRING"
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65695
-              stepCounter: "6537"
+              columnCounter: 67132
+              stepCounter: "6652"
             config: {}
             dataType: STRING
             description: ""
-            name: comments
+            name: REMAINDER
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65687
-                    stepCounter: "6536"
-                transform: "\"EXT_NODE_CSV\".\"VALUE\":\"c13\"::STRING"
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c12\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67133
+              stepCounter: "6652"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: NOTE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67121
+                    stepCounter: "6651"
+                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c13\"::STRING"
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - customSQL:
+          - aliases: {}
+            customSQL:
               customSQL: ""
             dependencies:
               - locationName: STAGE
-                nodeName: EXT_NODE_CSV
+                nodeName: EXT_S3_CUSTOMER_DATA
             join:
-              joinCondition: FROM {{ ref('STAGE', 'EXT_NODE_CSV') }} "EXT_NODE_CSV"
-            name: V_NODE_CSV
+              joinCondition: |
+                FROM {{ ref('STAGE', 'EXT_S3_CUSTOMER_DATA') }} "EXT_S3_CUSTOMER_DATA"
+                WHERE "VALUE":"c1"::STRING = 'data'
+            name: V_S3_CUSTOMER_DATA
             noLinkRefs: []
-      name: V_NODE_CSV
+      name: V_S3_CUSTOMER_DATA
       overrideSQL: false
       schema: ""
       sqlType: View
       type: sql
-    stepCounter: "6537"
+    stepCounter: "6652"

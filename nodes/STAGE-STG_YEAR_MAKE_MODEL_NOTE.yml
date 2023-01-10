@@ -1,0 +1,147 @@
+steps:
+  STG_YEAR_MAKE_MODEL_NOTE-6661:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 67274
+              stepCounter: "6661"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67128
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67275
+              stepCounter: "6661"
+            dataType: INTEGER
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: ROW_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67137
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67276
+              stepCounter: "6661"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: NOTE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67146
+                    stepCounter: "6653"
+                transform: |
+                  CASE WHEN "LU_MAKEID"."MAKE_ID" = 0 THEN 'XMAKE,' ELSE '' END ||
+                  CASE WHEN "LU_MODELID"."MODEL_ID" = 0 THEN 'XMODEL,' ELSE '' END ||
+                  CASE WHEN "LU_YEARID"."YEAR_ID" = 0 THEN 'XYEAR,' ELSE '' END 
+          - columnReference:
+              columnCounter: 67277
+              stepCounter: "6661"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: YEAR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67146
+                    stepCounter: "6653"
+                transform: ""
+          - columnReference:
+              columnCounter: 67278
+              stepCounter: "6661"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: MAKE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67182
+                    stepCounter: "6657"
+                transform: ""
+          - columnReference:
+              columnCounter: 67279
+              stepCounter: "6661"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: MODEL
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67198
+                    stepCounter: "6658"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              LU_MAKEID: "6657"
+              LU_MODELID: "6658"
+              LU_YEARID: "6653"
+              V_S3_CUSTOMER_DATA: "6652"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DWH
+                nodeName: V_S3_CUSTOMER_DATA
+              - locationName: STAGE
+                nodeName: LU_YEARID
+              - locationName: STAGE
+                nodeName: LU_MAKEID
+              - locationName: STAGE
+                nodeName: LU_MODELID
+            join:
+              joinCondition: |-
+                FROM {{ ref('DWH', 'V_S3_CUSTOMER_DATA') }} "V_S3_CUSTOMER_DATA"
+                INNER JOIN {{ ref('STAGE', 'LU_YEARID') }} "LU_YEARID"
+                ON "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_YEARID"."ROW_ID"
+                AND "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_YEARID"."METADATA$FILENAME"
+                INNER JOIN {{ ref('STAGE', 'LU_MAKEID') }} "LU_MAKEID"
+                ON "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_MAKEID"."ROW_ID"
+                AND "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_MAKEID"."METADATA$FILENAME"
+                INNER JOIN {{ ref('STAGE', 'LU_MODELID') }} "LU_MODELID"
+                ON "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_MODELID"."ROW_ID"
+                AND "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_MODELID"."METADATA$FILENAME"
+            name: STG_YEAR_MAKE_MODEL_NOTE
+            noLinkRefs: []
+      name: STG_YEAR_MAKE_MODEL_NOTE
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "6661"

@@ -1,5 +1,5 @@
 steps:
-  STG_TEXT_TITLE-6543:
+  LU_YEARID-6653:
     operation:
       config:
         insertStrategy: INSERT
@@ -20,8 +20,8 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 65759
-              stepCounter: "6543"
+              columnCounter: 67142
+              stepCounter: "6653"
             dataType: STRING
             description: ""
             hashColumns: []
@@ -30,69 +30,77 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65685
-                    stepCounter: "6535"
+                  - columnCounter: 67128
+                    stepCounter: "6652"
                 transform: ""
           - columnReference:
-              columnCounter: 65760
-              stepCounter: "6543"
+              columnCounter: 67144
+              stepCounter: "6653"
             dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
-            name: c1
+            name: ROW_ID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65686
-                    stepCounter: "6535"
+                  - columnCounter: 67137
+                    stepCounter: "6652"
                 transform: ""
           - columnReference:
-              columnCounter: 65785
-              stepCounter: "6543"
+              columnCounter: 67146
+              stepCounter: "6653"
             dataType: STRING
             description: ""
-            name: title
+            hashColumns: []
+            hashDetails: null
+            name: YEAR
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65753
-                    stepCounter: "6541"
+                  - columnCounter: 67139
+                    stepCounter: "6652"
                 transform: ""
           - columnReference:
-              columnCounter: 65860
-              stepCounter: "6543"
-            dataType: INT
+              columnCounter: 67147
+              stepCounter: "6653"
+            dataType: INTEGER
             description: ""
-            name: RN
+            hashColumns: []
+            hashDetails: null
+            name: YEAR_ID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 65856
-                    stepCounter: "6535"
-                transform: ""
+                  - columnCounter: 67164
+                    stepCounter: "6656"
+                transform: COALESCE("VCDB_YEAR"."YEAR_ID", "VCDB_YEAR_ALIAS"."YEAR_ID", 0)
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - aliases: {}
+          - aliases:
+              VCDB_YEAR: "6656"
+              VCDB_YEAR_ALIAS: "6656"
+              V_S3_CUSTOMER_DATA: "6652"
             customSQL:
               customSQL: ""
             dependencies:
-              - locationName: STAGE
-                nodeName: STG_TEXT_FILE
               - locationName: DWH
-                nodeName: V_TITLE
+                nodeName: V_S3_CUSTOMER_DATA
+              - locationName: DWH
+                nodeName: VCDB_YEAR
             join:
-              joinCondition: |-
-                FROM  {{ ref('STAGE', 'STG_TEXT_FILE') }}  "STG_TEXT_FILE"
-                LEFT JOIN {{ ref('DWH', 'V_TITLE') }} "V_TITLE"
-                ON ' '||"STG_TEXT_FILE"."c1"||' ' LIKE '% '||"V_TITLE"."title"||' %'
-                WHERE {{parameters.run_title}} = 1
-            name: STG_TEXT_TITLE
+              joinCondition: |
+                FROM {{ ref('DWH', 'V_S3_CUSTOMER_DATA') }} "V_S3_CUSTOMER_DATA"
+                LEFT JOIN {{ ref('DWH', 'VCDB_YEAR') }} "VCDB_YEAR"
+                ON "V_S3_CUSTOMER_DATA"."YEAR" = "VCDB_YEAR"."YEAR"
+                LEFT JOIN {{ ref('DWH', 'VCDB_YEAR') }} "VCDB_YEAR_ALIAS"
+                ON "V_S3_CUSTOMER_DATA"."YEAR" = "VCDB_YEAR_ALIAS"."YEAR_ALIAS"
+            name: LU_YEARID
             noLinkRefs: []
-      name: STG_TEXT_TITLE
+      name: LU_YEARID
       overrideSQL: false
       schema: ""
       sqlType: Stage
       type: sql
-    stepCounter: "6543"
+    stepCounter: "6653"

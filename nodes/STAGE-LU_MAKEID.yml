@@ -1,0 +1,118 @@
+steps:
+  LU_MAKEID-6657:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 67176
+              stepCounter: "6657"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67128
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67178
+              stepCounter: "6657"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: ROW_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67137
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67182
+              stepCounter: "6657"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: MAKE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67140
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67183
+              stepCounter: "6657"
+            dataType: INTEGER
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: MAKE_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67162
+                    stepCounter: "6654"
+                transform: COALESCE("VCDB_MAKE"."MAKE_ID","VCDB_MAKE_ALIAS01"."MAKE_ID","VCDB_MAKE_ALIAS02"."MAKE_ID","VCDB_MAKE_ALIAS03"."MAKE_ID","VCDB_MAKE_ALIAS04"."MAKE_ID","VCDB_MAKE_ALIAS05"."MAKE_ID",0)
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              VCDB_MAKE: "6654"
+              VCDB_MAKE_ALIAS01: "6654"
+              VCDB_MAKE_ALIAS02: "6654"
+              VCDB_MAKE_ALIAS03: "6654"
+              VCDB_MAKE_ALIAS04: "6654"
+              VCDB_MAKE_ALIAS05: "6654"
+              V_S3_CUSTOMER_DATA: "6652"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DWH
+                nodeName: V_S3_CUSTOMER_DATA
+              - locationName: DWH
+                nodeName: VCDB_MAKE
+            join:
+              joinCondition: |-
+                FROM {{ ref('DWH', 'V_S3_CUSTOMER_DATA') }} "V_S3_CUSTOMER_DATA"
+                LEFT JOIN {{ ref('DWH', 'VCDB_MAKE') }} "VCDB_MAKE"
+                ON "V_S3_CUSTOMER_DATA"."MAKE" = "VCDB_MAKE"."MAKE"
+                LEFT JOIN {{ ref('DWH', 'VCDB_MAKE') }} "VCDB_MAKE_ALIAS01"
+                ON "V_S3_CUSTOMER_DATA"."MAKE" = "VCDB_MAKE_ALIAS01"."MAKE_ALIAS01"
+                LEFT JOIN {{ ref('DWH', 'VCDB_MAKE') }} "VCDB_MAKE_ALIAS02"
+                ON "V_S3_CUSTOMER_DATA"."MAKE" = "VCDB_MAKE_ALIAS02"."MAKE_ALIAS02"
+                LEFT JOIN {{ ref('DWH', 'VCDB_MAKE') }} "VCDB_MAKE_ALIAS03"
+                ON "V_S3_CUSTOMER_DATA"."MAKE" = "VCDB_MAKE_ALIAS03"."MAKE_ALIAS03"
+                LEFT JOIN {{ ref('DWH', 'VCDB_MAKE') }} "VCDB_MAKE_ALIAS04"
+                ON "V_S3_CUSTOMER_DATA"."MAKE" = "VCDB_MAKE_ALIAS04"."MAKE_ALIAS04"
+                LEFT JOIN {{ ref('DWH', 'VCDB_MAKE') }} "VCDB_MAKE_ALIAS05"
+                ON "V_S3_CUSTOMER_DATA"."MAKE" = "VCDB_MAKE_ALIAS05"."MAKE_ALIAS05"
+            name: LU_MAKEID
+            noLinkRefs: []
+      name: LU_MAKEID
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "6657"

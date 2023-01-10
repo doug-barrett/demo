@@ -1,5 +1,5 @@
 steps:
-  EXT_TEXT_FILE-6534:
+  EXT_S3_CUSTOMER_DATA-6651:
     operation:
       config:
         autoRefresh: false
@@ -7,13 +7,12 @@ steps:
         fieldDelim: ","
         fieldEnclosed: \042
         fileLocation: DOUG_DB.PUBLIC.DOUGS3
-        filePattern: random/.*[.]txt
+        filePattern: pdm/Customer_data.csv
         fileType: CSV
-        recDelim: |+
-
+        recDelim: \r\n
         skipBlankLines: true
         skipHeader: "1"
-        snsTopic: arn:aws:sns:your-region:123456789012:your-notification
+        snsTopic: arn:aws:sns:us-east-1:121674918127:prod-emea-s3-notification
         trimSpace: true
       database: ""
       dependencies: []
@@ -23,7 +22,7 @@ steps:
       isMultisource: false
       locationID: ""
       locationName: STAGE
-      materializationType: view
+      materializationType: table
       metadata:
         appliedNodeTests: []
         columns:
@@ -33,8 +32,8 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65682
-              stepCounter: "6534"
+              columnCounter: 67121
+              stepCounter: "6651"
             config: {}
             dataType: VARIANT
             defaultValue: ""
@@ -51,8 +50,8 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 65683
-              stepCounter: "6534"
+              columnCounter: 67122
+              stepCounter: "6651"
             config: {}
             dataType: STRING
             defaultValue: ""
@@ -71,11 +70,11 @@ steps:
             dependencies: []
             join:
               joinCondition: ""
-            name: EXT_TEXT_FILE
+            name: EXT_S3_CUSTOMER_DATA
             noLinkRefs: []
-      name: EXT_TEXT_FILE
+      name: EXT_S3_CUSTOMER_DATA
       overrideSQL: false
       schema: ""
       sqlType: "16"
       type: sql
-    stepCounter: "6534"
+    stepCounter: "6651"

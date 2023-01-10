@@ -1,0 +1,80 @@
+steps:
+  EXT_S3_VCDB_MODEL-6648:
+    operation:
+      config:
+        autoRefresh: false
+        compression: ""
+        fieldDelim: ","
+        fieldEnclosed: \042
+        fileLocation: DOUG_DB.PUBLIC.DOUGS3
+        filePattern: pdm/VCDB_Model_Alias.csv
+        fileType: CSV
+        recDelim: \r\n
+        skipBlankLines: true
+        skipHeader: "1"
+        snsTopic: arn:aws:sns:us-east-1:121674918127:prod-emea-s3-notification
+        trimSpace: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - VALUE: true
+            acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67113
+              stepCounter: "6648"
+            config: {}
+            dataType: VARIANT
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            name: VALUE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - METADATA$FILENAME: true
+            acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67114
+              stepCounter: "6648"
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ""
+            name: EXT_S3_VCDB_MODEL
+            noLinkRefs: []
+      name: EXT_S3_VCDB_MODEL
+      overrideSQL: false
+      schema: ""
+      sqlType: "16"
+      type: sql
+    stepCounter: "6648"

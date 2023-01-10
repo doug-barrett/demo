@@ -1,0 +1,101 @@
+steps:
+  VCDB_YEAR-6656:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: false
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: DWH
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 67161
+              stepCounter: "6656"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67116
+                    stepCounter: "6649"
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67164
+              stepCounter: "6656"
+            config: {}
+            dataType: INTEGER
+            description: ""
+            name: YEAR_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67115
+                    stepCounter: "6649"
+                transform: "\"EXT_S3_VCDB_YEAR\".\"VALUE\":\"c1\"::NUMBER"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67165
+              stepCounter: "6656"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: YEAR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67115
+                    stepCounter: "6649"
+                transform: "\"EXT_S3_VCDB_YEAR\".\"VALUE\":\"c2\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67166
+              stepCounter: "6656"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: YEAR_ALIAS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67115
+                    stepCounter: "6649"
+                transform: "\"EXT_S3_VCDB_YEAR\".\"VALUE\":\"c3\"::STRING"
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: EXT_S3_VCDB_YEAR
+            join:
+              joinCondition: FROM {{ ref('STAGE', 'EXT_S3_VCDB_YEAR') }} "EXT_S3_VCDB_YEAR"
+            name: VCDB_YEAR
+            noLinkRefs: []
+      name: VCDB_YEAR
+      overrideSQL: false
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: "6656"

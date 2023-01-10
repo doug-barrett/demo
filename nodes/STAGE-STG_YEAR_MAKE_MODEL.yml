@@ -1,0 +1,144 @@
+steps:
+  STG_YEAR_MAKE_MODEL-6659:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: STAGE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 67204
+              stepCounter: "6659"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67128
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67205
+              stepCounter: "6659"
+            dataType: INTEGER
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: ROW_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67137
+                    stepCounter: "6652"
+                transform: ""
+          - columnReference:
+              columnCounter: 67216
+              stepCounter: "6659"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: YEAR_MAKE_MODEL
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67146
+                    stepCounter: "6653"
+                transform: "\"LU_YEARID\".\"YEAR\"||'-'||\"LU_MAKEID\".\"MAKE\"||'-'||\"LU_MODELID\".\"MODEL\""
+          - columnReference:
+              columnCounter: 67206
+              stepCounter: "6659"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: YEAR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67146
+                    stepCounter: "6653"
+                transform: ""
+          - columnReference:
+              columnCounter: 67210
+              stepCounter: "6659"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: MAKE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67182
+                    stepCounter: "6657"
+                transform: ""
+          - columnReference:
+              columnCounter: 67214
+              stepCounter: "6659"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: MODEL
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67198
+                    stepCounter: "6658"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              LU_MAKEID: "6657"
+              LU_MODELID: "6658"
+              LU_YEARID: "6653"
+              V_S3_CUSTOMER_DATA: "6652"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DWH
+                nodeName: V_S3_CUSTOMER_DATA
+              - locationName: STAGE
+                nodeName: LU_YEARID
+              - locationName: STAGE
+                nodeName: LU_MAKEID
+              - locationName: STAGE
+                nodeName: LU_MODELID
+            join:
+              joinCondition: |-
+                FROM {{ ref('DWH', 'V_S3_CUSTOMER_DATA') }} "V_S3_CUSTOMER_DATA"
+                INNER JOIN {{ ref('STAGE', 'LU_YEARID') }} "LU_YEARID"
+                ON "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_YEARID"."ROW_ID"
+                AND "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_YEARID"."METADATA$FILENAME"
+                INNER JOIN {{ ref('STAGE', 'LU_MAKEID') }} "LU_MAKEID"
+                ON "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_MAKEID"."ROW_ID"
+                AND "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_MAKEID"."METADATA$FILENAME"
+                INNER JOIN {{ ref('STAGE', 'LU_MODELID') }} "LU_MODELID"
+                ON "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_MODELID"."ROW_ID"
+                AND "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_MODELID"."METADATA$FILENAME"
+            name: STG_YEAR_MAKE_MODEL
+            noLinkRefs: []
+      name: STG_YEAR_MAKE_MODEL
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "6659"

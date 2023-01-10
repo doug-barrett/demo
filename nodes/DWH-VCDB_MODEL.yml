@@ -1,0 +1,118 @@
+steps:
+  VCDB_MODEL-6655:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: false
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: DWH
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 67159
+              stepCounter: "6655"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: METADATA$FILENAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67114
+                    stepCounter: "6648"
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67172
+              stepCounter: "6655"
+            config: {}
+            dataType: INTEGER
+            description: ""
+            name: MODEL_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67113
+                    stepCounter: "6648"
+                transform: "\"EXT_S3_VCDB_MODEL\".\"VALUE\":\"c1\"::NUMBER"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67173
+              stepCounter: "6655"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: MODEL
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67113
+                    stepCounter: "6648"
+                transform: "\"EXT_S3_VCDB_MODEL\".\"VALUE\":\"c2\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67174
+              stepCounter: "6655"
+            config: {}
+            dataType: INTEGER
+            description: ""
+            name: VEHICLE_TYPE_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67113
+                    stepCounter: "6648"
+                transform: "\"EXT_S3_VCDB_MODEL\".\"VALUE\":\"c3\"::NUMBER"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67175
+              stepCounter: "6655"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: MODEL_ALIAS01
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 67113
+                    stepCounter: "6648"
+                transform: "\"EXT_S3_VCDB_MODEL\".\"VALUE\":\"c4\"::STRING"
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: STAGE
+                nodeName: EXT_S3_VCDB_MODEL
+            join:
+              joinCondition: FROM {{ ref('STAGE', 'EXT_S3_VCDB_MODEL') }} "EXT_S3_VCDB_MODEL"
+            name: VCDB_MODEL
+            noLinkRefs: []
+      name: VCDB_MODEL
+      overrideSQL: false
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: "6655"
