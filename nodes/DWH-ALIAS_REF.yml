@@ -1,19 +1,13 @@
 steps:
-  EXT_S3_CUSTOMER_DATA-6651:
+  ALIAS_REF-6667:
     operation:
       config:
-        autoRefresh: false
-        compression: ""
-        fieldDelim: ","
-        fieldEnclosed: \042
-        fileLocation: DOUG_DB.PUBLIC.DOUGS3
-        filePattern: pdm/Customer_data.csv
-        fileType: CSV
-        recDelim: \r\n
-        skipBlankLines: true
-        skipHeader: "1"
-        snsTopic: arn:aws:sns:us-east-1:121674918127:prod-emea-s3-notification
-        trimSpace: true
+        insertStrategy: UNION
+        postSQL: ""
+        preSQL: ""
+        selectDistinct: false
+        testsEnabled: true
+        truncateBefore: true
       database: ""
       dependencies: []
       deployEnabled: true
@@ -21,43 +15,52 @@ steps:
       isDataVault: false
       isMultisource: false
       locationID: ""
-      locationName: STAGE
+      locationName: DWH
       materializationType: table
       metadata:
         appliedNodeTests: []
         columns:
-          - VALUE: true
-            acceptedValues:
+          - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 67121
-              stepCounter: "6651"
+              columnCounter: 67469
+              stepCounter: "6667"
             config: {}
-            dataType: VARIANT
-            defaultValue: ""
+            dataType: STRING
             description: ""
-            hashColumns: []
-            name: VALUE
+            name: ALIAS_TYPE
             nullable: true
             sourceColumnReferences:
               - columnReferences: []
                 transform: ""
-          - METADATA$FILENAME: true
-            acceptedValues:
+          - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 67122
-              stepCounter: "6651"
+              columnCounter: 67470
+              stepCounter: "6667"
             config: {}
             dataType: STRING
-            defaultValue: ""
             description: ""
-            hashColumns: []
-            name: METADATA$FILENAME
+            name: OBJECT_ID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 67471
+              stepCounter: "6667"
+            config: {}
+            dataType: STRING
+            description: ""
+            name: OBJECT_ALIAS
             nullable: true
             sourceColumnReferences:
               - columnReferences: []
@@ -65,16 +68,18 @@ steps:
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - customSQL:
+          - aliases: {}
+            customSQL:
               customSQL: ""
             dependencies: []
             join:
-              joinCondition: ""
-            name: EXT_S3_CUSTOMER_DATA
+              joinCondition: |
+                
+            name: ALIAS_REF
             noLinkRefs: []
-      name: EXT_S3_CUSTOMER_DATA
+      name: ALIAS_REF
       overrideSQL: false
       schema: ""
-      sqlType: "16"
+      sqlType: Stage
       type: sql
-    stepCounter: "6651"
+    stepCounter: "6667"

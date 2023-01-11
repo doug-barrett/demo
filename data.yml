@@ -1,12 +1,5 @@
 defaultStorageMapping: STAGE
-jobs:
-  Job-5:
-    id: 5
-    name: Supplier pipeline
-    steps:
-      - "58"
-      - "1532"
-    subgraphs: []
+jobs: {}
 locations:
   DWH:
     mappingDefinitions:
@@ -5190,19 +5183,13 @@ stepTypes:
     name: Persistent Stage
     version: 1
 subgraphs:
-  Subgraph-7:
-    id: 7
-    name: Dim Supplier
+  Subgraph-57:
+    id: 57
+    name: Look ups
     steps:
-      - "46"
-      - "56"
-      - "57"
-      - "150"
-      - "152"
-      - "153"
-      - "270"
-      - "332"
-      - "1532"
-      - "1533"
-      - "1534"
+      - "6657"
+      - "6658"
+      - "6653"
+      - "6665"
+      - "6652"
 version: 1

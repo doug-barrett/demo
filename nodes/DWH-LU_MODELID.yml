@@ -14,7 +14,7 @@ steps:
       isDataVault: false
       isMultisource: false
       locationID: ""
-      locationName: STAGE
+      locationName: DWH
       materializationType: table
       metadata:
         appliedNodeTests: []
@@ -26,7 +26,7 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: METADATA$FILENAME
+            name: FILENAME
             nullable: true
             sourceColumnReferences:
               - columnReferences:
@@ -40,7 +40,7 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: ROW_ID
+            name: ROWID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
@@ -68,13 +68,13 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: MODEL_ID
+            name: MODELID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 67172
                     stepCounter: "6655"
-                transform: COALESCE("VCDB_MODEL"."MODEL_ID", "VCDB_MODEL_ALIAS01"."MODEL_ID", 0)
+                transform: COALESCE("VCDB_MODEL"."MODEL_ID", "ALIAS_REF"."OBJECT_ID", 0)
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
@@ -83,16 +83,19 @@ steps:
               customSQL: ""
             dependencies:
               - locationName: DWH
-                nodeName: V_S3_CUSTOMER_DATA
+                nodeName: CUSTOMER_DATA
               - locationName: DWH
                 nodeName: VCDB_MODEL
+              - locationName: DWH
+                nodeName: ALIAS_REF
             join:
               joinCondition: |-
-                FROM {{ ref('DWH', 'V_S3_CUSTOMER_DATA') }} "V_S3_CUSTOMER_DATA"
+                FROM {{ ref('DWH', 'CUSTOMER_DATA') }} "CUSTOMER_DATA"
                 LEFT JOIN {{ ref('DWH', 'VCDB_MODEL') }} "VCDB_MODEL"
-                ON "V_S3_CUSTOMER_DATA"."MODEL" ILIKE "VCDB_MODEL"."MODEL"
-                LEFT JOIN {{ ref('DWH', 'VCDB_MODEL') }} "VCDB_MODEL_ALIAS01"
-                ON "V_S3_CUSTOMER_DATA"."MODEL" ILIKE "VCDB_MODEL_ALIAS01"."MODEL_ALIAS01"
+                ON "CUSTOMER_DATA"."MODEL" ILIKE "VCDB_MODEL"."MODEL"
+                LEFT JOIN {{ ref('DWH', 'ALIAS_REF') }} "ALIAS_REF"
+                ON "CUSTOMER_DATA"."MODEL" ILIKE "ALIAS_REF"."OBJECT_ALIAS"
+                AND "ALIAS_REF"."ALIAS_TYPE" = 'MODEL'
             name: LU_MODELID
             noLinkRefs: []
       name: LU_MODELID

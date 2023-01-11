@@ -1,9 +1,13 @@
 steps:
-  V_S3_CUSTOMER_DATA-6652:
+  CUSTOMER_DATA-6652:
     operation:
       config:
         insertStrategy: UNION
+        postSQL: ""
+        preSQL: ""
         selectDistinct: false
+        testsEnabled: true
+        truncateBefore: true
       database: ""
       dependencies: []
       deployEnabled: true
@@ -12,24 +16,10 @@ steps:
       isMultisource: false
       locationID: ""
       locationName: DWH
-      materializationType: view
+      materializationType: table
       metadata:
         appliedNodeTests: []
         columns:
-          - columnReference:
-              columnCounter: 67128
-              stepCounter: "6652"
-            dataType: STRING
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: METADATA$FILENAME
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67122
-                    stepCounter: "6651"
-                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
@@ -43,10 +33,8 @@ steps:
             name: COL_TYPE
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67121
-                    stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c1\"::STRING"
+              - columnReferences: []
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
@@ -57,13 +45,11 @@ steps:
             config: {}
             dataType: INTEGER
             description: ""
-            name: ROW_ID
+            name: ROWID
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67121
-                    stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c2\"::NUMBER"
+              - columnReferences: []
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
@@ -77,10 +63,8 @@ steps:
             name: KEY
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67121
-                    stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c3\"::STRING"
+              - columnReferences: []
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
@@ -94,10 +78,8 @@ steps:
             name: YEAR
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67121
-                    stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c4\"::STRING"
+              - columnReferences: []
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
@@ -108,13 +90,11 @@ steps:
             config: {}
             dataType: STRING
             description: ""
-            name: YEAR_ID
+            name: YEARID
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67121
-                    stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c5\"::STRING"
+              - columnReferences: []
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
@@ -128,10 +108,8 @@ steps:
             name: MAKE
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67121
-                    stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c6\"::STRING"
+              - columnReferences: []
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
@@ -142,13 +120,11 @@ steps:
             config: {}
             dataType: STRING
             description: ""
-            name: MAKE_ID
+            name: MAKEID
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67121
-                    stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c7\"::STRING"
+              - columnReferences: []
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
@@ -162,10 +138,8 @@ steps:
             name: MODEL
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67121
-                    stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c8\"::STRING"
+              - columnReferences: []
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
@@ -176,13 +150,11 @@ steps:
             config: {}
             dataType: STRING
             description: ""
-            name: MODEL_ID
+            name: MODELID
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67121
-                    stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c9\"::STRING"
+              - columnReferences: []
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
@@ -196,10 +168,8 @@ steps:
             name: YEAR_MAKE_MODEL
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67121
-                    stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c10\"::STRING"
+              - columnReferences: []
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
@@ -210,30 +180,11 @@ steps:
             config: {}
             dataType: STRING
             description: ""
-            name: YEAR_MAKE_MODEL_ID
+            name: YEAR_MAKE_MODELID
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67121
-                    stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c11\"::STRING"
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 67132
-              stepCounter: "6652"
-            config: {}
-            dataType: STRING
-            description: ""
-            name: REMAINDER
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67121
-                    stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c12\"::STRING"
+              - columnReferences: []
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
@@ -247,10 +198,22 @@ steps:
             name: NOTE
             nullable: true
             sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - columnReference:
+              columnCounter: 67128
+              stepCounter: "6652"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: FILENAME
+            nullable: true
+            sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 67121
+                  - columnCounter: 67122
                     stepCounter: "6651"
-                transform: "\"EXT_S3_CUSTOMER_DATA\".\"VALUE\":\"c13\"::STRING"
+                transform: ""
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
@@ -264,11 +227,11 @@ steps:
               joinCondition: |
                 FROM {{ ref('STAGE', 'EXT_S3_CUSTOMER_DATA') }} "EXT_S3_CUSTOMER_DATA"
                 WHERE "VALUE":"c1"::STRING = 'data'
-            name: V_S3_CUSTOMER_DATA
+            name: CUSTOMER_DATA
             noLinkRefs: []
-      name: V_S3_CUSTOMER_DATA
+      name: CUSTOMER_DATA
       overrideSQL: false
       schema: ""
-      sqlType: View
+      sqlType: Stage
       type: sql
     stepCounter: "6652"

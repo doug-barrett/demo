@@ -1,5 +1,5 @@
 steps:
-  STG_YEAR_MAKE_MODEL-6659:
+  STG_YEAR_MAKE_MODEL_NOTE-6661:
     operation:
       config:
         insertStrategy: INSERT
@@ -14,19 +14,19 @@ steps:
       isDataVault: false
       isMultisource: false
       locationID: ""
-      locationName: STAGE
+      locationName: DWH
       materializationType: table
       metadata:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 67204
-              stepCounter: "6659"
+              columnCounter: 67274
+              stepCounter: "6661"
             dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
-            name: METADATA$FILENAME
+            name: FILENAME
             nullable: true
             sourceColumnReferences:
               - columnReferences:
@@ -34,13 +34,13 @@ steps:
                     stepCounter: "6652"
                 transform: ""
           - columnReference:
-              columnCounter: 67205
-              stepCounter: "6659"
+              columnCounter: 67275
+              stepCounter: "6661"
             dataType: INTEGER
             description: ""
             hashColumns: []
             hashDetails: null
-            name: ROW_ID
+            name: ROWID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
@@ -48,22 +48,25 @@ steps:
                     stepCounter: "6652"
                 transform: ""
           - columnReference:
-              columnCounter: 67216
-              stepCounter: "6659"
+              columnCounter: 67276
+              stepCounter: "6661"
             dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
-            name: YEAR_MAKE_MODEL
+            name: NOTE
             nullable: true
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 67146
                     stepCounter: "6653"
-                transform: "\"LU_YEARID\".\"YEAR\"||'-'||\"LU_MAKEID\".\"MAKE\"||'-'||\"LU_MODELID\".\"MODEL\""
+                transform: |
+                  CASE WHEN "LU_MAKEID"."MAKEID" = 0 THEN 'XMAKE,' ELSE '' END ||
+                  CASE WHEN "LU_MODELID"."MODELID" = 0 THEN 'XMODEL,' ELSE '' END ||
+                  CASE WHEN "LU_YEARID"."YEARID" = 0 THEN 'XYEAR,' ELSE '' END 
           - columnReference:
-              columnCounter: 67206
-              stepCounter: "6659"
+              columnCounter: 67277
+              stepCounter: "6661"
             dataType: STRING
             description: ""
             hashColumns: []
@@ -76,8 +79,8 @@ steps:
                     stepCounter: "6653"
                 transform: ""
           - columnReference:
-              columnCounter: 67210
-              stepCounter: "6659"
+              columnCounter: 67278
+              stepCounter: "6661"
             dataType: STRING
             description: ""
             hashColumns: []
@@ -90,8 +93,8 @@ steps:
                     stepCounter: "6657"
                 transform: ""
           - columnReference:
-              columnCounter: 67214
-              stepCounter: "6659"
+              columnCounter: 67279
+              stepCounter: "6661"
             dataType: STRING
             description: ""
             hashColumns: []
@@ -107,38 +110,38 @@ steps:
         enabledColumnTestIDs: []
         sourceMapping:
           - aliases:
+              CUSTOMER_DATA: "6652"
               LU_MAKEID: "6657"
               LU_MODELID: "6658"
               LU_YEARID: "6653"
-              V_S3_CUSTOMER_DATA: "6652"
             customSQL:
               customSQL: ""
             dependencies:
               - locationName: DWH
-                nodeName: V_S3_CUSTOMER_DATA
-              - locationName: STAGE
+                nodeName: CUSTOMER_DATA
+              - locationName: DWH
                 nodeName: LU_YEARID
-              - locationName: STAGE
+              - locationName: DWH
                 nodeName: LU_MAKEID
-              - locationName: STAGE
+              - locationName: DWH
                 nodeName: LU_MODELID
             join:
               joinCondition: |-
-                FROM {{ ref('DWH', 'V_S3_CUSTOMER_DATA') }} "V_S3_CUSTOMER_DATA"
-                INNER JOIN {{ ref('STAGE', 'LU_YEARID') }} "LU_YEARID"
-                ON "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_YEARID"."ROW_ID"
-                AND "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_YEARID"."METADATA$FILENAME"
-                INNER JOIN {{ ref('STAGE', 'LU_MAKEID') }} "LU_MAKEID"
-                ON "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_MAKEID"."ROW_ID"
-                AND "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_MAKEID"."METADATA$FILENAME"
-                INNER JOIN {{ ref('STAGE', 'LU_MODELID') }} "LU_MODELID"
-                ON "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_MODELID"."ROW_ID"
-                AND "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_MODELID"."METADATA$FILENAME"
-            name: STG_YEAR_MAKE_MODEL
+                FROM {{ ref('DWH', 'CUSTOMER_DATA') }} "CUSTOMER_DATA"
+                INNER JOIN {{ ref('DWH', 'LU_YEARID') }} "LU_YEARID"
+                ON "CUSTOMER_DATA"."ROWID" = "LU_YEARID"."ROWID"
+                AND "CUSTOMER_DATA"."FILENAME" = "LU_YEARID"."FILENAME"
+                INNER JOIN {{ ref('DWH', 'LU_MAKEID') }} "LU_MAKEID"
+                ON "CUSTOMER_DATA"."ROWID" = "LU_MAKEID"."ROWID"
+                AND "CUSTOMER_DATA"."FILENAME" = "LU_MAKEID"."FILENAME"
+                INNER JOIN {{ ref('DWH', 'LU_MODELID') }} "LU_MODELID"
+                ON "CUSTOMER_DATA"."ROWID" = "LU_MODELID"."ROWID"
+                AND "CUSTOMER_DATA"."FILENAME" = "LU_MODELID"."FILENAME"
+            name: STG_YEAR_MAKE_MODEL_NOTE
             noLinkRefs: []
-      name: STG_YEAR_MAKE_MODEL
+      name: STG_YEAR_MAKE_MODEL_NOTE
       overrideSQL: false
       schema: ""
       sqlType: Stage
       type: sql
-    stepCounter: "6659"
+    stepCounter: "6661"

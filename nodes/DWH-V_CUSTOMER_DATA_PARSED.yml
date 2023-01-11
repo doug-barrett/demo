@@ -23,12 +23,10 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: METADATA$FILENAME
+            name: FILENAME
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67128
-                    stepCounter: "6652"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 67357
@@ -37,7 +35,7 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: ROW_ID
+            name: ROWID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
@@ -79,7 +77,7 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: YEAR_ID
+            name: YEARID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
@@ -107,7 +105,7 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: MAKE_ID
+            name: MAKEID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
@@ -135,7 +133,7 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: MODEL_ID
+            name: MODELID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
@@ -149,7 +147,7 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: YEAR_MAKE_MODEL_ID
+            name: YEAR_MAKE_MODELID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
@@ -171,20 +169,6 @@ steps:
                     stepCounter: "6659"
                 transform: ""
           - columnReference:
-              columnCounter: 67367
-              stepCounter: "6665"
-            dataType: STRING
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: REMAINDER
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 67132
-                    stepCounter: "6652"
-                transform: ""
-          - columnReference:
               columnCounter: 67368
               stepCounter: "6665"
             dataType: STRING
@@ -202,51 +186,51 @@ steps:
         enabledColumnTestIDs: []
         sourceMapping:
           - aliases:
+              CUSTOMER_DATA: "6652"
               LU_MAKEID: "6657"
               LU_MODELID: "6658"
               LU_YEARID: "6653"
               STG_YEAR_MAKE_MODEL: "6659"
               STG_YEAR_MAKE_MODEL_ID: "6660"
               STG_YEAR_MAKE_MODEL_NOTE: "6661"
-              V_S3_CUSTOMER_DATA: "6652"
             customSQL:
               customSQL: ""
             dependencies:
               - locationName: DWH
-                nodeName: V_S3_CUSTOMER_DATA
-              - locationName: STAGE
+                nodeName: CUSTOMER_DATA
+              - locationName: DWH
                 nodeName: LU_YEARID
-              - locationName: STAGE
+              - locationName: DWH
                 nodeName: LU_MAKEID
-              - locationName: STAGE
+              - locationName: DWH
                 nodeName: LU_MODELID
-              - locationName: STAGE
+              - locationName: DWH
                 nodeName: STG_YEAR_MAKE_MODEL
-              - locationName: STAGE
+              - locationName: DWH
                 nodeName: STG_YEAR_MAKE_MODEL_ID
-              - locationName: STAGE
+              - locationName: DWH
                 nodeName: STG_YEAR_MAKE_MODEL_NOTE
             join:
               joinCondition: |-
-                FROM {{ ref('DWH', 'V_S3_CUSTOMER_DATA') }} "V_S3_CUSTOMER_DATA"
-                LEFT JOIN {{ ref('STAGE', 'LU_YEARID') }} "LU_YEARID"
-                ON "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_YEARID"."METADATA$FILENAME"
-                AND "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_YEARID"."ROW_ID"
-                LEFT JOIN {{ ref('STAGE', 'LU_MAKEID') }} "LU_MAKEID"
-                ON "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_MAKEID"."METADATA$FILENAME"
-                AND "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_MAKEID"."ROW_ID"
-                LEFT JOIN {{ ref('STAGE', 'LU_MODELID') }} "LU_MODELID"
-                ON "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "LU_MODELID"."METADATA$FILENAME"
-                AND "V_S3_CUSTOMER_DATA"."ROW_ID" = "LU_MODELID"."ROW_ID"
-                LEFT JOIN {{ ref('STAGE', 'STG_YEAR_MAKE_MODEL') }} "STG_YEAR_MAKE_MODEL"
-                ON "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "STG_YEAR_MAKE_MODEL"."METADATA$FILENAME"
-                AND "V_S3_CUSTOMER_DATA"."ROW_ID" = "STG_YEAR_MAKE_MODEL"."ROW_ID"
-                LEFT JOIN {{ ref('STAGE', 'STG_YEAR_MAKE_MODEL_ID') }} "STG_YEAR_MAKE_MODEL_ID"
-                ON "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "STG_YEAR_MAKE_MODEL_ID"."METADATA$FILENAME"
-                AND "V_S3_CUSTOMER_DATA"."ROW_ID" = "STG_YEAR_MAKE_MODEL_ID"."ROW_ID"
-                LEFT JOIN {{ ref('STAGE', 'STG_YEAR_MAKE_MODEL_NOTE') }} "STG_YEAR_MAKE_MODEL_NOTE"
-                ON "V_S3_CUSTOMER_DATA"."METADATA$FILENAME" = "STG_YEAR_MAKE_MODEL_NOTE"."METADATA$FILENAME"
-                AND "V_S3_CUSTOMER_DATA"."ROW_ID" = "STG_YEAR_MAKE_MODEL_NOTE"."ROW_ID"
+                FROM {{ ref('DWH', 'CUSTOMER_DATA') }} "CUSTOMER_DATA"
+                LEFT JOIN {{ ref('DWH', 'LU_YEARID') }} "LU_YEARID"
+                ON "CUSTOMER_DATA"."FILENAME" = "LU_YEARID"."FILENAME"
+                AND "CUSTOMER_DATA"."ROWID" = "LU_YEARID"."ROWID"
+                LEFT JOIN {{ ref('DWH', 'LU_MAKEID') }} "LU_MAKEID"
+                ON "CUSTOMER_DATA"."FILENAME" = "LU_MAKEID"."FILENAME"
+                AND "CUSTOMER_DATA"."ROWID" = "LU_MAKEID"."ROWID"
+                LEFT JOIN {{ ref('DWH', 'LU_MODELID') }} "LU_MODELID"
+                ON "CUSTOMER_DATA"."FILENAME" = "LU_MODELID"."FILENAME"
+                AND "CUSTOMER_DATA"."ROWID" = "LU_MODELID"."ROWID"
+                LEFT JOIN {{ ref('DWH', 'STG_YEAR_MAKE_MODEL') }} "STG_YEAR_MAKE_MODEL"
+                ON "CUSTOMER_DATA"."FILENAME" = "STG_YEAR_MAKE_MODEL"."FILENAME"
+                AND "CUSTOMER_DATA"."ROWID" = "STG_YEAR_MAKE_MODEL"."ROWID"
+                LEFT JOIN {{ ref('DWH', 'STG_YEAR_MAKE_MODEL_ID') }} "STG_YEAR_MAKE_MODEL_ID"
+                ON "CUSTOMER_DATA"."FILENAME" = "STG_YEAR_MAKE_MODEL_ID"."FILENAME"
+                AND "CUSTOMER_DATA"."ROWID" = "STG_YEAR_MAKE_MODEL_ID"."ROWID"
+                LEFT JOIN {{ ref('DWH', 'STG_YEAR_MAKE_MODEL_NOTE') }} "STG_YEAR_MAKE_MODEL_NOTE"
+                ON "CUSTOMER_DATA"."FILENAME" = "STG_YEAR_MAKE_MODEL_NOTE"."FILENAME"
+                AND "CUSTOMER_DATA"."ROWID" = "STG_YEAR_MAKE_MODEL_NOTE"."ROWID"
             name: V_CUSTOMER_DATA_PARSED
             noLinkRefs: []
       name: V_CUSTOMER_DATA_PARSED
