@@ -220,13 +220,9 @@ steps:
           - aliases: {}
             customSQL:
               customSQL: ""
-            dependencies:
-              - locationName: STAGE
-                nodeName: EXT_S3_CUSTOMER_DATA
+            dependencies: []
             join:
-              joinCondition: |
-                FROM {{ ref('STAGE', 'EXT_S3_CUSTOMER_DATA') }} "EXT_S3_CUSTOMER_DATA"
-                WHERE "VALUE":"c1"::STRING = 'data'
+              joinCondition: ""
             name: CUSTOMER_DATA
             noLinkRefs: []
       name: CUSTOMER_DATA
